@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/Fred/Fred_TestSceneB.unity
+    guid: 0f5d6a1fd2889834484f08472bedf84a
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/Fred/Fred_TestSceneA.unity
+    guid: 86bab5ca35d49574aa7a36b801730051
+  - enabled: 1
+    path: Assets/Plugins/CCC/Scenes/Scene Transition/LoadingScreen.unity
+    guid: 2515ee5371940174f90bd274f9d478d0
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/Benoit/Benoit_TestScene.unity
+    guid: 6657bf8f0572519439cc6f49fc51a65d
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/William/William_TestScene.unity
+    guid: 93a13168791ccfc4aaf657ff7a1da23d
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/Alex/Alex_TestScene.unity
+    guid: e210c4848817e3a4b892f868190c3e68
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/Gab/Gab_TestScene.unity
+    guid: 13f234688c74adf418e30289c32b724f
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/Fred/GameUI/GameUI.unity
+    guid: 3d5579f2e1fbd154888c6972a0d40be3
+  - enabled: 1
+    path: Assets/Game/Dossiers Individuels/Fred/Game/Game.unity
+    guid: abae6ed4f50a0654093bb035e1d0788e
