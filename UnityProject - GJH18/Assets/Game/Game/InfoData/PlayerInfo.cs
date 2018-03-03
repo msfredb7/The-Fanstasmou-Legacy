@@ -33,25 +33,25 @@ public class PlayerInfo : MonoBehaviour {
         {
             default:
             case PlayerNumber.One:
-                if (PlayerPrefs.GetInt("") == 1)
+                if (PlayerPrefs.GetInt("PlayerOneTeam") == 1)
                     isWolf = true;
                 else
                     isWolf = false;
                 break;
             case PlayerNumber.Two:
-                if (PlayerPrefs.GetInt("") == 1)
+                if (PlayerPrefs.GetInt("PlayerTwoTeam") == 1)
                     isWolf = true;
                 else
                     isWolf = false;
                 break;
             case PlayerNumber.Three:
-                if (PlayerPrefs.GetInt("") == 1)
+                if (PlayerPrefs.GetInt("PlayerThreeTeam") == 1)
                     isWolf = true;
                 else
                     isWolf = false;
                 break;
             case PlayerNumber.Four:
-                if (PlayerPrefs.GetInt("") == 1)
+                if (PlayerPrefs.GetInt("PlayerFourTeam") == 1)
                     isWolf = true;
                 else
                     isWolf = false;
