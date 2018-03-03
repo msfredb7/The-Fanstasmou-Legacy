@@ -11,46 +11,41 @@ public class SelectionInputs : MonoBehaviour {
     }
     InputPlayerAxis axis;
     InputPlayerButton buttons;
-    RectTransform rect;
+    RectTransform playerRect;
+    [SerializeField]
+    private RectTransform menuTransform;
 
     public Team team;
 
     private void Start()
     {
-        rect = GetComponent<RectTransform>();
+        playerRect = GetComponent<RectTransform>();
         axis = GetComponent<InputPlayerAxis>();
         buttons = GetComponent<InputPlayerButton>();
     }
 
     private void FixedUpdate()
     {
-        if (axis.GetPlayerHorizontal() > 0)
-            changeTeam("wolfs");
-        else if (axis.GetPlayerHorizontal() < 0)
+        if (axis.GetPlayerHorizontal() > 0.50f)
+            changeTeam(1);
+        else if (axis.GetPlayerHorizontal() < -0.50f)
         {
-            changeTeam("shepherds");
-        }
-        
-        if (buttons != null)
-        {
-            if (buttons.GetPlayerStart())
-            {
-                //PlayerPrefs.SetString("player" + axis.player + "team", )
-            }
+            changeTeam(0);
         }
     }
-
-    private void changeTeam(string _teamName)
+    
+    private void changeTeam(int _teamName)
     {
-        if (_teamName == "wolfs")
+        float playerSpritePosition = menuTransform.rect.width/4;
+        if (_teamName == 1)
         {
             team = Team.Wolf;
-            rect.anchoredPosition = new Vector3(250, rect.anchoredPosition.y);
+            playerRect.anchoredPosition = new Vector3(playerSpritePosition + playerRect.rect.width, playerRect.anchoredPosition.y);
         }
-        else if (_teamName == "shepherds")
+        else if (_teamName == 0)
         {
             team = Team.Shepherd;
-            rect.anchoredPosition = new Vector3(-250, rect.anchoredPosition.y);
+            playerRect.anchoredPosition = new Vector3(-playerSpritePosition, playerRect.anchoredPosition.y);
         }
     }
 }

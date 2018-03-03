@@ -35,3 +35,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Game/Tutorial/Tutorial.unity
     guid: 1e6ab1a0fde66104b898cacb57fbfed2
+  - enabled: 1
+    path: Assets/Plugins/CCC/UI/Generic Windows/Message Popup/MessagePopup.unity
+    guid: beb86ce867a9fa8468e6e7ce726c2539
