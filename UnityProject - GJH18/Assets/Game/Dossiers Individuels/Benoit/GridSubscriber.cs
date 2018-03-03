@@ -29,7 +29,6 @@ public class GridSubscriber: MonoBehaviour
     private static int instanceCount = 0;
     private int instanceNumber;
 
-    [HideInInspector]
     public Vector2Int currentCell = new Vector2Int(-1, -1);
 
     public int RequestPerSeconds = 5;
@@ -37,7 +36,11 @@ public class GridSubscriber: MonoBehaviour
     private Vector2 position { get  { return (Vector2)gameObject.transform.position; } }
     private List<NeighborsRequest> neighborsRequest = new List<NeighborsRequest>();
 
-    
+
+    public void OnDestroy()
+    {
+        UnitGrid.Instance.UnsuscribeUnit(this);
+    }
 
     public void Start()
     {
@@ -51,6 +54,7 @@ public class GridSubscriber: MonoBehaviour
         if (newCell != currentCell)
             UnitGrid.Instance.SuscribeUnit(this, newCell);
 
+        Debug.DrawLine(position, UnitGrid.Instance.GridToWorld(newCell), Color.red,Time.deltaTime, false);
 
         for (int i = 0; i < neighborsRequest.Count; i++)
         {
