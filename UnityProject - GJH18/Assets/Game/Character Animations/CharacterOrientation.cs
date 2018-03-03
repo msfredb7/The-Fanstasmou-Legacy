@@ -27,7 +27,6 @@ public class CharacterOrientation : MonoBehaviour
 
         if (playerMovement.IsMoving && playerMovement.LastPlayerInput.magnitude > 0.4f)
         {
-            print(playerMovement.LastPlayerInput);
             rotator.rotation = Quaternion.Euler(Vector3.forward * playerMovement.LastPlayerInput.ToAngle());
         }
     }

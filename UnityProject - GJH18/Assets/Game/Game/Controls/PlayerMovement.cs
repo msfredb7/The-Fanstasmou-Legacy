@@ -38,11 +38,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        UpdateTargetPosition();
+            UpdateTargetPosition();
     }
 
     public void UpdateTargetPosition()
     {
+        if (inputs == null)
+        {
+            currentTarget = Vector2.zero;
+            return;
+        }
         IsMoving = false;
         Vector2 newTarget = new Vector2();
         if (inputs.GetPlayerHorizontal().Abs() > sensitivity)
