@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,8 @@ public partial class Game
     public SceneInfo uiScene;
     [ReadOnly]
     public GameUI gameUI;
+
+    public PlayerIntro intros;
 
     public Camera mainCamera;
 
@@ -65,5 +68,33 @@ public partial class Game
 
         playerFour = Instantiate(playerPrefab, map.spawnpointPlayerFour.position, Quaternion.identity, unitContainer);
         playerFour.player = PlayerInfo.PlayerNumber.Four;
+    }
+
+    public List<PlayerInfo> GetWolves()
+    {
+        List<PlayerInfo> result = new List<PlayerInfo>();
+        if (playerOne.isWolf)
+            result.Add(playerOne);
+        if (playerTwo.isWolf)
+            result.Add(playerTwo);
+        if (playerThree.isWolf)
+            result.Add(playerThree);
+        if (playerFour.isWolf)
+            result.Add(playerFour);
+        return result;
+    }
+
+    public List<PlayerInfo> GetDoggies()
+    {
+        List<PlayerInfo> result = new List<PlayerInfo>();
+        if (!playerOne.isWolf)
+            result.Add(playerOne);
+        if (!playerTwo.isWolf)
+            result.Add(playerTwo);
+        if (!playerThree.isWolf)
+            result.Add(playerThree);
+        if (!playerFour.isWolf)
+            result.Add(playerFour);
+        return result;
     }
 }
