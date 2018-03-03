@@ -28,8 +28,8 @@ public class GridRegion
 
 public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
 
-    const int horizontalCell = 32;
-    const int VerticalCell = 18;
+    const int horizontalCell = 4;
+    const int VerticalCell = 4;
 
     public GameObject BottomLeftBorder;
     public GameObject TopRightBorder;
@@ -66,7 +66,7 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
     {
         Vector2Int retvalue = new Vector2Int();
         retvalue.x = Mathf.FloorToInt( (postion.x - horizontalOffset) / CellWidth);
-        retvalue.y = Mathf.FloorToInt( (postion.y + verticalOffset) / CellHeight);
+        retvalue.y = Mathf.FloorToInt( (postion.y - verticalOffset) / CellHeight);
         return retvalue;
     }
 

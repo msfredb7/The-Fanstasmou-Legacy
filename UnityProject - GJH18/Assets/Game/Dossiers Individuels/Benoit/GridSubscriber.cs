@@ -29,6 +29,9 @@ public class GridSubscriber: MonoBehaviour
             if (objects[i] == gameObject)
                 objects.RemoveAt(i);
         }
+
+        Debug.Log(objects.Count);
+
         return objects;
     }
 }
