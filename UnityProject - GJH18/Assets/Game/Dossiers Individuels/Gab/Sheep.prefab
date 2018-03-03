@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512002220359000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13, y: 1.81, z: 0}
+  m_LocalPosition: {x: -3.36, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4691236701831684}
@@ -158,16 +158,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PoidWandering: 2
-  m_PoidSeparation: 0
-  m_PoidAlign: 5
-  m_PoidCohesion: 25
-  m_WanderRadius: 5
+  m_PoidSeparation: 0.1
+  m_PoidAlign: 2
+  m_PoidCohesion: 5
+  m_PoidFlee: 20
+  m_PoidEvade: 10
+  m_PoidSeek: 10
   m_MaxSpeed: 0.8
+  m_WanderRadius: 5
   m_WanderRefresh: 3
   m_WanderRange: 0
   m_SepareRange: 4
-  m_CohesionRange: 2
-  m_AlignRange: 2
+  m_CohesionRange: 3
+  m_AlignRange: 3
+  m_FleeRange: 5
+  FuirSourie: 0
 --- !u!114 &114713073955666192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCell: {x: -1, y: -1}
+  RequestPerSeconds: 5
 --- !u!212 &212111447949954336
 SpriteRenderer:
   m_ObjectHideFlags: 1
