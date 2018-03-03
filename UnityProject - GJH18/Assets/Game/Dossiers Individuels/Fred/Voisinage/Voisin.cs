@@ -48,7 +48,7 @@ public class Voisin : MonoBehaviour
         List<Voisin> voisins = new List<Voisin>();
         for (int i = 0; i < otherVoisins.Count; i++)
         {
-            if ((otherVoisins[i].intance.tr.position - tr.position).magnitude < range)
+            if (otherVoisins[i].distance < range)
                 voisins.Add(otherVoisins[i].intance);
         }
         return voisins;
@@ -84,4 +84,3 @@ public class Voisin : MonoBehaviour
     }
 }
 
-            if (otherVoisins[i].distance < range)
