@@ -7,6 +7,7 @@ public class CharacterOrientation : MonoBehaviour
     public Animator animatorController;
     public Transform rotator;
     public bool useRigidbody = false;
+    public float sensitivity = 0.4f;
 
     
     [ReadOnly]
@@ -20,22 +21,29 @@ public class CharacterOrientation : MonoBehaviour
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
         rb = GetComponentInParent<Rigidbody2D>();
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        animatorController.SetBool(runHash, playerMovement.IsMoving);
 
         if (useRigidbody)
         {
-            if (rb.velocity.magnitude > 0.1f)
+            if (rb.velocity.magnitude > sensitivity)
             {
+                animatorController.SetBool(runHash, true);
                 SetAngle(rb.velocity);
+            }
+            else
+            {
+                animatorController.SetBool(runHash, false);
             }
         }
         else
         {
-            if (playerMovement.IsMoving && playerMovement.LastPlayerInput.magnitude > 0.4f)
+            animatorController.SetBool(runHash, playerMovement.IsMoving);
+            if (playerMovement.IsMoving && playerMovement.LastPlayerInput.magnitude > sensitivity)
             {
                 SetAngle(playerMovement.LastPlayerInput);
             }
@@ -44,7 +52,7 @@ public class CharacterOrientation : MonoBehaviour
 
     void SetAngle(Vector2 moveVector)
     {
-        SetAngle(playerMovement.LastPlayerInput.ToAngle());
+        SetAngle(moveVector.ToAngle());
     }
     void SetAngle(float angle)
     {
