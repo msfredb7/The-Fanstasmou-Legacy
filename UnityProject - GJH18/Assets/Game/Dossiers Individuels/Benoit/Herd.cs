@@ -83,4 +83,18 @@ public class Herd{
         if(herdMembers.Count == 0)
             HerdList.Instance.RemoveHerd(this);
     }
+
+    public int MemberCount()
+    {
+        return herdMembers.Count;
+    }
+
+    public void Eat()
+    {
+        //Eat sheep Function to be call
+
+        for (int i = 0; i < herdMembers.Count; i++)
+           (herdMembers[i].gameObject).Destroy();
+        HerdList.Instance.RemoveHerd(this);
+    }
 }

@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1566506573833200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.67, z: 0}
+  m_LocalPosition: {x: 1.2434707, y: -1.9451442, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4047736173491440}
@@ -120,7 +120,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.31424373, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2602859
+  m_Radius: 0.6
 --- !u!70 &70805556657028158
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -169,6 +169,7 @@ MonoBehaviour:
   dashAcceleration: 10
   dashDuration: 0.2
   eatCooldown: 0.5
+  maxSheepEaten: 1
 --- !u!114 &114680804637318676
 MonoBehaviour:
   m_ObjectHideFlags: 1

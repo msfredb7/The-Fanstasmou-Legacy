@@ -16,6 +16,8 @@ public class WolfBehavior : MonoBehaviour {
     public float eatCooldown = 0.5f;
     private bool canEat = true;
 
+    public int maxSheepEaten = 1;
+
     private InputPlayerButton inputButtons;
 
     SheepDetector sheepDetector;
@@ -30,7 +32,9 @@ public class WolfBehavior : MonoBehaviour {
             if(sheepDetector.onSheepInRange != null)
             {
                 sheepDetector.onSheepInRange.AddListener(delegate() {
-                    Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition(Game.Instance.mainCamera.WorldToScreenPoint(transform.position), ButtonPopUp.ButtonType.A, 0.5f, "EAT");
+                    Herd herd = sheepDetector.GetHerd();
+                    if (herd != null && herd.MemberCount() <= maxSheepEaten)
+                        Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition(Game.Instance.mainCamera.WorldToScreenPoint(transform.position), ButtonPopUp.ButtonType.A, 0.5f, "EAT");
                 });
             }
         }
@@ -85,9 +89,11 @@ public class WolfBehavior : MonoBehaviour {
     {
         if (sheepDetector != null)
         {
-            if(sheepDetector.sheepsInRange.Count > 0)
+            if(sheepDetector.sheepsInRange.Count > 0 )
             {
-                Debug.Log("EATING THIS SHEEP : " + sheepDetector.FindClosestSheep().name);
+                Herd herd = sheepDetector.GetHerd();
+                if (herd.MemberCount() <= maxSheepEaten)
+                    herd.Eat();
             }
         }
     }
