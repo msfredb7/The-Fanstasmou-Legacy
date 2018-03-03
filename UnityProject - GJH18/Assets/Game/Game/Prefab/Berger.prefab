@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4314944507729298}
   - component: {fileID: 212202636523047524}
   - component: {fileID: 95247747095196320}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Dog Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4435275146597370}
   - component: {fileID: 212021933479467996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114419342091526222}
   - component: {fileID: 70717687261042228}
   - component: {fileID: 114214245104391144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Berger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
+  changeModeCooldown: 0.5
 --- !u!114 &114419342091526222
 MonoBehaviour:
   m_ObjectHideFlags: 1

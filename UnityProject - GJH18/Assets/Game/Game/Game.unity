@@ -184,21 +184,6 @@ Prefab:
       propertyPath: m_Name
       value: Sheep (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
   m_IsPrefabParent: 0
@@ -386,26 +371,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4078845112154042, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -447,26 +417,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4078845112154042, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -518,21 +473,6 @@ Prefab:
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -637,26 +577,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4078845112154042, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -760,26 +685,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4078845112154042, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -941,21 +851,6 @@ Prefab:
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -1130,21 +1025,6 @@ Prefab:
       propertyPath: m_Name
       value: Sheep (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
   m_IsPrefabParent: 0
@@ -1298,21 +1178,6 @@ Prefab:
       propertyPath: m_Name
       value: Sheep (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
   m_IsPrefabParent: 0
@@ -1358,21 +1223,6 @@ Prefab:
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -1473,22 +1323,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4078845112154042, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -1535,21 +1370,6 @@ Prefab:
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
@@ -1686,11 +1506,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1458022948}
   - {fileID: 482324561}
   - {fileID: 532560932}
   - {fileID: 273672071}
   - {fileID: 1247013162}
-  - {fileID: 1458022948}
   - {fileID: 647626633}
   - {fileID: 1514441155}
   - {fileID: 944946981}
@@ -2012,21 +1832,6 @@ Prefab:
     - target: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}
       propertyPath: m_Name
       value: Sheep (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_PoidSeparation
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_SepareRange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114184113407760692, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-        type: 2}
-      propertyPath: m_CohesionRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 112ac6a34faa4fd419f4a84e836d0c94, type: 2}

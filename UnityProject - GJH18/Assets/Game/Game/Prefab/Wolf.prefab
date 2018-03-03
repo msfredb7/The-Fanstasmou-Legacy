@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4238798075262348}
   - component: {fileID: 212810844666519922}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4047736173491440}
   - component: {fileID: 212574700001500350}
   - component: {fileID: 95285340483104334}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wolf Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 70805556657028158}
   - component: {fileID: 114829545260265278}
   - component: {fileID: 114503898595349550}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e5d730553bb7a40b6c658af23aa32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashModeCooldown: 0.5
+  dashCooldown: 0.5
+  eatCooldown: 0.5
 --- !u!114 &114829545260265278
 MonoBehaviour:
   m_ObjectHideFlags: 1
