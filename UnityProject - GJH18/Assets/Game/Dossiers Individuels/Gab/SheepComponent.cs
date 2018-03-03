@@ -236,15 +236,25 @@ public class SheepComponent : MonoBehaviour
         return Mathf.Pow(Mathf.Clamp(1 - (distance / range), 0, 1), power);
     }
 
-    private Vector2 SmoothSeek(Vector2 target)
+    private Vector2 SmoothSeek(Vector2 target, float range = -1, float playerPower = -1)
     {
-        return -GetRepulsePowerFrom(target, m_SeekRange, m_SeekPower);
+        if (range != -1)
+        {
+            if (((Vector2)transform.position - target).magnitude > range)
+                return new Vector2(0, 0);
+        }
+        else
+            range = m_SeekRange;
+
+        if (playerPower == -1)
+            playerPower = m_SeekPower;
+
+        return -GetRepulsePowerFrom(target, range, playerPower);
     }
+
     private Vector2 Seek(Vector2 target, float range = -1, float playerPower = -1)
     {
-        if(range != -1)
-            if(((Vector2)transform.position - target).magnitude > range)
-                return new Vector2(0,0);
+
 
         return ((target - (Vector2)tr.position).normalized * m_MaxSpeed * playerPower) - rb.velocity;
     }
@@ -292,7 +302,6 @@ public class SheepComponent : MonoBehaviour
             Repulse R = replusions[i];
             if ((R.position - (Vector2)tr.position).magnitude < R.range)
                 m_FEvade += Flee(R.position, R.range, R.strength);
-            else Debug.Log("No");
         }
     }
 
@@ -306,7 +315,6 @@ public class SheepComponent : MonoBehaviour
             Attract A = attractions[i];
             if ((A.position - (Vector2)tr.position).magnitude < A.range)
                 m_FSeek += Seek(A.position, A.range, A.strength);
-            else Debug.Log("No");
         }
     }
 
