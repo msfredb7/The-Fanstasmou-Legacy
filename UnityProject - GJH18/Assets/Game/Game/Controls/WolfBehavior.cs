@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WolfBehavior : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject scratchAnimation;
+
     public float dashCooldown = 0.5f;
     [SerializeField]
     private float dashSpeed = 10f;
@@ -97,7 +100,12 @@ public class WolfBehavior : MonoBehaviour {
             {
                 Herd herd = sheepDetector.GetHerd();
                 if (herd.MemberCount() <= maxSheepEaten)
+                {
                     herd.Eat();
+                    
+                }
+                GameObject instantiatedScratch = Instantiate(scratchAnimation);
+                instantiatedScratch.transform.position = transform.position + (transform.right);
             }
         }
     }
