@@ -7,12 +7,16 @@ public class SheepComponent : MonoBehaviour {
     Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion;
 
     public float m_PoidWandering, m_PoidSeparation, m_PoidAlign, m_PoidCohesion;
-    public float m_WanderRadius, m_MaxSpeed, m_WanderRefresh;
+    public float m_PoidFlee, m_PoidEvade, m_PoidSeek;
+
+    public float m_MaxSpeed, m_WanderRadius, m_WanderRefresh;
 
     [Colored(1, .5f, .5f)] public float m_WanderRange;
     [Colored(.5f, 1, .5f)] public float m_SepareRange;
     [Colored(.5f, .5f, 1)] public float m_CohesionRange;
     [Colored(1, 1, 1)] public float m_AlignRange;
+
+    public float m_FleeRange;
 
     Rigidbody2D rb;
 
@@ -20,11 +24,13 @@ public class SheepComponent : MonoBehaviour {
 
     private GridSubscriber gs;
 
-    bool m_other;
+    //GameObject Tueur;
+
+    public bool FuirSourie;
 
     // Use this for initialization
     void Start () {
-        m_other = false;
+        FuirSourie = false;
         gs = GetComponent<GridSubscriber>() as GridSubscriber;
 
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
@@ -40,6 +46,13 @@ public class SheepComponent : MonoBehaviour {
 
     private void Update()
     {
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //Debug.Log((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //m_Force += Flee((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) * 3;
+        //}
+
+
         if (Input.GetKeyDown("d") == true && m_PoidWandering != 0)
             rb.AddForce(new Vector2(15.0f, 0));
     }
@@ -70,6 +83,13 @@ public class SheepComponent : MonoBehaviour {
             m_Force += m_FWandering * m_PoidWandering;
         }
 
+        if(FuirSourie == true)
+            m_Force += Flee((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) * m_PoidFlee;
+        //m_Force += seek((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) * m_PoidSeek;
+
+        //if(tueur != null)
+        //    m_Force += Evade(tueur) * m_PoidEvade;
+
         //Debug.Log(m_Force);
 
         //rb.AddRelativeForce(m_Force);
@@ -80,15 +100,6 @@ public class SheepComponent : MonoBehaviour {
         {
             rb.velocity = rb.velocity.normalized * m_MaxSpeed;
         }
-        //if (rb.velocity.x > m_MaxSpeed)
-        //    rb.velocity = Vector2.right * m_MaxSpeed;
-        //else if (rb.velocity.x < -m_MaxSpeed)
-        //    rb.velocity = Vector2.right * -m_MaxSpeed;
-
-        //if (rb.velocity.y > m_MaxSpeed)
-        //    rb.velocity = Vector2.left * m_MaxSpeed;
-        //else if (rb.velocity.y < -m_MaxSpeed)
-        //    rb.velocity = Vector2.left * -m_MaxSpeed;
 
     }
 
@@ -179,6 +190,14 @@ public class SheepComponent : MonoBehaviour {
 
     private Vector2 Flee(Vector2 target)
     {
+
+        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        float PanicDistance = m_FleeRange;
+
+        if (Vector2.Distance((Vector2)tr.position, target) > PanicDistance)
+            return new Vector2(0, 0);
+
+
         Vector2 ForceTot = ((Vector2)tr.position - target).normalized * m_MaxSpeed;
 
         return (ForceTot - rb.velocity);
@@ -190,8 +209,8 @@ public class SheepComponent : MonoBehaviour {
 
         Vector2 ToPursuer = poursuivant.transform.position - tr.position;
 
-        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance
-        float distMenace = 10.0f;
+        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        float distMenace = m_FleeRange;//10.0f;
         if (ToPursuer.sqrMagnitude > distMenace * distMenace) return new Vector2();
 
         float LookAhead = ToPursuer.magnitude / (m_MaxSpeed + poursuiRB.velocity.magnitude);
