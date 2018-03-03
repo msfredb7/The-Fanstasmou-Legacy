@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInfo : MonoBehaviour {
+public class PlayerInfo : MonoBehaviour
+{
 
     public enum PlayerNumber
     {
@@ -33,32 +34,20 @@ public class PlayerInfo : MonoBehaviour {
         {
             default:
             case PlayerNumber.One:
-                if (PlayerPrefs.GetInt("PlayerOneTeam") == 1)
-                    isWolf = true;
-                else
-                    isWolf = false;
+                isWolf = PlayerPrefs.GetInt(PlayerNumber.One + " team") == 1;
                 break;
             case PlayerNumber.Two:
-                if (PlayerPrefs.GetInt("PlayerTwoTeam") == 1)
-                    isWolf = true;
-                else
-                    isWolf = false;
+                isWolf = PlayerPrefs.GetInt(PlayerNumber.Two + " team") == 1;
                 break;
             case PlayerNumber.Three:
-                if (PlayerPrefs.GetInt("PlayerThreeTeam") == 1)
-                    isWolf = true;
-                else
-                    isWolf = false;
+                isWolf = PlayerPrefs.GetInt(PlayerNumber.Three + " team") == 1;
                 break;
             case PlayerNumber.Four:
-                if (PlayerPrefs.GetInt("PlayerFourTeam") == 1)
-                    isWolf = true;
-                else
-                    isWolf = false;
+                isWolf = PlayerPrefs.GetInt(PlayerNumber.Four + " team") == 1;
                 break;
         }
     }
-	
+
     private void LoadPlayerCharacterParams()
     {
         if (isWolf)

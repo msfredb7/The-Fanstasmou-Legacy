@@ -6,8 +6,9 @@ public class CharacterOrientation : MonoBehaviour
 {
     public Animator animatorController;
     public Transform rotator;
+    public bool useRigidbody = false;
 
-
+    
     [ReadOnly]
     public PlayerMovement playerMovement;
     [ReadOnly]
@@ -25,10 +26,28 @@ public class CharacterOrientation : MonoBehaviour
     {
         animatorController.SetBool(runHash, playerMovement.IsMoving);
 
-        if (playerMovement.IsMoving && playerMovement.LastPlayerInput.magnitude > 0.4f)
+        if (useRigidbody)
         {
-            print(playerMovement.LastPlayerInput);
-            rotator.rotation = Quaternion.Euler(Vector3.forward * playerMovement.LastPlayerInput.ToAngle());
+            if (rb.velocity.magnitude > 0.1f)
+            {
+                SetAngle(rb.velocity);
+            }
         }
+        else
+        {
+            if (playerMovement.IsMoving && playerMovement.LastPlayerInput.magnitude > 0.4f)
+            {
+                SetAngle(playerMovement.LastPlayerInput);
+            }
+        }
+    }
+
+    void SetAngle(Vector2 moveVector)
+    {
+        SetAngle(playerMovement.LastPlayerInput.ToAngle());
+    }
+    void SetAngle(float angle)
+    {
+        rotator.rotation = Quaternion.Euler(Vector3.forward * angle);
     }
 }

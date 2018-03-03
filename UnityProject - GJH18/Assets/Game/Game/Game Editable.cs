@@ -10,6 +10,9 @@ public partial class Game
     public Map map;
     public Transform unitContainer;
 
+    public MusicManager music;
+    public SFXManager sfx;
+
     [Header("PREFABS")]
     public PlayerInfo playerPrefab;
     public GameObject wolfPrefab;
