@@ -148,6 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCooldown: 1
+  dashSpeed: 10
+  dashAcceleration: 10
+  dashDuration: 0.2
   eatCooldown: 0.5
 --- !u!114 &114829545260265278
 MonoBehaviour:
@@ -163,7 +166,7 @@ MonoBehaviour:
   animatorController: {fileID: 95285340483104334}
   rotator: {fileID: 4659530477955836}
   useRigidbody: 0
-  sensitivity: 0.4
+  sensitivity: 0.15
   setSpeed: 0
   speedScale: 0.4
   playerMovement: {fileID: 0}
