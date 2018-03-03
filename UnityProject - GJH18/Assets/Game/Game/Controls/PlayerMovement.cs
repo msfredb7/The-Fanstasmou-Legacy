@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
-
+public class PlayerMovement : MonoBehaviour
+{
+    private const float sensitivity = 0.15f;
     [HideInInspector]
     public bool movementEnable = false;
 
@@ -23,17 +24,13 @@ public class PlayerMovement : MonoBehaviour {
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        Game.OnGameStart += OnGameStart;
     }
 
-    void Start()
-    {
-        Game.OnGameStart += Init;
-        Game.OnGameStart += EnableMovement;
-    }
-
-    void Init()
+    void OnGameStart()
     {
         inputs = GetComponent<InputPlayerAxis>();
+        EnableMovement();
     }
 
     void Update()
@@ -44,20 +41,20 @@ public class PlayerMovement : MonoBehaviour {
     public void UpdateTargetPosition()
     {
         Vector2 newTarget = new Vector2();
-        if (inputs.GetPlayerHorizontal() != 0)
+        if (inputs.GetPlayerHorizontal().Abs() > sensitivity)
         {
             newTarget.x = transform.position.x + (inputs.GetPlayerHorizontal() * targetDisplacement);
-            Debug.Log("GOING SIDEWAYS");
-        } else
+        }
+        else
         {
             newTarget.x = transform.position.x;
         }
 
-        if (inputs.GetPlayerVertical() != 0)
+        if (inputs.GetPlayerVertical().Abs() > sensitivity)
         {
             newTarget.y = transform.position.y + (inputs.GetPlayerVertical() * targetDisplacement);
-            Debug.Log("GOING FORWARD");
-        } else
+        }
+        else
         {
             newTarget.y = transform.position.y;
         }
