@@ -39,6 +39,7 @@ public class WolfBehavior : MonoBehaviour {
                 return;
             }
             Debug.Log("DASH WOLFIE");
+            dash();
             canDash = false;
             this.DelayedCall(() => { canDash = true; }, dashCooldown);
         }
@@ -49,5 +50,12 @@ public class WolfBehavior : MonoBehaviour {
         inputButtons = GetComponentInParent<InputPlayerButton>();
         if (inputButtons == null)
             Debug.Log("wtf doggy");
+    }
+
+    void dash()
+    {
+        //Ça serait peut-être mieux de faire un vrai dash qu'un simple mouvement speed boost de 0.1 secondes
+        transform.parent.GetComponent<PlayerMovement>().maximumSpeed = 10;
+        this.DelayedCall(() => { transform.parent.GetComponent<PlayerMovement>().maximumSpeed = GetComponent<WolfInfo>().maximumSpeed; }, 0.1f);
     }
 }
