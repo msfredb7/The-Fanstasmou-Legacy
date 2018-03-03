@@ -242,8 +242,8 @@ MonoBehaviour:
   m_PoidAlign: 0
   m_PoidCohesion: 15
   m_PoidFlee: 120
-  m_PoidEvade: 0
-  m_PoidSeek: 0
+  m_PoidEvade: 80
+  m_PoidSeek: 80
   m_FleePower: 1
   m_SeekPower: 1
   m_EvadePower: 1

@@ -170,6 +170,11 @@ MonoBehaviour:
   dashDuration: 0.2
   eatCooldown: 0.5
   maxSheepEaten: 1
+  repulse:
+    active: 1
+    range: 5
+    strength: 1
+    owner: {fileID: 0}
 --- !u!114 &114680804637318676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,7 +258,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 298606051
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300042, guid: 5ca55f6881804014588a62a37184fb5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

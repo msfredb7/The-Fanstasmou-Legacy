@@ -148,6 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
+  attract:
+    active: 0
+    range: 5
+    strength: 1
+    owner: {fileID: 0}
+  repulse:
+    active: 0
+    range: 5
+    strength: 1
+    owner: {fileID: 0}
   changeModeCooldown: 0.5
 --- !u!114 &114419342091526222
 MonoBehaviour:
@@ -166,6 +176,7 @@ MonoBehaviour:
   sensitivity: 0.15
   setSpeed: 0
   speedScale: 0.4
+  lerpSpeed: 1
   playerMovement: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &114503963309630962
@@ -257,7 +268,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2025393453
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e6cb6ddcbeeb64349a8b4dc1e8550cd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
