@@ -6,14 +6,10 @@ public class GridSubscriber: MonoBehaviour
 {
     [HideInInspector]
     public Vector2Int currentCell = new Vector2Int(-1 ,-1);
-    public GameObject owner;
 
     Vector2 position {
         get  {
-            if (owner)
-                return (Vector2)owner.transform.position;
-            else
-                return new Vector3(0, 0, 0);
+                return (Vector2)gameObject.transform.position;
         }
     }
 
@@ -31,7 +27,7 @@ public class GridSubscriber: MonoBehaviour
 
     public List<GameObject> GetNeighbors<T>(float range) where T : UnityEngine.MonoBehaviour
     {
-        return UnitGrid.Instance.GetNeighbors<T>(owner.transform.position, range);
+        return UnitGrid.Instance.GetNeighbors<T>(gameObject.transform.position, range);
     }
 }
 
