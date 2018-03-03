@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class HerdMember : MonoBehaviour {
     public static float maxDistance = 1.0f;
+
     private Voisin voisin;
 
     [HideInInspector]
-    public Herd herd = null;
+    private Herd herd = null;
 
-    public void Start()
+    public void Awake()
     {
         voisin = GetComponent<Voisin>() as Voisin;
-        herd = new Herd(this);
+        herd = HerdList.Instance.NewHerd(this);
     }
 
 
@@ -34,6 +35,18 @@ public class HerdMember : MonoBehaviour {
 
     public void Update()
     {
-        Debug.DrawLine(transform.position, (Vector3)herd.GetMiddle());
+        Debug.DrawLine(transform.position, (Vector3)herd.GetMiddle(), Color.red);
     }
+
+    public void SetHerd(Herd newHerd)
+    {
+        if (herd != null)
+            herd.RemoveMember(this);
+        herd = newHerd;
+    }
+    public Herd GetHerd()
+    {
+        return herd;
+    }
+
 }
