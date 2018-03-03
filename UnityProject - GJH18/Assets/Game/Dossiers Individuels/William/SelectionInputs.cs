@@ -10,7 +10,6 @@ public class SelectionInputs : MonoBehaviour {
         Wolf = 1
     }
     InputPlayerAxis axis;
-    InputPlayerButton buttons;
     RectTransform playerRect;
     [SerializeField]
     private RectTransform menuTransform;
@@ -21,7 +20,6 @@ public class SelectionInputs : MonoBehaviour {
     {
         playerRect = GetComponent<RectTransform>();
         axis = GetComponent<InputPlayerAxis>();
-        buttons = GetComponent<InputPlayerButton>();
     }
 
     private void FixedUpdate()
