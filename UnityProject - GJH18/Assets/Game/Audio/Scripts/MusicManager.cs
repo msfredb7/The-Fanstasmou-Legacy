@@ -15,10 +15,7 @@ public class MusicManager : MonoBehaviour {
     {
         Game.OnGameStart += delegate ()
         {
-            this.DelayedCall(delegate ()
-            {
-                PlayNextSong();
-            }, introDelay);
+            PlayNextSong();
         };
     }
 

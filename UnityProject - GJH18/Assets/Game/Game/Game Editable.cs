@@ -43,7 +43,9 @@ public partial class Game
             gameUI = uiScene.FindRootObject<GameUI>();
 
             this.DelayedCall(() => {
-                Scenes.Load(tutorial, (tutorialScene) => { tutorialScene.FindRootObject<Tutorial>().Init(onComplete); });
+                Scenes.Load(tutorial, (tutorialScene) => { tutorialScene.FindRootObject<Tutorial>().Init(delegate() {
+                    gameUI.Countdown(onComplete);
+                }); });
             }, tutorialAppearanceDelay);
         });
     }
