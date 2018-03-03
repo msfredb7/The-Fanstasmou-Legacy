@@ -43,12 +43,12 @@ public class Voisin : MonoBehaviour
         }
     }
 
-    List<Voisin> GetVoisinsInRange(float range)
+    public List<Voisin> GetVoisinsInRange(float range)
     {
         List<Voisin> voisins = new List<Voisin>();
         for (int i = 0; i < otherVoisins.Count; i++)
         {
-            if ((otherVoisins[i].intance.tr.position - tr.position).magnitude < range)
+            if (otherVoisins[i].distance < range)
                 voisins.Add(otherVoisins[i].intance);
         }
         return voisins;
@@ -74,7 +74,7 @@ public class Voisin : MonoBehaviour
         {
             for (int i = 0; i < otherVoisins.Count; i++)
             {
-                if(otherVoisins[i].intance == v)
+                if (otherVoisins[i].intance == v)
                 {
                     otherVoisins.RemoveAt(i);
                     i--;
