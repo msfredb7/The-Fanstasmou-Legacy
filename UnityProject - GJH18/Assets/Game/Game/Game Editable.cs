@@ -8,6 +8,8 @@ public partial class Game
     [ReadOnly]
     public GameUI gameUI;
 
+    public Camera mainCamera;
+
     public SceneInfo tutorial;
 
     public Map map;

@@ -18,10 +18,22 @@ public class WolfBehavior : MonoBehaviour {
 
     private InputPlayerButton inputButtons;
 
+    SheepDetector sheepDetector;
+
     void Start()
     {
         if (inputButtons == null)
             GetInputButtonsRef();
+        sheepDetector = GetComponent<SheepDetector>();
+        if(sheepDetector != null)
+        {
+            if(sheepDetector.onSheepInRange != null)
+            {
+                sheepDetector.onSheepInRange.AddListener(delegate() {
+                    Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition(Game.Instance.mainCamera.WorldToScreenPoint(transform.position), ButtonPopUp.ButtonType.A, 0.5f, "EAT");
+                });
+            }
+        }
     }
 
     void Update()
@@ -35,7 +47,7 @@ public class WolfBehavior : MonoBehaviour {
             {
                 return;
             }
-            Debug.Log("EAT THE SHEEP");
+            EatSheep();
             canEat = false;
             this.DelayedCall(() => { canEat = true; }, eatCooldown);
         } else if (inputButtons.GetPlayerB())
@@ -67,5 +79,16 @@ public class WolfBehavior : MonoBehaviour {
             transform.parent.GetComponent<PlayerMovement>().maximumSpeed = GetComponent<WolfInfo>().maximumSpeed;
             transform.parent.GetComponent<PlayerMovement>().accelerationRate = GetComponent<WolfInfo>().accelerationRate;
         }, dashDuration);
+    }
+
+    void EatSheep()
+    {
+        if (sheepDetector != null)
+        {
+            if(sheepDetector.sheepsInRange.Count > 0)
+            {
+                Debug.Log("EATING THIS SHEEP : " + sheepDetector.FindClosestSheep().name);
+            }
+        }
     }
 }
