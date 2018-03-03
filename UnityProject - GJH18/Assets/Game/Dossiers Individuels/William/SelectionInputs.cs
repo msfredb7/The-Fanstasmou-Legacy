@@ -5,9 +5,9 @@ using UnityEngine;
 public class SelectionInputs : MonoBehaviour {
     public enum Team
     {
-        None,
-        Shepherd,
-        Wolf
+        None = -1,
+        Shepherd = 0,
+        Wolf = 1
     }
     InputPlayerAxis axis;
     InputPlayerButton buttons;
