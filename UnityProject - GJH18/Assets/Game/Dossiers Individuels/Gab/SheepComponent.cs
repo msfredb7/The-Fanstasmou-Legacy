@@ -20,9 +20,11 @@ public class SheepComponent : MonoBehaviour {
 
     private GridSubscriber gs;
 
+    bool m_other;
+
     // Use this for initialization
     void Start () {
-
+        m_other = false;
         gs = GetComponent<GridSubscriber>() as GridSubscriber;
 
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
@@ -38,7 +40,6 @@ public class SheepComponent : MonoBehaviour {
 
     private void Update()
     {
-
         if (Input.GetKeyDown("d") == true && m_PoidWandering != 0)
             rb.AddForce(new Vector2(15.0f, 0));
     }
@@ -56,15 +57,18 @@ public class SheepComponent : MonoBehaviour {
         AlignementF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_AlignRange));
 
         //m_Force += m_FWandering * m_PoidWandering;
+        if (lstVoisin.Count > 0)
+        {
+            m_Force += m_FSepare * m_PoidSeparation;
 
-        m_Force += m_FSepare * m_PoidSeparation;
+            m_Force += m_FAlign * m_PoidAlign;
 
-        m_Force += m_FAlign * m_PoidAlign;
-
-        m_Force += m_FCohesion * m_PoidCohesion;
-
-        //if (m_PoidWandering > 0)
-        m_Force += m_FWandering * m_PoidWandering;
+            m_Force += m_FCohesion * m_PoidCohesion;
+        }
+        else
+        {
+            m_Force += m_FWandering * m_PoidWandering;
+        }
 
         //Debug.Log(m_Force);
 
@@ -133,10 +137,11 @@ public class SheepComponent : MonoBehaviour {
             CentreDeMasse /= lstVoisin.Count;
 
             //  seek au cas où
+            ForceTot = seek(CentreDeMasse);
 
-            ForceTot = (CentreDeMasse - (Vector2)tr.position).normalized * m_MaxSpeed;
+            //ForceTot = (CentreDeMasse - (Vector2)tr.position).normalized * m_MaxSpeed;
 
-            ForceTot -= rb.velocity;
+            //ForceTot -= rb.velocity;
         }
 
         m_FCohesion = ForceTot;
@@ -160,6 +165,38 @@ public class SheepComponent : MonoBehaviour {
         }
 
         m_FAlign = DirMoyenne;
+    }
+
+    private Vector2 seek(Vector2 Target)
+    {
+        Vector2 ForceTot = new Vector2(0, 0);
+        ForceTot = (Target - (Vector2)tr.position).normalized * m_MaxSpeed;
+
+        ForceTot -= rb.velocity;
+
+        return ForceTot;
+    }
+
+    private Vector2 Flee(Vector2 target)
+    {
+        Vector2 ForceTot = ((Vector2)tr.position - target).normalized * m_MaxSpeed;
+
+        return (ForceTot - rb.velocity);
+    }
+
+    private Vector2 Evade(GameObject poursuivant)
+    {
+        Rigidbody2D poursuiRB = poursuivant.GetComponent<Rigidbody2D>() as Rigidbody2D;
+
+        Vector2 ToPursuer = poursuivant.transform.position - tr.position;
+
+        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance
+        float distMenace = 10.0f;
+        if (ToPursuer.sqrMagnitude > distMenace * distMenace) return new Vector2();
+
+        float LookAhead = ToPursuer.magnitude / (m_MaxSpeed + poursuiRB.velocity.magnitude);
+
+        return Flee((Vector2)poursuivant.transform.position + poursuiRB.velocity * LookAhead);
     }
 
     void OnDrawGizmosSelected()
