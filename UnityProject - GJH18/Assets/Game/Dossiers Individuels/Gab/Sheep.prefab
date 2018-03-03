@@ -142,6 +142,8 @@ MonoBehaviour:
   rotator: {fileID: 4078845112154042}
   useRigidbody: 1
   sensitivity: 0.2
+  setSpeed: 1
+  speedScale: 0.4
   playerMovement: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &114184113407760692

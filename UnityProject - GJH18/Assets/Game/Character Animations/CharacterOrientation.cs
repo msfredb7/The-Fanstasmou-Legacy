@@ -8,14 +8,17 @@ public class CharacterOrientation : MonoBehaviour
     public Transform rotator;
     public bool useRigidbody = false;
     public float sensitivity = 0.4f;
+    public bool setSpeed = false;
+    public float speedScale = 0.4f;
 
-    
+
     [ReadOnly]
     public PlayerMovement playerMovement;
     [ReadOnly]
     public Rigidbody2D rb;
 
     private int runHash = Animator.StringToHash("running");
+    private int speedHash = Animator.StringToHash("speed");
 
     void Awake()
     {
@@ -27,10 +30,11 @@ public class CharacterOrientation : MonoBehaviour
 
     void Update()
     {
-
+        float speed = 0;
         if (useRigidbody)
         {
-            if (rb.velocity.magnitude > sensitivity)
+            speed = rb.velocity.magnitude;
+            if (speed > sensitivity)
             {
                 animatorController.SetBool(runHash, true);
                 SetAngle(rb.velocity);
@@ -42,11 +46,17 @@ public class CharacterOrientation : MonoBehaviour
         }
         else
         {
+            speed = playerMovement.LastPlayerInput.magnitude;
             animatorController.SetBool(runHash, playerMovement.IsMoving);
-            if (playerMovement.IsMoving && playerMovement.LastPlayerInput.magnitude > sensitivity)
+            if (playerMovement.IsMoving && speed > sensitivity)
             {
                 SetAngle(playerMovement.LastPlayerInput);
             }
+        }
+
+        if (setSpeed)
+        {
+            animatorController.SetFloat(speedHash, speed * speedScale);
         }
     }
 
