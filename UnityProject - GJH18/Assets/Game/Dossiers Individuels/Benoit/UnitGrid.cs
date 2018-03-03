@@ -72,6 +72,7 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
         List<GameObject> neighbors = new List<GameObject>();
 
         T[] sheeps = FindObjectsOfType<T>();
+
         for (int i = 0; i < sheeps.Length; i++)
             neighbors.Add(sheeps[i].gameObject);
 
@@ -92,7 +93,11 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
         float sqRange = range * range;
         for (int i = 0; i < neighbors.Count; i++)
             if(((Vector2)neighbors[i].transform.position - postion).SqrMagnitude() > range)
-                neighbors.RemoveAt(i);    
+                neighbors.RemoveAt(i);
+
+        for (int i = 0; i < neighbors.Count; i++)
+            if (!(neighbors[i] is T))
+                neighbors.RemoveAt(i);
 
         return neighbors;
     }
