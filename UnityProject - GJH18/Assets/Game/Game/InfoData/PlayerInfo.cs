@@ -16,12 +16,12 @@ public class PlayerInfo : MonoBehaviour {
 
     public bool isWolf = false;
 
-    void Start()
+    void Awake()
     {
-        Game.OnGameReady += LoadPlayer;
+        Game.OnGameReady += OnGameReady;
     }
 
-    public void LoadPlayer()
+    public void OnGameReady()
     {
         LoadPlayerInfo();
         LoadPlayerCharacterParams();
