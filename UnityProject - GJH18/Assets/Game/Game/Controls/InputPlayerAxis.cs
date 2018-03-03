@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class InputPlayerAxis : MonoBehaviour {
 
-    public enum PlayerNumber
-    {
-        One = 0,
-        Two = 1,
-        Three = 2,
-        Four = 3
-    }
-
-    public PlayerNumber player;
+    public PlayerInfo.PlayerNumber player;
 	
 	public float GetPlayerAxis(string direction)
     {
+        PlayerInfo.PlayerNumber realPlayerNumber;
+        if (Game.Instance != null)
+            realPlayerNumber = GetComponent<PlayerInfo>().player;
+        else
+            realPlayerNumber = player;
+
         float result = 0;
-        switch (player)
+
+        switch (realPlayerNumber)
         {
             default:
-            case PlayerNumber.One:
+            case PlayerInfo.PlayerNumber.One:
                 result = Input.GetAxis(direction + "PlayerOne");
                 break;
-            case PlayerNumber.Two:
+            case PlayerInfo.PlayerNumber.Two:
                 result = Input.GetAxis(direction + "PlayerTwo");
                 break;
-            case PlayerNumber.Three:
+            case PlayerInfo.PlayerNumber.Three:
                 result = Input.GetAxis(direction + "PlayerThree");
                 break;
-            case PlayerNumber.Four:
+            case PlayerInfo.PlayerNumber.Four:
                 result = Input.GetAxis(direction + "PlayerFour");
                 break;
         }
