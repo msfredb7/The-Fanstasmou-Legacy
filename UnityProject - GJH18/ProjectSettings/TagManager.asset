@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Foin
+    uniqueID: 394234335
+    locked: 0
   - name: Sheeps
     uniqueID: 300287447
     locked: 0
