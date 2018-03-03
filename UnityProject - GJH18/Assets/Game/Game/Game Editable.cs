@@ -14,25 +14,19 @@ public partial class Game
     public GameObject wolfPrefab;
     public GameObject bergerPrefab;
 
-    [HideInInspector]
+    [ReadOnly]
     public PlayerInfo playerOne;
-    [HideInInspector]
+    [ReadOnly]
     public PlayerInfo playerTwo;
-    [HideInInspector]
+    [ReadOnly]
     public PlayerInfo playerThree;
-    [HideInInspector]
+    [ReadOnly]
     public PlayerInfo playerFour;
-
-    void Start()
-    {
-        SpawnPlayers();
-
-        ReadyGame();
-        StartGame();
-    }
 
     void FetchAllReferences(Action onComplete)
     {
+        SpawnPlayers();
+
         // C'est ici qu'on peut aller chercher tous les références.
 
         int scenesToLoad = 1;
@@ -50,7 +44,7 @@ public partial class Game
 
     void SpawnPlayers()
     {
-        playerOne = Instantiate(playerPrefab,map.spawnpointPlayerOne.position,Quaternion.identity);
+        playerOne = Instantiate(playerPrefab, map.spawnpointPlayerOne.position, Quaternion.identity);
         playerOne.player = PlayerInfo.PlayerNumber.One;
 
         playerTwo = Instantiate(playerPrefab, map.spawnpointPlayerTwo.position, Quaternion.identity);
