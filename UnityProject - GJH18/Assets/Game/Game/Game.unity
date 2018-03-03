@@ -167,6 +167,54 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 13.492039}
   m_EdgeRadius: 0
+--- !u!1001 &663388350
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136645790141932, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 132e58248ba0217478f04ed5237c5bd2, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &663388351 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114683975806637770, guid: 132e58248ba0217478f04ed5237c5bd2,
+    type: 2}
+  m_PrefabInternal: {fileID: 663388350}
+  m_Script: {fileID: 11500000, guid: 010600152123aee48ba042823f4dfd2a, type: 3}
 --- !u!1 &718092928
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718092929}
   - component: {fileID: 718092930}
+  - component: {fileID: 718092931}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -209,16 +258,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiScene: {fileID: 11400000, guid: 7b19b77e0cbc32b4c9a465e7573e116b, type: 2}
   gameUI: {fileID: 0}
+  map: {fileID: 1584903477}
+  gameAudio: {fileID: 663388351}
   playerPrefab: {fileID: 114748568728281662, guid: 8cce022223395244ba7f7ea40e2ffad3,
     type: 2}
   wolfPrefab: {fileID: 1566506573833200, guid: 899621afe3a52114a8d4cc8f770215c5, type: 2}
   bergerPrefab: {fileID: 1750449218073746, guid: 7a57adbfce2c72842b3a2e118a846c44,
     type: 2}
-  map: {fileID: 1584903477}
   playerOne: {fileID: 0}
   playerTwo: {fileID: 0}
   playerThree: {fileID: 0}
   playerFour: {fileID: 0}
+--- !u!114 &718092931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 718092928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fa79b77099c5c40a1f558d46e6fb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicManager: {fileID: 0}
+  sfxManager: {fileID: 0}
 --- !u!1 &831751624
 GameObject:
   m_ObjectHideFlags: 0

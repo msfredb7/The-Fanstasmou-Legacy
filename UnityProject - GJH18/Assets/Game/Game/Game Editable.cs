@@ -9,6 +9,8 @@ public partial class Game
 
     public Map map;
 
+    public GameAudio gameAudio;
+
     [Header("PREFABS")]
     public PlayerInfo playerPrefab;
     public GameObject wolfPrefab;

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1837e9efa92b042bae3f51ed3561fa, type: 3}
+  m_Name: DogBarks
+  m_EditorClassIdentifier: 
+  cooldown: -1
+  clips:
+  - {fileID: 11400000, guid: cf1de1a4c87128e428310e9e7eb55a2c, type: 2}
+  - {fileID: 11400000, guid: 7997ed3a9ef82134789a4c3a82166cb8, type: 2}
+  - {fileID: 11400000, guid: 09dd405125020b045b4d1fbe47584ba6, type: 2}
+  - {fileID: 11400000, guid: e419a3ed7e8938c4788a2dca4bf563c7, type: 2}
+  - {fileID: 11400000, guid: f1c1df26709a43e40aa9b84d9bf918af, type: 2}
+  - {fileID: 11400000, guid: 3c9f8d45cf95b934d9a0aeb9c2bf47bc, type: 2}
+  - {fileID: 11400000, guid: a26c9c836dcfa66449bf584c0e51ec74, type: 2}
+  - {fileID: 11400000, guid: 15e291435ed30a046b14d9fca53a6669, type: 2}
+  - {fileID: 11400000, guid: e6cef94c569f8e545889aa04cf8d3dcc, type: 2}
+  - {fileID: 11400000, guid: 753ef4a57ace3bb4184659956017b940, type: 2}
