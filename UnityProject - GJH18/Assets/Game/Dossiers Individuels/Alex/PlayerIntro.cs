@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class PlayerIntro : MonoBehaviour {
 
-    public float wolfIntroDelay;
+    public int wolfIntroDelay = 5;
 
     public float animSpeed = 1;
     public float indicatorDelay = 1;
@@ -15,8 +15,10 @@ public class PlayerIntro : MonoBehaviour {
     {
         Game.OnGameStart += () =>
         {
-            // Start UI Countdown HERE
+            Game.Instance.gameUI.wolfTimer.GetComponent<WolfTimer>().SetCounterValue(wolfIntroDelay);
+            Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(1, animSpeed);
             this.DelayedCall(delegate () {
+                Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(0, animSpeed);
                 IntroTheWolves(delegate () {
                     Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                     Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();

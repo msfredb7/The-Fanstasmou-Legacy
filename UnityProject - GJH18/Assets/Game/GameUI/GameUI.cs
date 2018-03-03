@@ -14,6 +14,8 @@ public class GameUI : MonoBehaviour {
     public GameObject countdown3;
     public float countdownFadeDuration = 1;
 
+    public GameObject wolfTimer;
+
     [SerializeField]
     private GameObject pauseOverlay;
 

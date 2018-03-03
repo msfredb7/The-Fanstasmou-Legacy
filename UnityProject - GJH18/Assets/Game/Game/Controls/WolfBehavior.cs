@@ -60,7 +60,6 @@ public class WolfBehavior : MonoBehaviour {
             {
                 return;
             }
-            Debug.Log("DASH WOLFIE");
             dash();
             canDash = false;
             this.DelayedCall(() => { canDash = true; }, dashCooldown);
