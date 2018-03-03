@@ -367,7 +367,7 @@ MonoBehaviour:
   countdown1: {fileID: 1197113068}
   countdown2: {fileID: 413691375}
   countdown3: {fileID: 1594355094}
-  countdownFadeDuration: 1
+  countdownFadeDuration: 0.5
   pauseOverlay: {fileID: 498642528}
 --- !u!114 &393272018
 MonoBehaviour:
