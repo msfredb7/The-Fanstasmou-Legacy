@@ -28,8 +28,8 @@ public class GridRegion
 
 public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
 
-    const int horizontalCell = 4;
-    const int VerticalCell = 4;
+    const int horizontalCell = 16;
+    const int VerticalCell = 9;
 
     public GameObject BottomLeftBorder;
     public GameObject TopRightBorder;
@@ -71,11 +71,11 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
         return retvalue;
     }
 
-    private Vector2 GridToWorld(Vector2 postion)
+    public Vector2 GridToWorld(Vector2 postion)
     {
         Vector2 retvalue;
-        retvalue.x = postion.x * CellWidth;
-        retvalue.y = postion.y * CellHeight;
+        retvalue.x = (postion.x) * CellWidth + CellWidth/2.0f + horizontalOffset;
+        retvalue.y = (postion.y) * CellHeight + CellHeight / 2.0f + verticalOffset;
         return retvalue;
     }
 
@@ -129,6 +129,14 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
             grid[newCell.x, newCell.y].Suscribe(subscriber.gameObject);
 
         subscriber.currentCell = newCell;
+    }
+
+    public void UnsuscribeUnit(GridSubscriber subscriber)
+    {
+        Vector2Int oldCell = subscriber.currentCell;
+  
+        if (oldCell.x >= 0 && oldCell.y >= 0 && oldCell.x < horizontalCell && oldCell.y < VerticalCell)
+            grid[oldCell.x, oldCell.y].Unsubscribe(subscriber.gameObject);
     }
 
     private List<GridRegion> GetNeighborsCells(Vector2 postion, float range)
