@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Herd : MonoBehaviour {
-    public static float maxDistance = 1.0f;
+[System.Serializable]
+public class Herd{
+    public static float maxDistance = 1.5f;
 
     [SerializeField]
     private List<HerdMember> herdMembers = new List<HerdMember>();
@@ -11,25 +12,18 @@ public class Herd : MonoBehaviour {
     public Herd(HerdMember firstMember)
     {
         herdMembers.Add(firstMember);
-        firstMember.herd = this;
+        firstMember.SetHerd(this);
     }
+
     public Herd(List<HerdMember> members)
     {
         herdMembers = members;
         for (int i =0; i < members.Count; i++)
-            members[i].herd = this;
+            members[i].SetHerd(this);
     }
-
-    public void Start ()
-    {
-		
-	}
 
     public void Update ()
     {
-        if (herdMembers.Count == 0)
-            Destroy(this);
-
         List<HerdMember> memberLeftToCheck = herdMembers;
         while(memberLeftToCheck.Count > 0)
         {
@@ -49,14 +43,14 @@ public class Herd : MonoBehaviour {
 
     public void NewHerd(List<HerdMember> members)
     {
-        new Herd(members);
+        Herd newHerd = HerdList.Instance.NewHerd(members);
     }
 
     public void UpdateHerd(List<HerdMember> members)
     {
         herdMembers = members;
         for (int i = 0; i < members.Count; i++)
-            members[i].herd = this;
+            members[i].SetHerd(this);
     }
 
     public List<HerdMember> GetAllConnectedSheeps(HerdMember root)
@@ -81,5 +75,12 @@ public class Herd : MonoBehaviour {
             middle += (Vector2)herdMembers[i].transform.position;
 
         return middle / herdMembers.Count;
+    }
+
+    public void RemoveMember(HerdMember member)
+    {
+        herdMembers.Remove(member);
+        if(herdMembers.Count == 0)
+            HerdList.Instance.RemoveHerd(this);
     }
 }
