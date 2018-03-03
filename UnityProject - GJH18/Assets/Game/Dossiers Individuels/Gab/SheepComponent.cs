@@ -8,6 +8,9 @@ public class SheepComponent : MonoBehaviour
     Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion;
 
     public float m_MaxSpeed;
+    public bool log = false;
+    [Range(0,1)]
+    public float m_CohesionCentering = 1;
 
     [Header("Poids")]
     public float m_PoidWandering;
@@ -41,7 +44,7 @@ public class SheepComponent : MonoBehaviour
     private GridSubscriber gs;
     private Voisin myself;
 
-    //GameObject Tueur;
+    private List<Vector2> vectorsToDisplay = new List<Vector2>();
 
     public bool FuirSourie;
 
@@ -157,24 +160,48 @@ public class SheepComponent : MonoBehaviour
     private void CohesionF(List<VoisinInfo> lstVoisin)
     {
         Vector2 ForceTot = new Vector2(0, 0);
-        Vector2 CentreDeMasse = tr.position;
+        Vector2 destination = Vector2.zero;
+        Vector2 CentreDeMasse = Vector2.zero;
 
         float influence = 0;
+        float highestInfluence = 0;
+        float totalInfluence = 0;
+
+        Vector2 v = Vector2.zero;
         if (m_CohesionRange != 0)
             foreach (VoisinInfo voisin in lstVoisin)
             {
-                influence = GetDistanceBasedInfluence(voisin.distance, m_CohesionRange, 1);
+                influence = GetDistanceBasedInfluence(voisin.distance, m_CohesionRange, 0.01f);
+                totalInfluence += influence;
+                if (highestInfluence < influence)
+                    highestInfluence = influence;
+
                 CentreDeMasse += (Vector2)voisin.intance.tr.position * influence;
             }
 
-        if (lstVoisin.Count > 0)
+        if (totalInfluence > 0)
         {
-            CentreDeMasse /= lstVoisin.Count;
+            CentreDeMasse /= totalInfluence;
 
-            //  seek au cas où
-            ForceTot = (CentreDeMasse - (Vector2)tr.position).normalized * m_MaxSpeed;
-            ForceTot -= rb.velocity;
+            destination = Vector2.Lerp(tr.position, CentreDeMasse, Mathf.Lerp(highestInfluence, 1, m_CohesionCentering));
+
+
+            var displacement = destination - (Vector2)tr.position;
+
+            if (displacement.magnitude > 0.2f)
+            {
+                displacement.Normalize();
+                ForceTot = displacement * m_MaxSpeed;
+                ForceTot -= rb.velocity;
+            }
         }
+
+        if (log)
+        {
+            Debug.DrawLine(tr.position, CentreDeMasse, Color.red);
+        }
+
+        //
 
         m_FCohesion = ForceTot;
     }
@@ -208,7 +235,7 @@ public class SheepComponent : MonoBehaviour
     }
     private Vector2 Seek(Vector2 target)
     {
-        return  ((target - (Vector2)tr.position).normalized * m_MaxSpeed) - rb.velocity;
+        return ((target - (Vector2)tr.position).normalized * m_MaxSpeed) - rb.velocity;
     }
 
     private Vector2 Flee(Vector2 target)
@@ -256,5 +283,12 @@ public class SheepComponent : MonoBehaviour
 
         Gizmos.color = new Color(1, 1, 1, 0.25f);
         Gizmos.DrawSphere(center, m_AlignRange);
+
+        for (int i = 0; i < vectorsToDisplay.Count; i++)
+        {
+            print("Vec: " + vectorsToDisplay[i]);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(tr.position, tr.position + (Vector3)vectorsToDisplay[i]);
+        }
     }
 }
