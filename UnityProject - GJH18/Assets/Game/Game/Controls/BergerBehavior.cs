@@ -10,6 +10,8 @@ public class BergerBehavior : MonoBehaviour {
         Attract = 1
     }
 
+    public float repulsionStrength = 2.5f;
+
     public BergerMode currentMode = BergerMode.Repulse;
 
     public float changeModeCooldown = 0.5f;
@@ -55,5 +57,20 @@ public class BergerBehavior : MonoBehaviour {
         inputButtons = GetComponentInParent<InputPlayerButton>();
         if (inputButtons == null)
             Debug.Log("wtf doggy");
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            if(contact.otherCollider.GetComponent<WolfInfo>() != null)
+                Repulse(GetComponentInParent<Rigidbody2D>(), contact.otherCollider.GetComponentInParent<Rigidbody2D>().position);
+        }
+    }
+
+    protected void Repulse(Rigidbody2D target, Vector2 myPosition)
+    {
+        var repulsionDirection = (target.position - myPosition).normalized;
+        target.AddForce(repulsionDirection * repulsionStrength, ForceMode2D.Impulse);
     }
 }

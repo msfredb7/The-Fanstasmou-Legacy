@@ -19,6 +19,7 @@ public class PlayerIntro : MonoBehaviour {
             Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(1, animSpeed);
             this.DelayedCall(delegate () {
                 Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(0, animSpeed);
+                Game.Instance.sfx.PlayWolfHowl();
                 IntroTheWolves(delegate () {
                     Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                     Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
