@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
+  changeModeCooldown: 0.5
 --- !u!114 &114419342091526222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,8 +163,8 @@ MonoBehaviour:
   animatorController: {fileID: 95247747095196320}
   rotator: {fileID: 4003355537846302}
   useRigidbody: 0
-  sensitivity: 0.4
-  setSpeed: 0
+  sensitivity: 0.15
+  setSpeed: 1
   speedScale: 0.4
   playerMovement: {fileID: 0}
   rb: {fileID: 0}
