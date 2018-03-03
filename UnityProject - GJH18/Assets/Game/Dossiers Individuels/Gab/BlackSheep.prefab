@@ -238,9 +238,9 @@ MonoBehaviour:
   log: 0
   m_CohesionCentering: 1
   m_PoidWandering: 0
-  m_PoidSeparation: 2
+  m_PoidSeparation: 0
   m_PoidAlign: 0
-  m_PoidCohesion: 5
+  m_PoidCohesion: 2.5
   m_PoidFlee: 120
   m_PoidEvade: 0
   m_PoidSeek: 0
