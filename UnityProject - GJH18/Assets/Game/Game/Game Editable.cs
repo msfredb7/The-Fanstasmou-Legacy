@@ -33,18 +33,20 @@ public partial class Game
     [Header("INTRO")]
     public float tutorialAppearanceDelay = 2.0f;
 
+    [Header("DEBUG")]
+    public bool debugStart = false;
+
     void FetchAllReferences(Action onComplete)
     {
         SpawnPlayers();
 
         // C'est ici qu'on peut aller chercher tous les références.
 
-        Scenes.Load(uiScene, (uiScene) => {
+        // UI
+        Scenes.Load(uiScene, (uiScene) =>
+        {
             gameUI = uiScene.FindRootObject<GameUI>();
-
-            this.DelayedCall(() => {
-                Scenes.Load(tutorial, (tutorialScene) => { tutorialScene.FindRootObject<Tutorial>().Init(onComplete); });
-            }, tutorialAppearanceDelay);
+            onComplete();
         });
     }
 

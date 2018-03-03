@@ -68,7 +68,26 @@ public partial class Game : PublicSingleton<Game>
         FetchAllReferences(()=>
         {
             ReadyGame();
-            StartGame();
+            // DEBUG START
+            if (debugStart)
+            {
+                StartGame();
+            }
+            else
+            {
+                // TUTORIAL
+                this.DelayedCall(() =>
+                {
+                    Scenes.Load(tutorial, (tutorialScene) =>
+                    {
+                        tutorialScene.FindRootObject<Tutorial>().Init(delegate ()
+                        {
+                            // COUNTDOWN
+                            gameUI.Countdown(StartGame);
+                        });
+                    });
+                }, tutorialAppearanceDelay);
+            }
         });
     }
 

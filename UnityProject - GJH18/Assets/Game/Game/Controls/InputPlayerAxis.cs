@@ -10,7 +10,12 @@ public class InputPlayerAxis : MonoBehaviour {
     {
         PlayerInfo.PlayerNumber realPlayerNumber;
         if (Game.Instance != null)
-            realPlayerNumber = GetComponent<PlayerInfo>().player;
+        {
+            if(GetComponent<PlayerInfo>() != null)
+                realPlayerNumber = GetComponent<PlayerInfo>().player;
+            else
+                realPlayerNumber = player;
+        }
         else
             realPlayerNumber = player;
 

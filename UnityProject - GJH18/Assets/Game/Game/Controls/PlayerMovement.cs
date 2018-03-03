@@ -12,9 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 LastPlayerInput;
 
     [HideInInspector]
-    public float accelerationRate;
+    public float accelerationRate = 1;
     [HideInInspector]
-    public float maximumSpeed;
+    public float maximumSpeed = 1;
     [HideInInspector]
     public float targetDisplacement = 10;
     [HideInInspector]
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputs == null)
         {
-            currentTarget = Vector2.zero;
+            currentTarget = transform.position;
             return;
         }
         IsMoving = false;

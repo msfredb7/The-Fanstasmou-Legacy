@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorController: {fileID: 95247747095196320}
   rotator: {fileID: 4003355537846302}
+  useRigidbody: 0
   playerMovement: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &114503963309630962
@@ -131,8 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b4b80b95d524d4baee319baad56ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationRate: 1.5
-  maximumSpeed: 1.5
+  accelerationRate: 2
+  maximumSpeed: 2
 --- !u!212 &212202636523047524
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -164,8 +165,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2025393453
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e6cb6ddcbeeb64349a8b4dc1e8550cd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
