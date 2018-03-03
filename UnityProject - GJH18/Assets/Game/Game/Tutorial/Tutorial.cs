@@ -30,5 +30,13 @@ public class Tutorial : MonoBehaviour {
                 onComplete();
             });
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            windowAnim.Close(delegate ()
+            {
+                Scenes.UnloadAsync(tutorial);
+                onComplete();
+            });
+        }
     }
 }
