@@ -63,11 +63,15 @@ public class PlayerInfo : MonoBehaviour {
     {
         if (isWolf)
         {
-            Instantiate(Game.Instance.wolfPrefab, transform).GetComponent<WolfInfo>().Init();
+            var child = Instantiate(Game.Instance.wolfPrefab, transform);
+            child.GetComponent<WolfInfo>().Init();
+            child.transform.localPosition = Vector3.zero;
         }
         else
         {
-            Instantiate(Game.Instance.bergerPrefab, transform).GetComponent<BergerInfo>().Init();
+            var child = Instantiate(Game.Instance.bergerPrefab, transform);
+            child.GetComponent<BergerInfo>().Init();
+            child.transform.localPosition = Vector3.zero;
         }
     }
 }
