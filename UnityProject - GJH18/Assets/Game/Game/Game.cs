@@ -71,7 +71,7 @@ public partial class Game : PublicSingleton<Game>
             // DEBUG START
             if (debugStart)
             {
-                StartGame();
+                intros.IntroTheDoggies(StartGame);
             }
             else
             {
@@ -82,8 +82,10 @@ public partial class Game : PublicSingleton<Game>
                     {
                         tutorialScene.FindRootObject<Tutorial>().Init(delegate ()
                         {
-                            // COUNTDOWN
-                            gameUI.Countdown(StartGame);
+                            intros.IntroTheDoggies(delegate() {
+                                // COUNTDOWN
+                                gameUI.Countdown(StartGame);
+                            });
                         });
                     });
                 }, tutorialAppearanceDelay);
