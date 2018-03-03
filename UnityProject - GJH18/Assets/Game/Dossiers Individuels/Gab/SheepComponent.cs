@@ -5,7 +5,7 @@ using UnityEngine;
 public class SheepComponent : MonoBehaviour
 {
 
-    Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion;
+    Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion, m_FEvade, m_FSeek;
 
     public float m_MaxSpeed;
     public bool log = false;
@@ -85,8 +85,11 @@ public class SheepComponent : MonoBehaviour
         List<VoisinInfo> lstVoisin = myself.otherVoisins;
 
         SeparationF(lstVoisin);
-
-        CohesionF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_CohesionRange));
+        CohesionF(lstVoisin);
+        EvadeF();
+        AttractF();
+        
+        //gs.GetNeighbors<SheepComponent>(m_CohesionRange));
 
         //AlignementF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_AlignRange));
 
@@ -98,6 +101,10 @@ public class SheepComponent : MonoBehaviour
             m_Force += m_FAlign * m_PoidAlign;
 
             m_Force += m_FCohesion * m_PoidCohesion;
+
+            m_Force += m_FEvade * m_PoidEvade;
+
+            m_Force += m_FSeek * m_PoidSeek;
         }
         else
         {
@@ -233,28 +240,77 @@ public class SheepComponent : MonoBehaviour
     {
         return -GetRepulsePowerFrom(target, m_SeekRange, m_SeekPower);
     }
-    private Vector2 Seek(Vector2 target)
+    private Vector2 Seek(Vector2 target, float range = -1, float playerPower = -1)
     {
-        return ((target - (Vector2)tr.position).normalized * m_MaxSpeed) - rb.velocity;
+        if(range != -1)
+            if(((Vector2)transform.position - target).magnitude > range)
+                return new Vector2(0,0);
+
+        return ((target - (Vector2)tr.position).normalized * m_MaxSpeed * playerPower) - rb.velocity;
     }
 
-    private Vector2 Flee(Vector2 target)
+    private Vector2 Flee(Vector2 target, float range =-1, float playerPower = -1)
     {
-        return GetRepulsePowerFrom(target, m_FleeRange, m_FleePower);
+        if (range == -1)
+            range = m_FleeRange;
+        if (playerPower == -1)
+            playerPower = m_FleePower;
+
+        return GetRepulsePowerFrom(target, range, playerPower);
     }
 
-    private Vector2 Evade(Rigidbody2D poursuivant)
+    private Vector2 Evade(Rigidbody2D poursuivant, float range = -1, float playerPower = 1)
     {
+        if (range == -1)
+            range = m_FleeRange;
+
         Vector2 ToPursuer = poursuivant.position - (Vector2)tr.position;
 
         //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        float distMenace = m_FleeRange;//10.0f;
+        float distMenace = range;//10.0f;
         if (ToPursuer.sqrMagnitude > distMenace * distMenace) return new Vector2();
 
         float LookAhead = ToPursuer.magnitude / (m_MaxSpeed + poursuivant.velocity.magnitude);
 
-        return Flee((Vector2)poursuivant.transform.position + poursuivant.velocity * LookAhead);
+        Vector2 threat = (Vector2)poursuivant.transform.position;
+        Vector2 estim = poursuivant.velocity * LookAhead;
+
+        Vector2 dist = threat + estim;
+        float newRange = range + estim.magnitude;
+
+        return Flee(dist, newRange, playerPower);
     }
+
+
+    private void EvadeF()
+    {
+        m_FEvade = Vector2.zero;
+
+        List<Repulse> replusions= PlayerContainer.Instance.GetAllRepuslion();
+        for(int i =0; i < replusions.Count; i++)
+        {
+            Repulse R = replusions[i];
+            if ((R.position - (Vector2)tr.position).magnitude < R.range)
+                m_FEvade += Flee(R.position, R.range, R.strength);
+            else Debug.Log("No");
+        }
+    }
+
+    private void AttractF()
+    {
+        m_FSeek = Vector2.zero;
+
+        List<Attract> attractions = PlayerContainer.Instance.GetAllAttraction();
+        for (int i = 0; i < attractions.Count; i++)
+        {
+            Attract A = attractions[i];
+            if ((A.position - (Vector2)tr.position).magnitude < A.range)
+                m_FSeek += Seek(A.position, A.range, A.strength);
+            else Debug.Log("No");
+        }
+    }
+
+
 
     private Vector2 GetRepulsePowerFrom(Vector2 target, float influenceRange, float influencePower)
     {

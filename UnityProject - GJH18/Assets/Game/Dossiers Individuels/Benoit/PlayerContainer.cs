@@ -8,11 +8,11 @@ public class PlayerContainer : CCC.DesignPattern.PublicSingleton<PlayerContainer
     List<WolfBehavior> wolves = new List<WolfBehavior>();
     List<BergerBehavior> bergers = new List<BergerBehavior>();
 
-    public void NewWolves(WolfBehavior wolf) {
+    public void AddWolves(WolfBehavior wolf) {
         wolves.Add(wolf);
     }
 
-    public void NewBerger(BergerBehavior berger){
+    public void AddBerger(BergerBehavior berger){
         bergers.Add(berger);
     }
 
@@ -22,4 +22,32 @@ public class PlayerContainer : CCC.DesignPattern.PublicSingleton<PlayerContainer
     public List<BergerBehavior> GetBergers(){
         return bergers;
     }
+
+    public List<Repulse> GetAllRepuslion()
+    {
+        List<Repulse> output = new List<Repulse>();
+        for (int i = 0; i < wolves.Count; i++)
+        {
+            if (wolves[i].repulse.active == true)
+                output.Add(wolves[i].repulse);
+        }
+        for (int i = 0; i < bergers.Count; i++)
+        {
+            if (bergers[i].repulse.active == true)
+                output.Add(bergers[i].repulse);
+        }
+        return output;
+    }
+
+    public List<Attract> GetAllAttraction()
+    {
+        List<Attract> output = new List<Attract>();
+        for (int i = 0; i < bergers.Count; i++)
+        {
+            if (bergers[i].attract.active == true)
+                output.Add(bergers[i].attract);
+        }
+        return output;
+    }
+
 }
