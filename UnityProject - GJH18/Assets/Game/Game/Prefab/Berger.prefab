@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 114503963309630962}
   - component: {fileID: 114419342091526222}
   - component: {fileID: 70717687261042228}
+  - component: {fileID: 114214245104391144}
   m_Layer: 0
   m_Name: Berger
   m_TagString: Untagged
@@ -135,6 +136,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114214245104391144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1750449218073746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11dcad34ed0017b40bb123468a8b9279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMode: 0
 --- !u!114 &114419342091526222
 MonoBehaviour:
   m_ObjectHideFlags: 1
