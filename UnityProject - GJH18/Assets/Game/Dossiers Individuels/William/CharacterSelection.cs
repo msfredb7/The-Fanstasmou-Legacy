@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class William_TestScript : MonoBehaviour
-{
+public class CharacterSelection : MonoBehaviour {
+
     InputPlayerAxis input;
     RectTransform rect;
 
