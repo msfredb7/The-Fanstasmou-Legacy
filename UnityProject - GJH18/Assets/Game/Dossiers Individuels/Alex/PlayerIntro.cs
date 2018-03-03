@@ -19,6 +19,7 @@ public class PlayerIntro : MonoBehaviour {
             Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(1, animSpeed);
             this.DelayedCall(delegate () {
                 Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(0, animSpeed);
+                Game.Instance.sfx.PlayWolfHowl();
                 IntroTheWolves(delegate () {
                     Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowWolfIndicator();
                     Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowWolfIndicator();
@@ -38,38 +39,56 @@ public class PlayerIntro : MonoBehaviour {
 
     public void IntroTheWolves(Action onComplete)
     {
-        Debug.Log("Wolf intro");
         List<PlayerInfo> wolfies = Game.Instance.GetWolves();
         Sequence sqc = DOTween.Sequence();
         int doSpawnCount = 0;
         for (int i = 0; i < wolfies.Count; i++)
         {
             wolfies[i].GetComponent<PlayerMovement>().enabled = false;
-            sqc.Join(wolfies[i].transform.DOMove(Game.Instance.map.dogSpawnPoints[doSpawnCount].position, animSpeed));
+            wolfies[i].GetComponentInChildren<CharacterOrientation>().enabled = false;
+            wolfies[i].GetComponentInChildren<CharacterOrientation>().GetComponentInChildren<Animator>().SetBool("running", true);
+
+            float rotationAngle = ((Vector2)(Game.Instance.map.spawnpointWolfEnter[doSpawnCount].position - wolfies[i].transform.position)).ToAngle();
+            Vector3 rotation = transform.forward * rotationAngle;
+            wolfies[i].GetComponentInChildren<WolfInfo>().gameObject.transform.rotation = Quaternion.Euler(rotation);
+
+            sqc.Join(wolfies[i].transform.DOMove(Game.Instance.map.spawnpointWolfEnter[doSpawnCount].position, animSpeed));
             doSpawnCount++;
         }
         sqc.OnComplete(() => {
             for (int i = 0; i < wolfies.Count; i++)
+            {
                 wolfies[i].GetComponent<PlayerMovement>().enabled = true;
+                wolfies[i].GetComponentInChildren<CharacterOrientation>().enabled = true;
+            }
             onComplete();
         });
     }
 
     public void IntroTheDoggies(Action onComplete)
     {
-        Debug.Log("Doggy intro");
         List<PlayerInfo> doggies = Game.Instance.GetDoggies();
         Sequence sqc = DOTween.Sequence();
         int doSpawnCount = 0;
         for (int i = 0; i < doggies.Count; i++)
         {
             doggies[i].GetComponent<PlayerMovement>().enabled = false;
+            doggies[i].GetComponentInChildren<CharacterOrientation>().enabled = false;
+            doggies[i].GetComponentInChildren<CharacterOrientation>().GetComponentInChildren<Animator>().SetBool("running", true);
+
+            float rotationAngle = ((Vector2)(Game.Instance.map.dogSpawnPoints[doSpawnCount].position - doggies[i].transform.position)).ToAngle();
+            Vector3 rotation = transform.forward * rotationAngle;
+            doggies[i].GetComponentInChildren<BergerBehavior>().gameObject.transform.rotation = Quaternion.Euler(rotation);
+
             sqc.Join(doggies[i].transform.DOMove(Game.Instance.map.dogSpawnPoints[doSpawnCount].position, animSpeed));
             doSpawnCount++;
         }
         sqc.OnComplete(() => {
             for (int i = 0; i < doggies.Count; i++)
+            {
                 doggies[i].GetComponent<PlayerMovement>().enabled = true;
+                doggies[i].GetComponentInChildren<CharacterOrientation>().enabled = true;
+            }
             onComplete();
         });
     }
