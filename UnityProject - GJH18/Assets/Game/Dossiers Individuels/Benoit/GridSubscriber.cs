@@ -7,11 +7,7 @@ public class GridSubscriber: MonoBehaviour
     [HideInInspector]
     public Vector2Int currentCell = new Vector2Int(-1 ,-1);
 
-    Vector2 position {
-        get  {
-                return (Vector2)gameObject.transform.position;
-        }
-    }
+    Vector2 position { get  { return (Vector2)gameObject.transform.position; } }
 
     public void Start()
     {
