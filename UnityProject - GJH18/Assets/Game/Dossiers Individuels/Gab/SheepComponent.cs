@@ -302,7 +302,6 @@ public class SheepComponent : MonoBehaviour
             Repulse R = replusions[i];
             if ((R.position - (Vector2)tr.position).magnitude < R.range)
                 m_FEvade += Flee(R.position, R.range, R.strength);
-            else Debug.Log("No");
         }
     }
 
@@ -316,7 +315,6 @@ public class SheepComponent : MonoBehaviour
             Attract A = attractions[i];
             if ((A.position - (Vector2)tr.position).magnitude < A.range)
                 m_FSeek += Seek(A.position, A.range, A.strength);
-            else Debug.Log("No");
         }
     }
 
