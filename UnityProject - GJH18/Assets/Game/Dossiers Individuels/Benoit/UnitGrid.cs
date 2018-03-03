@@ -141,14 +141,18 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
 
     private List<GridRegion> GetNeighborsCells(Vector2 postion, float range)
     {
-        Vector2 min = WorldToGrid( new Vector2(postion.x - range, postion.y - range) );
-        Vector2 max = WorldToGrid( new Vector2(postion.x + range, postion.y + range) );
+        Vector2Int min = WorldToGrid( new Vector2(postion.x - range, postion.y - range) );
+        Vector2Int max = WorldToGrid( new Vector2(postion.x + range, postion.y + range) );
+        min.y = min.x.Clamped(0, horizontalCell-1);
+        min.y = min.y.Clamped(0, VerticalCell-1);
+        max.y = max.x.Clamped(0, horizontalCell - 1);
+        max.y = max.y.Clamped(0, VerticalCell - 1);
 
+        //                if (i >= 0 && j >= 0 && i < horizontalCell && j < VerticalCell)
         List<GridRegion> neighbors = new List<GridRegion>();
         for (int i = (int)min.x; i <= (int)max.x; i++ )
             for (int j = (int)min.y; j <= (int)max.y; j++)
-                if (i >= 0 && j >= 0 && i < horizontalCell && j < VerticalCell)
-                    neighbors.Add(grid[i, j]);
+                neighbors.Add(grid[i, j]);
 
         return neighbors;
     }
