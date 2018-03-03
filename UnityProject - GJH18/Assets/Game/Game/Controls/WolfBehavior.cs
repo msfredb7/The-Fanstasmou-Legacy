@@ -22,8 +22,13 @@ public class WolfBehavior : MonoBehaviour {
 
     SheepDetector sheepDetector;
 
+    public Repulse repulse;
+
     void Start()
     {
+        PlayerContainer.Instance.AddWolves(this);
+        repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+
         if (inputButtons == null)
             GetInputButtonsRef();
         sheepDetector = GetComponent<SheepDetector>();

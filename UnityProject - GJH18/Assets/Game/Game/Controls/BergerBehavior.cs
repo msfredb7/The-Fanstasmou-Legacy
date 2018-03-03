@@ -10,9 +10,12 @@ public class BergerBehavior : MonoBehaviour {
         Attract = 1
     }
 
+    public BergerMode currentMode = BergerMode.Repulse;
+
     public float repulsionStrength = 2.5f;
 
-    public BergerMode currentMode = BergerMode.Repulse;
+    public Attract attract;
+    public Repulse repulse;
 
     public float changeModeCooldown = 0.5f;
     private bool canChange = true;
@@ -21,6 +24,11 @@ public class BergerBehavior : MonoBehaviour {
 	
     void Start()
     {
+        PlayerContainer.Instance.AddBerger(this);
+
+        attract.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+        repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+
         if (inputButtons == null)
             GetInputButtonsRef();
     }
@@ -40,12 +48,20 @@ public class BergerBehavior : MonoBehaviour {
             {
                 currentMode = BergerMode.Attract;
                 Debug.Log("Gentil Chien");
+
+                attract.active = true;
+                repulse.active = false;
+
                 canChange = false;
                 this.DelayedCall(() => { canChange = true; },changeModeCooldown);
             } else
             {
                 currentMode = BergerMode.Repulse;
                 Debug.Log("Méchant Chien");
+
+                attract.active = false;
+                repulse.active = true;
+
                 canChange = false;
                 this.DelayedCall(() => { canChange = true; }, changeModeCooldown);
             }
@@ -63,7 +79,7 @@ public class BergerBehavior : MonoBehaviour {
     {
         foreach (ContactPoint contact in collision.contacts)
         {
-            if(contact.otherCollider.GetComponent<WolfInfo>() != null)
+            if (contact.otherCollider.GetComponent<WolfInfo>() != null)
                 Repulse(GetComponentInParent<Rigidbody2D>(), contact.otherCollider.GetComponentInParent<Rigidbody2D>().position);
         }
     }
