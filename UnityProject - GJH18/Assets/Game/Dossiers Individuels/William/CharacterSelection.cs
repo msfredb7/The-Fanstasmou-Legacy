@@ -70,7 +70,6 @@ public class CharacterSelection : MonoBehaviour {
         if (_playerSelectionInputs.team == SelectionInputs.Team.Shepherd) wolfDogDifference++;
         else if (_playerSelectionInputs.team == SelectionInputs.Team.Wolf) wolfDogDifference--;
         PlayerPrefs.SetInt(playerAxis.player + " team", (int)_playerSelectionInputs.team);
-        Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
     }
 
     private bool twoShepherdTwoWolf()
