@@ -32,3 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Game/Game.unity
     guid: abae6ed4f50a0654093bb035e1d0788e
+  - enabled: 1
+    path: Assets/Game/Game/Tutorial/Tutorial.unity
+    guid: 1e6ab1a0fde66104b898cacb57fbfed2
