@@ -213,9 +213,45 @@ Prefab:
       propertyPath: m_UnitContain
       value: 
       objectReference: {fileID: 1627954239}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114750282758093074, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &122198914 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1975311885104120, guid: fa40cc23c0ec7844f97d245f65be4635,
+    type: 2}
+  m_PrefabInternal: {fileID: 122198913}
+--- !u!1 &122198915 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1043543656612220, guid: fa40cc23c0ec7844f97d245f65be4635,
+    type: 2}
+  m_PrefabInternal: {fileID: 122198913}
+--- !u!1 &122198916 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1200452916782360, guid: fa40cc23c0ec7844f97d245f65be4635,
+    type: 2}
+  m_PrefabInternal: {fileID: 122198913}
+--- !u!114 &122198917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 122198914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f4c0eed06ae044a85a4f3667f7aa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BordHautDroit: {fileID: 122198916}
+  m_BordBasGauche: {fileID: 122198915}
+  m_SheepPrefab: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94,
+    type: 2}
+  blackSheepPrefab: {fileID: 1512002220359000, guid: 4937126b4ffe2c84e9147305808f8aae,
+    type: 2}
+  chanceOfSpawningBlackSheep: 0.1
+  m_UnitContain: {fileID: 1627954239}
+  m_NbSheepStart: 15
 --- !u!1 &151835374
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +451,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 161973825
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e710efc203241164698e2254017aa3f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -440,6 +476,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &623122498
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111907778754598, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &718092928
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +569,7 @@ MonoBehaviour:
   unitContainer: {fileID: 1627954239}
   music: {fileID: 752643795}
   sfx: {fileID: 752643797}
+  SheepSpawn: {fileID: 0}
   playerPrefab: {fileID: 114748568728281662, guid: 8cce022223395244ba7f7ea40e2ffad3,
     type: 2}
   wolfPrefab: {fileID: 1566506573833200, guid: 899621afe3a52114a8d4cc8f770215c5, type: 2}
@@ -1421,7 +1500,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -562440385
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
 --- !u!4 &1807007086
 Transform:
