@@ -8,7 +8,11 @@ public class SheepComponent : MonoBehaviour {
 
     public float m_PoidWandering, m_PoidSeparation, m_PoidAlign, m_PoidCohesion;
     public float m_WanderRadius, m_MaxSpeed, m_WanderRefresh;
-    public float m_WanderRange, m_SepareRange, m_CohesionRange, m_AlignRange;
+
+    [Colored(1, .5f, .5f)] public float m_WanderRange;
+    [Colored(.5f, 1, .5f)] public float m_SepareRange;
+    [Colored(.5f, .5f, 1)] public float m_CohesionRange;
+    [Colored(1, 1, 1)] public float m_AlignRange;
 
     Rigidbody2D rb;
 
@@ -67,15 +71,20 @@ public class SheepComponent : MonoBehaviour {
         //rb.AddRelativeForce(m_Force);
         rb.AddForce(m_Force);
 
-        if (rb.velocity.x > m_MaxSpeed)
-            rb.velocity = Vector2.right * m_MaxSpeed;
-        else if (rb.velocity.x < -m_MaxSpeed)
-            rb.velocity = Vector2.right * -m_MaxSpeed;
 
-        if (rb.velocity.y > m_MaxSpeed)
-            rb.velocity = Vector2.left * m_MaxSpeed;
-        else if (rb.velocity.y < -m_MaxSpeed)
-            rb.velocity = Vector2.left * -m_MaxSpeed;
+        if (rb.velocity.magnitude > m_MaxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * m_MaxSpeed;
+        }
+        //if (rb.velocity.x > m_MaxSpeed)
+        //    rb.velocity = Vector2.right * m_MaxSpeed;
+        //else if (rb.velocity.x < -m_MaxSpeed)
+        //    rb.velocity = Vector2.right * -m_MaxSpeed;
+
+        //if (rb.velocity.y > m_MaxSpeed)
+        //    rb.velocity = Vector2.left * m_MaxSpeed;
+        //else if (rb.velocity.y < -m_MaxSpeed)
+        //    rb.velocity = Vector2.left * -m_MaxSpeed;
 
     }
 
@@ -151,5 +160,21 @@ public class SheepComponent : MonoBehaviour {
         }
 
         m_FAlign = DirMoyenne;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Vector3 center = transform.position;
+        Gizmos.color = new Color(1, 0, 0, 0.25f);
+        Gizmos.DrawSphere(center, m_WanderRange);
+
+        Gizmos.color = new Color(0, 1, 0, 0.25f);
+        Gizmos.DrawSphere(center, m_SepareRange);
+
+        Gizmos.color = new Color(0, 0, 1, 0.25f);
+        Gizmos.DrawSphere(center, m_CohesionRange);
+
+        Gizmos.color = new Color(1, 1, 1, 0.25f);
+        Gizmos.DrawSphere(center, m_AlignRange);
     }
 }
