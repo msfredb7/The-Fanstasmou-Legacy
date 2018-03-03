@@ -41,6 +41,9 @@ TagManager:
   - name: Map BG
     uniqueID: 2920404905
     locked: 0
+  - name: Shadow
+    uniqueID: 554852277
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
