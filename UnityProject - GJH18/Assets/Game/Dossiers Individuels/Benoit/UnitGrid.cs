@@ -65,13 +65,18 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
     }
 
 
-    public List<GameObject> GetNeighbors(Vector2 postion, float range)
+    public List<GameObject> GetNeighbors<T>(Vector2 postion, float range) where T: UnityEngine.MonoBehaviour
     {
-        List<GridRegion> neighboringCells = GetNeighborsCells(postion, range);
+        // List<GridRegion> neighboringCells = GetNeighborsCells(postion, range);
 
         List<GameObject> neighbors = new List<GameObject>();
-        for (int i = 0; i < neighboringCells.Count; i++)
-            neighbors.AddRange(neighboringCells[i].GetUnits());
+
+        T[] sheeps = FindObjectsOfType<T>();
+        for (int i = 0; i < sheeps.Length; i++)
+            neighbors.Add(sheeps[i].gameObject);
+
+       // for (int i = 0; i < neighboringCells.Count; i++)
+        //    neighbors.AddRange(neighboringCells[i].GetUnits());
 
         Vector2 min = new Vector2(postion.x - range, postion.y - range);
         Vector2 max = new Vector2(postion.x + range, postion.y + range);
