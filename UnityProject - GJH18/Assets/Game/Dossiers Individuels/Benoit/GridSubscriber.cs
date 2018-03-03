@@ -78,7 +78,7 @@ public class GridSubscriber: MonoBehaviour
        
     private List<GameObject> NewNRequest<T>(float range) where T : UnityEngine.MonoBehaviour
     {
-        NeighborsRequest newNRequest = new NeighborsRequest(typeof(T), 1 / RequestPerSeconds, range);
+        NeighborsRequest newNRequest = new NeighborsRequest(typeof(T), 1.0f / RequestPerSeconds, range);
         neighborsRequest.Add(newNRequest);
         return ResetNRequest<T>(neighborsRequest.IndexOf(newNRequest), range);
     }
@@ -87,10 +87,10 @@ public class GridSubscriber: MonoBehaviour
     {
         var nRequest = neighborsRequest[i];
         nRequest.neighbors = RefreshNeighbors<T>(range);
-        nRequest.lifetime = 1 / RequestPerSeconds;
+        nRequest.lifetime = 1.0f / RequestPerSeconds;
         if (!nRequest.delayed)
         {
-            nRequest.lifetime *= (1 - ((instanceNumber % 10) / 10));
+            nRequest.lifetime *= (1.0f - ((instanceNumber % 10.0f) / 10.0f));
             nRequest.delayed = true;
         }
         neighborsRequest[i] = nRequest;
