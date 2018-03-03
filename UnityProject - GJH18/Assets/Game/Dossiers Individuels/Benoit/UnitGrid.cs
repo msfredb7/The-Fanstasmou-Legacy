@@ -107,10 +107,10 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
         Vector2Int oldCell = subscriber.currentCell;
 
         if (oldCell.x >= 0 && oldCell.y >= 0 && oldCell.x < horizontalCell && oldCell.y < VerticalCell)
-            grid[oldCell.x, oldCell.y].Unsubscribe(subscriber.owner);
+            grid[oldCell.x, oldCell.y].Unsubscribe(subscriber.gameObject);
     
         if (newCell.x >= 0 && newCell.y >= 0 && newCell.x < horizontalCell && newCell.y < VerticalCell)
-            grid[newCell.x, newCell.y].Suscribe(subscriber.owner);
+            grid[newCell.x, newCell.y].Suscribe(subscriber.gameObject);
 
         subscriber.currentCell = newCell;
     }
