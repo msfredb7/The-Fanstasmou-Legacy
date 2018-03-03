@@ -27,8 +27,8 @@ EditorBuildSettings:
     path: Assets/Game/Dossiers Individuels/Gab/Gab_TestScene.unity
     guid: 13f234688c74adf418e30289c32b724f
   - enabled: 1
-    path: Assets/Game/Dossiers Individuels/Fred/GameUI/GameUI.unity
+    path: Assets/Game/GameUI/GameUI.unity
     guid: 3d5579f2e1fbd154888c6972a0d40be3
   - enabled: 1
-    path: Assets/Game/Dossiers Individuels/Fred/Game/Game.unity
+    path: Assets/Game/Game/Game.unity
     guid: abae6ed4f50a0654093bb035e1d0788e
