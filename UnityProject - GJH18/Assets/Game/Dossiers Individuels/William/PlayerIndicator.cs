@@ -15,8 +15,6 @@ public class PlayerIndicator : MonoBehaviour {
 
     void Start () {
         playerInfo = GetComponent<PlayerInfo>();
-
-        ShowPlayerIndicator();
     }
 
     public void ShowPlayerIndicator()

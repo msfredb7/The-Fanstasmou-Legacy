@@ -169,6 +169,53 @@ Transform:
   m_Father: {fileID: 1584903478}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &122198913
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.0874212
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.032949895
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.056640625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491958632697330, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114750282758093074, guid: fa40cc23c0ec7844f97d245f65be4635,
+        type: 2}
+      propertyPath: m_UnitContain
+      value: 
+      objectReference: {fileID: 1627954239}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &151835374
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +500,7 @@ MonoBehaviour:
   playerThree: {fileID: 0}
   playerFour: {fileID: 0}
   tutorialAppearanceDelay: 0.75
-  debugStart: 1
+  debugStart: 0
 --- !u!114 &718092931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wolfIntroDelay: 5
   animSpeed: 1
+  indicatorDelay: 3
 --- !u!1 &752643794
 GameObject:
   m_ObjectHideFlags: 0

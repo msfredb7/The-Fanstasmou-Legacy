@@ -9,17 +9,32 @@ public class PlayerIntro : MonoBehaviour {
     public float wolfIntroDelay;
 
     public float animSpeed = 1;
+    public float indicatorDelay = 1;
 
     void Start()
     {
         Game.OnGameStart += () =>
         {
             // Start UI Countdown HERE
-            this.DelayedCall(IntroTheWolves, wolfIntroDelay);
+            this.DelayedCall(delegate () {
+                IntroTheWolves(delegate () {
+                    Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                    Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                    Game.Instance.playerThree.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                    Game.Instance.playerFour.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                    this.DelayedCall(delegate ()
+                    {
+                        Game.Instance.playerOne.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                        Game.Instance.playerTwo.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                        Game.Instance.playerThree.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                        Game.Instance.playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                    }, indicatorDelay);
+                });
+            }, wolfIntroDelay);
         };
     }
 
-    public void IntroTheWolves()
+    public void IntroTheWolves(Action onComplete)
     {
         Debug.Log("Wolf intro");
         List<PlayerInfo> wolfies = Game.Instance.GetWolves();
@@ -34,6 +49,7 @@ public class PlayerIntro : MonoBehaviour {
         sqc.OnComplete(() => {
             for (int i = 0; i < wolfies.Count; i++)
                 wolfies[i].GetComponent<PlayerMovement>().enabled = true;
+            onComplete();
         });
     }
 

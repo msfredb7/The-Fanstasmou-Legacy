@@ -83,8 +83,19 @@ public partial class Game : PublicSingleton<Game>
                         tutorialScene.FindRootObject<Tutorial>().Init(delegate ()
                         {
                             intros.IntroTheDoggies(delegate() {
+                                //Indicators
+                                playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                                playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                                playerThree.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                                playerFour.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                                 // COUNTDOWN
-                                gameUI.Countdown(StartGame);
+                                gameUI.Countdown(delegate() {
+                                    playerOne.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                                    playerTwo.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                                    playerThree.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                                    playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                                    StartGame();
+                                });
                             });
                         });
                     });
