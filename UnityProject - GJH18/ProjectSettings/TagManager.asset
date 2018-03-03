@@ -53,6 +53,9 @@ TagManager:
   - name: Dogs
     uniqueID: 2025393453
     locked: 0
+  - name: Cloud
+    uniqueID: 3732526911
+    locked: 0
   - name: Sun
     uniqueID: 161973825
     locked: 0
