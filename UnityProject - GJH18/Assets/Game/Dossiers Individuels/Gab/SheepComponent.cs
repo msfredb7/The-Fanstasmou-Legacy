@@ -70,6 +70,7 @@ public class SheepComponent : MonoBehaviour {
         m_FWandering = cible;
     }
 
+    //  Met à jour la force de séparation avec tout les chèvre voisine
     private void SeparationF(List<GameObject> lstVoisin)
     {
         Vector2 ForceTot = new Vector2(0,0);
@@ -84,6 +85,7 @@ public class SheepComponent : MonoBehaviour {
         m_FSepare = ForceTot;
     }
 
+    //  met à jours la force de cohésion du groupe de chèvre vers le centre
     private void CohesionF(List<GameObject> lstVoisin)
     {
         Vector2 ForceTot = new Vector2(0, 0);
@@ -101,6 +103,8 @@ public class SheepComponent : MonoBehaviour {
             //  seek au cas où
 
             ForceTot = (CentreDeMasse - (Vector2)tr.position).normalized * m_MaxSpeed;
+
+            ForceTot -= rb.velocity;
         }
 
         m_FCohesion = ForceTot;
