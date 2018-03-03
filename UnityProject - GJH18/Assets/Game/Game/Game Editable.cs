@@ -43,28 +43,10 @@ public partial class Game
         // C'est ici qu'on peut aller chercher tous les références.
 
         // UI
-        Scenes.Load(uiScene, (uiScene) => 
+        Scenes.Load(uiScene, (uiScene) =>
         {
             gameUI = uiScene.FindRootObject<GameUI>();
-
-            // DEBUG START
-            if (debugStart)
-            {
-                onComplete();
-                return;
-            } else
-            {
-                // TUTORIAL
-                this.DelayedCall(() => {
-                    Scenes.Load(tutorial, (tutorialScene) => {
-                        tutorialScene.FindRootObject<Tutorial>().Init(delegate () 
-                        {
-                            // COUNTDOWN
-                            gameUI.Countdown(onComplete);
-                        });
-                    });
-                }, tutorialAppearanceDelay);
-            }
+            onComplete();
         });
     }
 

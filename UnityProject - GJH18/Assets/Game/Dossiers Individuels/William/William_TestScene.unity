@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameScene: {fileID: 11400000, guid: 004c9b3af2e0b22459bb80a03f0d9c30, type: 2}
-  AreYouFourPlayers: 0
+  FourPlayers: 0
 --- !u!1001 &1088541974
 Prefab:
   m_ObjectHideFlags: 0

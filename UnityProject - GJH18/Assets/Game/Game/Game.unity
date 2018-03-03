@@ -297,6 +297,7 @@ MonoBehaviour:
   playerThree: {fileID: 0}
   playerFour: {fileID: 0}
   tutorialAppearanceDelay: 0.75
+  debugStart: 1
 --- !u!1 &752643794
 GameObject:
   m_ObjectHideFlags: 0
