@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     [HideInInspector]
     public bool movementEnable = false;
@@ -47,8 +48,8 @@ public class PlayerMovement : MonoBehaviour {
         if (inputs.GetPlayerHorizontal() != 0)
         {
             newTarget.x = transform.position.x + (inputs.GetPlayerHorizontal() * targetDisplacement);
-            Debug.Log("GOING SIDEWAYS");
-        } else
+        }
+        else
         {
             newTarget.x = transform.position.x;
         }
@@ -56,8 +57,8 @@ public class PlayerMovement : MonoBehaviour {
         if (inputs.GetPlayerVertical() != 0)
         {
             newTarget.y = transform.position.y + (inputs.GetPlayerVertical() * targetDisplacement);
-            Debug.Log("GOING FORWARD");
-        } else
+        }
+        else
         {
             newTarget.y = transform.position.y;
         }
