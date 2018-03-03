@@ -49,7 +49,6 @@ public class GameUI : MonoBehaviour {
         countdown3.SetActive(true);
         countdown2.SetActive(true);
         countdown1.SetActive(true);
-        Game.Instance.sfx.PlayWolfHowl();
         Sequence sequence = DOTween.Sequence();
         sequence.Append(countdown3.GetComponent<Text>().DOFade(1, countdownFadeDuration));
         sequence.Append(countdown3.GetComponent<Text>().DOFade(0, countdownFadeDuration));

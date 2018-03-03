@@ -8,6 +8,8 @@ public class SpawnerSheep : MonoBehaviour {
     public GameObject m_BordBasGauche;
 
     public GameObject m_SheepPrefab;
+    public GameObject blackSheepPrefab;
+    public float chanceOfSpawningBlackSheep = 0.1f;
     public Transform m_UnitContain;
 
     public int m_NbSheepStart;
@@ -40,12 +42,18 @@ public class SpawnerSheep : MonoBehaviour {
         for (int i = 0; i < NbToSpawn; i++)
         {
             pos = new Vector3(Random.Range(m_xMin, m_xMax), Random.Range(m_yMin, m_yMax));
-            Instantiate(m_SheepPrefab, pos, Quaternion.identity, m_UnitContain);
+            if(Random.Range(0.0f,1.0f) <= chanceOfSpawningBlackSheep)
+                Instantiate(blackSheepPrefab, pos, Quaternion.identity, m_UnitContain);
+            else
+                Instantiate(m_SheepPrefab, pos, Quaternion.identity, m_UnitContain);
         }
     }
 
     private void SpawnPrefAtLocation(Vector2 loc)
     {
-        Instantiate(m_SheepPrefab, loc, Quaternion.identity, m_UnitContain);
+        if (Random.Range(0.0f, 1.0f) <= chanceOfSpawningBlackSheep)
+            Instantiate(blackSheepPrefab, loc, Quaternion.identity, m_UnitContain);
+        else
+            Instantiate(m_SheepPrefab, loc, Quaternion.identity, m_UnitContain);
     }
 }
