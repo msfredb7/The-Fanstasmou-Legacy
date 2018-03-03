@@ -40,6 +40,9 @@ public class HerdMember : MonoBehaviour {
 
     public void SetHerd(Herd newHerd)
     {
+        if (newHerd == herd)
+            return;
+
         if (herd != null)
             herd.RemoveMember(this);
         herd = newHerd;

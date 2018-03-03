@@ -51,4 +51,23 @@ public class SheepDetector : MonoBehaviour
         }
         return result;
     }
+
+    public Herd GetHerd()
+    {
+        Herd minHerd = null;
+        int minCount = int.MaxValue;
+
+        for (int i = 0; i < sheepsInRange.Count; i++)
+        {
+            HerdMember member = sheepsInRange[i].GetComponent<HerdMember>() as HerdMember;
+            Herd herd = member.GetHerd();
+            int count = herd.MemberCount();
+            if (count < minCount)
+            {
+                minHerd = herd;
+                minCount = count;
+            }
+        }
+        return minHerd;
+    }
 }

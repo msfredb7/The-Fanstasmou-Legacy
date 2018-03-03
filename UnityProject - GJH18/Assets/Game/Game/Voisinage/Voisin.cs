@@ -40,6 +40,7 @@ public class Voisin : MonoBehaviour
         {
             var v = otherVoisins[i];
             v.distance = (v.intance.tr.position - tr.position).magnitude;
+            otherVoisins[i] = v;
         }
     }
 
@@ -49,6 +50,7 @@ public class Voisin : MonoBehaviour
         for (int i = 0; i < otherVoisins.Count; i++)
         {
             if (otherVoisins[i].distance < range)
+            //if ((otherVoisins[i].intance.tr.position - tr.position).magnitude < range)
                 voisins.Add(otherVoisins[i].intance);
         }
         return voisins;

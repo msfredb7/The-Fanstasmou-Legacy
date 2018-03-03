@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114748568728281662}
   - component: {fileID: 50026282492599686}
   - component: {fileID: 114396527074533766}
+  - component: {fileID: 114861896853589068}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766939312901162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.95, y: -0.18539074, z: -0.9267391}
+  m_LocalPosition: {x: 0.1043923, y: 2.2, z: -0.9267391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,3 +134,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: 0
   isWolf: 0
+--- !u!114 &114861896853589068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766939312901162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61801052233ca114991ae58c65b33ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerOneInidicator: {fileID: 1837107528091614, guid: 5c83e40e7f16f2a4f82717d271b89f6b,
+    type: 2}
+  PlayerTwoInidicator: {fileID: 1895654247083970, guid: 0fd2c66784ff76943abb845b3b47821d,
+    type: 2}
+  PlayerThreeInidicator: {fileID: 1954281307339686, guid: 42d85bac2fd432a4f92f618a0fa99e3d,
+    type: 2}
+  PlayerFourInidicator: {fileID: 1736428819287438, guid: 731a46f009535b44cbdd5130af4b7c0d,
+    type: 2}
