@@ -47,7 +47,6 @@ public class BergerBehavior : MonoBehaviour {
             if(currentMode == BergerMode.Repulse)
             {
                 currentMode = BergerMode.Attract;
-                Debug.Log("Gentil Chien");
 
                 attract.active = true;
                 repulse.active = false;
@@ -57,7 +56,6 @@ public class BergerBehavior : MonoBehaviour {
             } else
             {
                 currentMode = BergerMode.Repulse;
-                Debug.Log("Méchant Chien");
 
                 attract.active = false;
                 repulse.active = true;
