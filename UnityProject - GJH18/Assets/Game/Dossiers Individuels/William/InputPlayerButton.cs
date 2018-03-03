@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputPlayerButton : MonoBehaviour {
 
-    public InputPlayerAxis.PlayerNumber player;
+    public PlayerInfo.PlayerNumber player;
 
 	public bool GetPlayerStart()
     {

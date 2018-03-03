@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31426098ba8798746881c56e78b1c21b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
 --- !u!1 &207269319
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31426098ba8798746881c56e78b1c21b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
 --- !u!1 &1439991782
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31426098ba8798746881c56e78b1c21b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
 --- !u!1 &1583279184
 GameObject:
   m_ObjectHideFlags: 1
@@ -846,6 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31426098ba8798746881c56e78b1c21b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
 --- !u!114 &1706337917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,7 +874,7 @@ GameObject:
   - component: {fileID: 1737161554}
   - component: {fileID: 1737161553}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
