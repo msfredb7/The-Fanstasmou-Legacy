@@ -47,6 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Foin
+    uniqueID: 394234335
+    locked: 0
   - name: Sheeps
     uniqueID: 300287447
     locked: 0
@@ -55,6 +58,9 @@ TagManager:
     locked: 0
   - name: Dogs
     uniqueID: 2025393453
+    locked: 0
+  - name: Over foin
+    uniqueID: 3496484145
     locked: 0
   - name: Cloud
     uniqueID: 3732526911
