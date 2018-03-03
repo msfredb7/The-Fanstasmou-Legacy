@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Game/Dossiers Individuels/William/CharacterSelectScene.unity
+    guid: e9071786b0a288948a4a8fa893e00ae1
+  - enabled: 1
+    path: Assets/__DELETED_GUID_Trash/eab4a5066baa4fc47875fd12b4adbaab
+    guid: eab4a5066baa4fc47875fd12b4adbaab
+  - enabled: 1
     path: Assets/Game/Dossiers Individuels/Fred/Fred_TestSceneB.unity
     guid: 0f5d6a1fd2889834484f08472bedf84a
   - enabled: 1
