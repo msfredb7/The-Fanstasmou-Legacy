@@ -25,13 +25,16 @@ public class SheepComponent : MonoBehaviour {
 
         tr = GetComponent<Transform>() as Transform;
 
-        //InvokeRepeating("WanderF", 1.0f, m_WanderRefresh);
-        
+        //if(m_PoidWandering > 0)
+        //  InvokeRepeating("WanderF", 1.0f, m_WanderRefresh);
+
+        WanderF();
 
     }
 
     private void Update()
     {
+
         if (Input.GetKeyDown("d") == true && m_PoidWandering != 0)
             rb.AddForce(new Vector2(15.0f, 0));
     }
@@ -40,19 +43,24 @@ public class SheepComponent : MonoBehaviour {
     {
         m_Force = new Vector2(0, 0);
 
-        SeparationF(gs.GetNeighbors<SheepComponent>(m_SepareRange));
+        List<GameObject> lstVoisin = gs.GetNeighbors<SheepComponent>(m_SepareRange);
 
-        CohesionF(gs.GetNeighbors<SheepComponent>(m_CohesionRange));
+        SeparationF(lstVoisin);
 
-        AlignementF(gs.GetNeighbors<SheepComponent>(m_AlignRange));
+        CohesionF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_CohesionRange));
+
+        AlignementF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_AlignRange));
 
         //m_Force += m_FWandering * m_PoidWandering;
 
-        //m_Force += m_FSepare * m_PoidSeparation;
+        m_Force += m_FSepare * m_PoidSeparation;
 
         m_Force += m_FAlign * m_PoidAlign;
 
-        //m_Force = m_FCohesion * m_PoidCohesion;
+        m_Force += m_FCohesion * m_PoidCohesion;
+
+        //if (m_PoidWandering > 0)
+        m_Force += m_FWandering * m_PoidWandering;
 
         //Debug.Log(m_Force);
 
@@ -81,6 +89,8 @@ public class SheepComponent : MonoBehaviour {
         cible *= m_WanderRadius;
 
         m_FWandering = cible;
+
+        Invoke("WanderF", Random.Range(2, 5));
     }
 
     //  Met à jour la force de séparation avec tout les chèvre voisine
