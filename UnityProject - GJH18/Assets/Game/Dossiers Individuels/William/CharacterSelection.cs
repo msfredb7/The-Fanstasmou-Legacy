@@ -18,23 +18,39 @@ public class CharacterSelection : MonoBehaviour {
 		if (buttons.GetPlayerStart() && !isStartPressed)
         {
             StartGame();
-            isStartPressed = true;
         };
 	}
 
     public void StartGame()
     {
+        bool allSelected = true;
         foreach (Transform child in transform)
         {
             SelectionInputs playerSelectionInputs = child.GetComponent<SelectionInputs>();
             if (playerSelectionInputs != null)
             {
-                InputPlayerAxis playerAxis = child.GetComponent<InputPlayerAxis>();
-
-                PlayerPrefs.SetInt(playerAxis.player + " team", (int)playerSelectionInputs.team);
-                Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
+                if (playerSelectionInputs.team != SelectionInputs.Team.None)
+                {
+                    InputPlayerAxis playerAxis = child.GetComponent<InputPlayerAxis>();
+                    PlayerPrefs.SetInt(playerAxis.player + " team", (int)playerSelectionInputs.team);
+                    Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
+                }
+                else
+                {
+                    allSelected = false;
+                    break;
+                }
             }
         }
-        LoadingScreen.TransitionTo(GameScene.SceneName, null);
+        if (!allSelected)
+        {
+            MessagePopup.DisplayMessage("Veuillez tous sélectionner un camp");
+            isStartPressed = false;
+        }
+        else
+        {
+            LoadingScreen.TransitionTo(GameScene.SceneName, null);
+            isStartPressed = true;
+        }
     }
 }
