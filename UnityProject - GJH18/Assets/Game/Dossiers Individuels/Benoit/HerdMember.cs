@@ -10,7 +10,7 @@ public class HerdMember : MonoBehaviour {
     [HideInInspector]
     private Herd herd = null;
 
-    public void Awake()
+    public void Start()
     {
         voisin = GetComponent<Voisin>() as Voisin;
         herd = HerdList.Instance.NewHerd(this);
