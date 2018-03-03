@@ -479,6 +479,16 @@ Prefab:
       propertyPath: player
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114411177359978584, guid: 45d52dad059981840a06ece1522b64a7,
+        type: 2}
+      propertyPath: player
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114317593869445590, guid: 45d52dad059981840a06ece1522b64a7,
+        type: 2}
+      propertyPath: player
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114430924340471044, guid: 45d52dad059981840a06ece1522b64a7, type: 2}
     - {fileID: 114394182204510944, guid: 45d52dad059981840a06ece1522b64a7, type: 2}
@@ -513,6 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameScene: {fileID: 11400000, guid: 004c9b3af2e0b22459bb80a03f0d9c30, type: 2}
+  AreYouFourPlayers: 0
 --- !u!1001 &1088541974
 Prefab:
   m_ObjectHideFlags: 0

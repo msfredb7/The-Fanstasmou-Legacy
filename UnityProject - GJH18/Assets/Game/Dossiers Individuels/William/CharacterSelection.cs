@@ -6,8 +6,13 @@ public class CharacterSelection : MonoBehaviour {
 
     public SceneInfo GameScene;
 
+    [SerializeField]
+    [Header("À METTRE À 'VRAI' QUAND ON BUILD")]
+    bool FourPlayers;
+
     InputPlayerButton buttons;
 
+    
     bool isStartPressed = false;
 
 	void Start () {
@@ -31,9 +36,7 @@ public class CharacterSelection : MonoBehaviour {
             {
                 if (playerSelectionInputs.team != SelectionInputs.Team.None)
                 {
-                    InputPlayerAxis playerAxis = child.GetComponent<InputPlayerAxis>();
-                    PlayerPrefs.SetInt(playerAxis.player + " team", (int)playerSelectionInputs.team);
-                    Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
+                    AddPlayerToTeam(child, playerSelectionInputs);
                 }
                 else
                 {
@@ -42,7 +45,7 @@ public class CharacterSelection : MonoBehaviour {
                 }
             }
         }
-        if (!allSelected)
+        if (!allSelected && FourPlayers)
         {
             MessagePopup.DisplayMessage("Veuillez tous sélectionner un camp");
             isStartPressed = false;
@@ -52,5 +55,12 @@ public class CharacterSelection : MonoBehaviour {
             LoadingScreen.TransitionTo(GameScene.SceneName, null);
             isStartPressed = true;
         }
+    }
+
+    private void AddPlayerToTeam(Transform _player, SelectionInputs _playerSelectionInputs)
+    {
+        InputPlayerAxis playerAxis = _player.GetComponent<InputPlayerAxis>();
+        PlayerPrefs.SetInt(playerAxis.player + " team", (int)_playerSelectionInputs.team);
+        Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
     }
 }
