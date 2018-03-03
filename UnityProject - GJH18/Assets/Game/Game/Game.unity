@@ -519,6 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiScene: {fileID: 11400000, guid: 7b19b77e0cbc32b4c9a465e7573e116b, type: 2}
   gameUI: {fileID: 0}
+  mainCamera: {fileID: 1813271738}
   tutorial: {fileID: 11400000, guid: e1b0992ec620f964ab17499fc52ccfd6, type: 2}
   map: {fileID: 1584903477}
   unitContainer: {fileID: 1627954239}
