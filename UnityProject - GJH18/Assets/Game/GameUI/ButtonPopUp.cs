@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class ButtonPopUp : MonoBehaviour {
 
@@ -10,6 +11,11 @@ public class ButtonPopUp : MonoBehaviour {
     public GameObject buttonB;
     public GameObject buttonX;
     public GameObject buttonY;
+
+    bool AWaitForFocusComplete = false;
+    bool BWaitForFocusComplete = false;
+    bool XWaitForFocusComplete = false;
+    bool YWaitForFocusComplete = false;
 
     public float fadeDuration = 1;
 
@@ -35,30 +41,49 @@ public class ButtonPopUp : MonoBehaviour {
         {
             default:
             case ButtonType.A:
-                FocusPopup(uiPos, buttonA, duration, text);
+                if (AWaitForFocusComplete)
+                    break;
+                AWaitForFocusComplete = true;
+                FocusPopup(uiPos, buttonA, duration, text,()=> { AWaitForFocusComplete = false; });
                 break;
             case ButtonType.B:
-                FocusPopup(uiPos, buttonB, duration, text);
+                if (BWaitForFocusComplete)
+                    break;
+                BWaitForFocusComplete = true;
+                FocusPopup(uiPos, buttonB, duration, text, () => { AWaitForFocusComplete = false; });
                 break;
             case ButtonType.X:
-                FocusPopup(uiPos, buttonX, duration, text);
+                if (XWaitForFocusComplete)
+                    break;
+                XWaitForFocusComplete = true;
+                FocusPopup(uiPos, buttonX, duration, text, () => { AWaitForFocusComplete = false; });
                 break;
             case ButtonType.Y:
-                FocusPopup(uiPos, buttonY, duration, text);
+                if (YWaitForFocusComplete)
+                    break;
+                YWaitForFocusComplete = true;
+                FocusPopup(uiPos, buttonY, duration, text, () => { AWaitForFocusComplete = false; });
                 break;
         }
     }
 
-    private void FocusPopup(Vector2 uiPos, GameObject button, float duration, string text)
+    private void FocusPopup(Vector2 uiPos, GameObject button, float duration, string text,Action onComplete)
     {
         button.transform.position = new Vector3(uiPos.x, uiPos.y, 0);
         button.GetComponentInChildren<Text>().text = text;
         button.GetComponent<Image>().SetAlpha(0);
+        button.GetComponentInChildren<Text>().color = button.GetComponentInChildren<Text>().color.ChangedAlpha(0);
         button.SetActive(true);
-        button.GetComponent<Image>().DOFade(1, fadeDuration);
+        Sequence sqc = DOTween.Sequence();
+        sqc.Join(button.GetComponent<Image>().DOFade(0.5f, fadeDuration));
+        sqc.Join(button.GetComponentInChildren<Text>().DOFade(0.5f, fadeDuration));
         this.DelayedCall(delegate ()
         {
-            button.GetComponent<Image>().DOFade(0, fadeDuration).OnComplete(delegate() {
+            Sequence sqc2 = DOTween.Sequence();
+            sqc2.Join(button.GetComponentInChildren<Text>().DOFade(0, fadeDuration));
+            sqc2.Join(button.GetComponent<Image>().DOFade(0, fadeDuration));
+            sqc2.OnComplete(delegate() {
+                onComplete();
                 button.SetActive(false);
             });
         }, duration);

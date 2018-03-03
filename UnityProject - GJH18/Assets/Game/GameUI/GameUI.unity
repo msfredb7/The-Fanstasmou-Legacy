@@ -384,7 +384,7 @@ MonoBehaviour:
   buttonB: {fileID: 1525857737}
   buttonX: {fileID: 2122981897}
   buttonY: {fileID: 1535822552}
-  fadeDuration: 1
+  fadeDuration: 0.5
 --- !u!1 &413691375
 GameObject:
   m_ObjectHideFlags: 0
