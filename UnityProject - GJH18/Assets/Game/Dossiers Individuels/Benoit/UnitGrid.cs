@@ -31,8 +31,13 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
     const int horizontalCell = 32;
     const int VerticalCell = 18;
 
-    const int worldWidth = 1920;
-    const int worldHeight = 1080;
+    public GameObject BottomLeftBorder;
+    public GameObject TopRightBorder;
+
+    private float horizontalOffset = -960;
+    private float verticalOffset = -540;
+    private float worldWidth = 1920;
+    private float worldHeight = 1080;
 
     private float CellHeight { get { return worldHeight / horizontalCell; } }
     private float CellWidth { get { return worldWidth / horizontalCell; } }
@@ -45,14 +50,23 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
         for (int i = 0; i < horizontalCell; i++)
             for (int j = 0; j < VerticalCell; j++)
                 grid[i, j] = new GridRegion();
+
+        if(BottomLeftBorder && TopRightBorder)
+        {
+            worldWidth = Mathf.Abs(TopRightBorder.transform.position.x - BottomLeftBorder.transform.position.x);
+            worldHeight = Mathf.Abs(TopRightBorder.transform.position.y - BottomLeftBorder.transform.position.y);
+
+            horizontalOffset = Mathf.Min(TopRightBorder.transform.position.x, BottomLeftBorder.transform.position.x);
+            verticalOffset = Mathf.Min(TopRightBorder.transform.position.y, BottomLeftBorder.transform.position.y);         
+        }
     }
 
 
     public Vector2Int WorldToGrid(Vector2 postion)
     {
         Vector2Int retvalue = new Vector2Int();
-        retvalue.x = Mathf.FloorToInt(postion.x / CellWidth);
-        retvalue.y = Mathf.FloorToInt(postion.y / CellHeight);
+        retvalue.x = Mathf.FloorToInt( (postion.x - horizontalOffset) / CellWidth);
+        retvalue.y = Mathf.FloorToInt( (postion.y + verticalOffset) / CellHeight);
         return retvalue;
     }
 
@@ -65,19 +79,20 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
     }
 
 
-    public List<GameObject> GetNeighbors<T>(Vector2 postion, float range) where T: UnityEngine.MonoBehaviour
+    public List<GameObject> GetObjectsInRange<T>(Vector2 postion, float range) where T: UnityEngine.MonoBehaviour
     {
-        // List<GridRegion> neighboringCells = GetNeighborsCells(postion, range);
+        List<GridRegion> neighboringCells = GetNeighborsCells(postion, range);
 
         List<GameObject> neighbors = new List<GameObject>();
 
+        /*
         T[] sheeps = FindObjectsOfType<T>();
 
         for (int i = 0; i < sheeps.Length; i++)
-            neighbors.Add(sheeps[i].gameObject);
+            neighbors.Add(sheeps[i].gameObject);*/
 
-       // for (int i = 0; i < neighboringCells.Count; i++)
-        //    neighbors.AddRange(neighboringCells[i].GetUnits());
+        for (int i = 0; i < neighboringCells.Count; i++)
+            neighbors.AddRange(neighboringCells[i].GetUnits());
 
         Vector2 min = new Vector2(postion.x - range, postion.y - range);
         Vector2 max = new Vector2(postion.x + range, postion.y + range);
@@ -92,7 +107,7 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
 
         float sqRange = range * range;
         for (int i = 0; i < neighbors.Count; i++)
-            if(((Vector2)neighbors[i].transform.position - postion).SqrMagnitude() > range)
+            if(((Vector2)neighbors[i].transform.position - postion).SqrMagnitude() > sqRange)
                 neighbors.RemoveAt(i);
 
         for (int i = 0; i < neighbors.Count; i++)
