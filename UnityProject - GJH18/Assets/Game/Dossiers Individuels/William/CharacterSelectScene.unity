@@ -113,6 +113,80 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &159418821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 159418822}
+  - component: {fileID: 159418824}
+  - component: {fileID: 159418823}
+  m_Layer: 5
+  m_Name: Description Loup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &159418822
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159418821}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999267, y: 0.99999267, z: 0.99999267}
+  m_Children: []
+  m_Father: {fileID: 773791727}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 570.95, y: -374.4}
+  m_SizeDelta: {x: 707.6, y: 193.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &159418823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159418821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 71b7eabea9489f44da03829f54e84035, type: 3}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Isole et mange les moutons
+--- !u!222 &159418824
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159418821}
 --- !u!1 &207269319
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +431,7 @@ Prefab:
     - target: {fileID: 224628146017901930, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -65.75
       objectReference: {fileID: 0}
     - target: {fileID: 224628146017901930, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
@@ -367,7 +441,7 @@ Prefab:
     - target: {fileID: 224628146017901930, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 131.5
       objectReference: {fileID: 0}
     - target: {fileID: 224159797958083634, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
@@ -387,7 +461,7 @@ Prefab:
     - target: {fileID: 224159797958083634, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -267.25
       objectReference: {fileID: 0}
     - target: {fileID: 224159797958083634, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
@@ -397,7 +471,7 @@ Prefab:
     - target: {fileID: 224159797958083634, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 131.5
       objectReference: {fileID: 0}
     - target: {fileID: 224152138574164082, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
@@ -417,7 +491,7 @@ Prefab:
     - target: {fileID: 224152138574164082, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -468.75
       objectReference: {fileID: 0}
     - target: {fileID: 224152138574164082, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
@@ -427,7 +501,7 @@ Prefab:
     - target: {fileID: 224152138574164082, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 131.5
       objectReference: {fileID: 0}
     - target: {fileID: 224171112035290854, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
@@ -447,7 +521,7 @@ Prefab:
     - target: {fileID: 224171112035290854, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -670.25
       objectReference: {fileID: 0}
     - target: {fileID: 224171112035290854, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
@@ -457,16 +531,26 @@ Prefab:
     - target: {fileID: 224171112035290854, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 131.5
       objectReference: {fileID: 0}
     - target: {fileID: 114363264192909926, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: FourPlayers
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114674664539919098, guid: 45d52dad059981840a06ece1522b64a7,
+        type: 2}
+      propertyPath: m_Text
+      value: BITCONNEEEEEECT
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45d52dad059981840a06ece1522b64a7, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &773791727 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224188389804952806, guid: 45d52dad059981840a06ece1522b64a7,
+    type: 2}
+  m_PrefabInternal: {fileID: 773791726}
 --- !u!1001 &1088541974
 Prefab:
   m_ObjectHideFlags: 0
@@ -779,6 +863,80 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1765259606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1765259607}
+  - component: {fileID: 1765259609}
+  - component: {fileID: 1765259608}
+  m_Layer: 5
+  m_Name: Description Berger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1765259607
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765259606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 773791727}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -570.95, y: -374.4}
+  m_SizeDelta: {x: 707.6, y: 193.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1765259608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765259606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 71b7eabea9489f44da03829f54e84035, type: 3}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Regroupe et prot\xE8ge les moutons"
+--- !u!222 &1765259609
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765259606}
 --- !u!1 &1800535242 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1484044644863124, guid: e97864a2b0670e541ada81ddf831555d,
