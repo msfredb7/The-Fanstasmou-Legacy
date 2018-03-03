@@ -207,18 +207,22 @@ MonoBehaviour:
   m_PoidWandering: 0
   m_PoidSeparation: 0
   m_PoidAlign: 0
-  m_PoidCohesion: 25
-  m_PoidFlee: 0
+  m_PoidCohesion: 15
+  m_PoidFlee: 120
   m_PoidEvade: 0
   m_PoidSeek: 0
+  m_FleePower: 1
+  m_SeekPower: 1
+  m_EvadePower: 1
   m_WanderRadius: 5
   m_WanderRefresh: 3
   m_WanderRange: 0
   m_SepareRange: 1
-  m_CohesionRange: 2
+  m_CohesionRange: 0.5
   m_AlignRange: 2
-  m_FleeRange: 0
-  FuirSourie: 0
+  m_SeekRange: 0
+  m_FleeRange: 2.5
+  FuirSourie: 1
 --- !u!114 &114546971779754974
 MonoBehaviour:
   m_ObjectHideFlags: 1

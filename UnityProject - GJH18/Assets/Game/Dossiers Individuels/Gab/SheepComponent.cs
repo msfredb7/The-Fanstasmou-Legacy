@@ -18,6 +18,11 @@ public class SheepComponent : MonoBehaviour
     public float m_PoidEvade;
     public float m_PoidSeek;
 
+    [Header("Powers")]
+    public float m_FleePower = 1;
+    public float m_SeekPower = 1;
+    public float m_EvadePower = 1;
+
     [Header("Wandering")]
     public float m_WanderRadius, m_WanderRefresh;
 
@@ -25,6 +30,7 @@ public class SheepComponent : MonoBehaviour
     [Colored(.5f, 1, .5f)] public float m_SepareRange;
     [Colored(.5f, .5f, 1)] public float m_CohesionRange;
     [Colored(1, 1, 1)] public float m_AlignRange;
+    [Colored(0.5f, 1, 1)] public float m_SeekRange;
 
     public float m_FleeRange;
 
@@ -42,7 +48,6 @@ public class SheepComponent : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        FuirSourie = false;
         gs = GetComponent<GridSubscriber>() as GridSubscriber;
         myself = GetComponent<Voisin>();
 
@@ -139,7 +144,7 @@ public class SheepComponent : MonoBehaviour
         if (m_SepareRange != 0)
             foreach (VoisinInfo voisin in lstVoisin)
             {
-                influence = Mathf.Clamp(1 - (voisin.distance / m_SepareRange), 0, 1);
+                influence = GetDistanceBasedInfluence(voisin.distance, m_SepareRange, 1);
                 Vector2 ToV = tr.position - voisin.intance.tr.position;
 
                 ForceTot += (ToV.normalized / ToV.magnitude) * influence;
@@ -152,13 +157,13 @@ public class SheepComponent : MonoBehaviour
     private void CohesionF(List<VoisinInfo> lstVoisin)
     {
         Vector2 ForceTot = new Vector2(0, 0);
-        Vector2 CentreDeMasse = new Vector2(0, 0);
+        Vector2 CentreDeMasse = tr.position;
 
         float influence = 0;
         if (m_CohesionRange != 0)
             foreach (VoisinInfo voisin in lstVoisin)
             {
-                influence = Mathf.Clamp(1 - (voisin.distance / m_CohesionRange), 0, 1);
+                influence = GetDistanceBasedInfluence(voisin.distance, m_CohesionRange, 1);
                 CentreDeMasse += (Vector2)voisin.intance.tr.position * influence;
             }
 
@@ -167,11 +172,8 @@ public class SheepComponent : MonoBehaviour
             CentreDeMasse /= lstVoisin.Count;
 
             //  seek au cas où
-            ForceTot = seek(CentreDeMasse);
-
-            //ForceTot = (CentreDeMasse - (Vector2)tr.position).normalized * m_MaxSpeed;
-
-            //ForceTot -= rb.velocity;
+            ForceTot = (CentreDeMasse - (Vector2)tr.position).normalized * m_MaxSpeed;
+            ForceTot -= rb.velocity;
         }
 
         m_FCohesion = ForceTot;
@@ -195,42 +197,49 @@ public class SheepComponent : MonoBehaviour
     //    m_FAlign = DirMoyenne;
     //}
 
-    private Vector2 seek(Vector2 Target)
+    private static float GetDistanceBasedInfluence(float distance, float range, float power)
     {
-        Vector2 ForceTot = new Vector2(0, 0);
-        ForceTot = (Target - (Vector2)tr.position).normalized * m_MaxSpeed;
+        return Mathf.Pow(Mathf.Clamp(1 - (distance / range), 0, 1), power);
+    }
 
-        ForceTot -= rb.velocity;
-
-        return ForceTot;
+    private Vector2 SmoothSeek(Vector2 target)
+    {
+        return -GetRepulsePowerFrom(target, m_SeekRange, m_SeekPower);
+    }
+    private Vector2 Seek(Vector2 target)
+    {
+        return  ((target - (Vector2)tr.position).normalized * m_MaxSpeed) - rb.velocity;
     }
 
     private Vector2 Flee(Vector2 target)
     {
-
-        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        float PanicDistance = m_FleeRange;
-        Vector2 v = (Vector2)tr.position - target;
-        float influence = Mathf.Clamp(1 - (v.magnitude / m_FleeRange), 0, 1);
-
-        Vector2 ForceTot = v.normalized * m_MaxSpeed * influence;
-
-        return ForceTot;// - rb.velocity);
+        return GetRepulsePowerFrom(target, m_FleeRange, m_FleePower);
     }
 
-    private Vector2 Evade(GameObject poursuivant)
+    private Vector2 Evade(Rigidbody2D poursuivant)
     {
-        Rigidbody2D poursuiRB = poursuivant.GetComponent<Rigidbody2D>() as Rigidbody2D;
-
-        Vector2 ToPursuer = poursuivant.transform.position - tr.position;
+        Vector2 ToPursuer = poursuivant.position - (Vector2)tr.position;
 
         //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         float distMenace = m_FleeRange;//10.0f;
         if (ToPursuer.sqrMagnitude > distMenace * distMenace) return new Vector2();
 
-        float LookAhead = ToPursuer.magnitude / (m_MaxSpeed + poursuiRB.velocity.magnitude);
+        float LookAhead = ToPursuer.magnitude / (m_MaxSpeed + poursuivant.velocity.magnitude);
 
-        return Flee((Vector2)poursuivant.transform.position + poursuiRB.velocity * LookAhead);
+        return Flee((Vector2)poursuivant.transform.position + poursuivant.velocity * LookAhead);
+    }
+
+    private Vector2 GetRepulsePowerFrom(Vector2 target, float influenceRange, float influencePower)
+    {
+        float PanicDistance = m_FleeRange;
+        Vector2 v = (Vector2)tr.position - target;
+        float influence = Mathf.Clamp(1 - (v.magnitude / influenceRange), 0, 1);
+
+        influence = Mathf.Pow(influence, influencePower);
+
+        Vector2 ForceTot = v.normalized * m_MaxSpeed * influence;
+
+        return ForceTot;
     }
 
     void OnDrawGizmosSelected()

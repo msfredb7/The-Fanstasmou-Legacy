@@ -59,7 +59,7 @@ public class Voisin : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         var v = other.GetComponentInParent<Voisin>();
-        if (v != null && other.isTrigger)
+        if (v != null && !other.isTrigger)
         {
             for (int i = 0; i < otherVoisins.Count; i++)
             {
