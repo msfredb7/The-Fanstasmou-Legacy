@@ -43,10 +43,11 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
     private float CellWidth { get { return worldWidth / horizontalCell; } }
 
     private GridRegion[,] grid = new GridRegion[horizontalCell, VerticalCell];
-
-
-    public void Start()
+   
+    protected override void Awake()
     {
+        base.Awake();
+
         for (int i = 0; i < horizontalCell; i++)
             for (int j = 0; j < VerticalCell; j++)
                 grid[i, j] = new GridRegion();
