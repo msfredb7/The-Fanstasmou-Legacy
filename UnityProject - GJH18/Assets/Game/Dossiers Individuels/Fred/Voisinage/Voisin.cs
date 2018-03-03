@@ -74,7 +74,7 @@ public class Voisin : MonoBehaviour
         {
             for (int i = 0; i < otherVoisins.Count; i++)
             {
-                if(otherVoisins[i].intance == v)
+                if (otherVoisins[i].intance == v)
                 {
                     otherVoisins.RemoveAt(i);
                     i--;
@@ -83,3 +83,5 @@ public class Voisin : MonoBehaviour
         }
     }
 }
+
+            if (otherVoisins[i].distance < range)
