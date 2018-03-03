@@ -163,7 +163,7 @@ MonoBehaviour:
   animatorController: {fileID: 95247747095196320}
   rotator: {fileID: 4003355537846302}
   useRigidbody: 0
-  sensitivity: 0.4
+  sensitivity: 0.15
   setSpeed: 0
   speedScale: 0.4
   playerMovement: {fileID: 0}

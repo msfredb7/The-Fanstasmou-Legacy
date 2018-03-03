@@ -13,16 +13,25 @@ public class Voisin : MonoBehaviour
 {
     public List<VoisinInfo> otherVoisins = new List<VoisinInfo>();
 
+    public Vector2 myDirection;
+    public float mySpeed;
+
+    [HideInInspector]
     public Transform tr;
+    [HideInInspector]
+    public Rigidbody2D rb;
 
     void Awake()
     {
         tr = transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         UpdateDistances();
+        myDirection = tr.right;
+        mySpeed = rb.velocity.magnitude;
     }
 
     void UpdateDistances()

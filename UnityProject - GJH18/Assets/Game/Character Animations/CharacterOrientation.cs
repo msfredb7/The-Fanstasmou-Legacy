@@ -10,6 +10,7 @@ public class CharacterOrientation : MonoBehaviour
     public float sensitivity = 0.4f;
     public bool setSpeed = false;
     public float speedScale = 0.4f;
+    public float lerpSpeed = 1f;
 
 
     [ReadOnly]
@@ -19,6 +20,9 @@ public class CharacterOrientation : MonoBehaviour
 
     private int runHash = Animator.StringToHash("running");
     private int speedHash = Animator.StringToHash("speed");
+
+    private float targetAngle;
+    private float currentAngle;
 
     void Awake()
     {
@@ -37,7 +41,7 @@ public class CharacterOrientation : MonoBehaviour
             if (speed > sensitivity)
             {
                 animatorController.SetBool(runHash, true);
-                SetAngle(rb.velocity);
+                targetAngle = rb.velocity.ToAngle();
             }
             else
             {
@@ -50,7 +54,7 @@ public class CharacterOrientation : MonoBehaviour
             animatorController.SetBool(runHash, playerMovement.IsMoving);
             if (playerMovement.IsMoving && speed > sensitivity)
             {
-                SetAngle(playerMovement.LastPlayerInput);
+                targetAngle = playerMovement.LastPlayerInput.ToAngle();
             }
         }
 
@@ -58,14 +62,10 @@ public class CharacterOrientation : MonoBehaviour
         {
             animatorController.SetFloat(speedHash, speed * speedScale);
         }
-    }
 
-    void SetAngle(Vector2 moveVector)
-    {
-        SetAngle(moveVector.ToAngle());
-    }
-    void SetAngle(float angle)
-    {
-        rotator.rotation = Quaternion.Euler(Vector3.forward * angle);
+
+
+        currentAngle = Mathf.LerpAngle(currentAngle, targetAngle, FixedLerp.Fix(lerpSpeed));
+        rotator.rotation = Quaternion.Euler(Vector3.forward * currentAngle);
     }
 }

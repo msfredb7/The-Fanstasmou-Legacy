@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4078845112154042}
   - component: {fileID: 50689918191562392}
   - component: {fileID: 114184113407760692}
-  - component: {fileID: 114713073955666192}
   - component: {fileID: 58974217239795452}
   - component: {fileID: 114014880058666450}
   - component: {fileID: 114546971779754974}
@@ -190,6 +189,7 @@ MonoBehaviour:
   sensitivity: 0.2
   setSpeed: 1
   speedScale: 0.4
+  lerpSpeed: 0.05
   playerMovement: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &114184113407760692
@@ -203,17 +203,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3872c4928cc82d2429e37ac9bb1a4914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PoidWandering: 2
-  m_PoidSeparation: 5
-  m_PoidAlign: 5
+  m_MaxSpeed: 1
+  m_PoidWandering: 0
+  m_PoidSeparation: 0
+  m_PoidAlign: 0
   m_PoidCohesion: 25
+  m_PoidFlee: 0
+  m_PoidEvade: 0
+  m_PoidSeek: 0
   m_WanderRadius: 5
-  m_MaxSpeed: 0.8
   m_WanderRefresh: 3
   m_WanderRange: 0
   m_SepareRange: 1
   m_CohesionRange: 2
   m_AlignRange: 2
+  m_FleeRange: 0
+  FuirSourie: 0
 --- !u!114 &114546971779754974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,20 +231,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherVoisins: []
+  myDirection: {x: 0, y: 0}
+  mySpeed: 0
   tr: {fileID: 4078845112154042}
---- !u!114 &114713073955666192
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1512002220359000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6432343ecff52ff4b988ed69804007cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentCell: {x: -1, y: -1}
-  RequestPerSeconds: 60
+  rb: {fileID: 0}
 --- !u!212 &212111447949954336
 SpriteRenderer:
   m_ObjectHideFlags: 1

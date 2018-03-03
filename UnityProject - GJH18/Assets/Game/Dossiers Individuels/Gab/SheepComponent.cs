@@ -2,30 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SheepComponent : MonoBehaviour {
+public class SheepComponent : MonoBehaviour
+{
 
     Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion;
 
-    public float m_PoidWandering, m_PoidSeparation, m_PoidAlign, m_PoidCohesion;
-    public float m_WanderRadius, m_MaxSpeed, m_WanderRefresh;
+    public float m_MaxSpeed;
 
-    [Colored(1, .5f, .5f)] public float m_WanderRange;
+    [Header("Poids")]
+    public float m_PoidWandering;
+    public float m_PoidSeparation;
+    public float m_PoidAlign;
+    public float m_PoidCohesion;
+    public float m_PoidFlee;
+    public float m_PoidEvade;
+    public float m_PoidSeek;
+
+    [Header("Wandering")]
+    public float m_WanderRadius, m_WanderRefresh;
+
+    [Header("Ranges"), Colored(1, .5f, .5f)] public float m_WanderRange;
     [Colored(.5f, 1, .5f)] public float m_SepareRange;
     [Colored(.5f, .5f, 1)] public float m_CohesionRange;
     [Colored(1, 1, 1)] public float m_AlignRange;
+
+    public float m_FleeRange;
 
     Rigidbody2D rb;
 
     private Transform tr;
 
     private GridSubscriber gs;
+    private Voisin myself;
 
-    bool m_other;
+    //GameObject Tueur;
+
+    public bool FuirSourie;
 
     // Use this for initialization
-    void Start () {
-        m_other = false;
+    void Start()
+    {
+        FuirSourie = false;
         gs = GetComponent<GridSubscriber>() as GridSubscriber;
+        myself = GetComponent<Voisin>();
 
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
 
@@ -40,6 +59,13 @@ public class SheepComponent : MonoBehaviour {
 
     private void Update()
     {
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //Debug.Log((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //m_Force += Flee((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) * 3;
+        //}
+
+
         if (Input.GetKeyDown("d") == true && m_PoidWandering != 0)
             rb.AddForce(new Vector2(15.0f, 0));
     }
@@ -48,13 +74,13 @@ public class SheepComponent : MonoBehaviour {
     {
         m_Force = new Vector2(0, 0);
 
-        List<GameObject> lstVoisin = gs.GetNeighbors<SheepComponent>(m_SepareRange);
+        List<VoisinInfo> lstVoisin = myself.otherVoisins;
 
         SeparationF(lstVoisin);
 
         CohesionF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_CohesionRange));
 
-        AlignementF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_AlignRange));
+        //AlignementF(lstVoisin);//gs.GetNeighbors<SheepComponent>(m_AlignRange));
 
         //m_Force += m_FWandering * m_PoidWandering;
         if (lstVoisin.Count > 0)
@@ -70,6 +96,13 @@ public class SheepComponent : MonoBehaviour {
             m_Force += m_FWandering * m_PoidWandering;
         }
 
+        if (FuirSourie == true)
+            m_Force += Flee((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) * m_PoidFlee;
+        //m_Force += seek((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) * m_PoidSeek;
+
+        //if(tueur != null)
+        //    m_Force += Evade(tueur) * m_PoidEvade;
+
         //Debug.Log(m_Force);
 
         //rb.AddRelativeForce(m_Force);
@@ -80,15 +113,6 @@ public class SheepComponent : MonoBehaviour {
         {
             rb.velocity = rb.velocity.normalized * m_MaxSpeed;
         }
-        //if (rb.velocity.x > m_MaxSpeed)
-        //    rb.velocity = Vector2.right * m_MaxSpeed;
-        //else if (rb.velocity.x < -m_MaxSpeed)
-        //    rb.velocity = Vector2.right * -m_MaxSpeed;
-
-        //if (rb.velocity.y > m_MaxSpeed)
-        //    rb.velocity = Vector2.left * m_MaxSpeed;
-        //else if (rb.velocity.y < -m_MaxSpeed)
-        //    rb.velocity = Vector2.left * -m_MaxSpeed;
 
     }
 
@@ -107,32 +131,38 @@ public class SheepComponent : MonoBehaviour {
     }
 
     //  Met à jour la force de séparation avec tout les chèvre voisine
-    private void SeparationF(List<GameObject> lstVoisin)
+    private void SeparationF(List<VoisinInfo> lstVoisin)
     {
-        Vector2 ForceTot = new Vector2(0,0);
+        Vector2 ForceTot = new Vector2(0, 0);
 
-        foreach (GameObject voisin in lstVoisin)
-        {
-            Vector2 ToV = tr.position - voisin.transform.position;
+        float influence = 0;
+        if (m_SepareRange != 0)
+            foreach (VoisinInfo voisin in lstVoisin)
+            {
+                influence = Mathf.Clamp(1 - (voisin.distance / m_SepareRange), 0, 1);
+                Vector2 ToV = tr.position - voisin.intance.tr.position;
 
-            ForceTot += ToV.normalized / ToV.magnitude;
-        }
+                ForceTot += (ToV.normalized / ToV.magnitude) * influence;
+            }
 
         m_FSepare = ForceTot;
     }
 
     //  met à jours la force de cohésion du groupe de chèvre vers le centre
-    private void CohesionF(List<GameObject> lstVoisin)
+    private void CohesionF(List<VoisinInfo> lstVoisin)
     {
         Vector2 ForceTot = new Vector2(0, 0);
         Vector2 CentreDeMasse = new Vector2(0, 0);
 
-        foreach (GameObject voisin in lstVoisin)
-        {
-            CentreDeMasse += (Vector2)voisin.transform.position;
-        }
+        float influence = 0;
+        if (m_CohesionRange != 0)
+            foreach (VoisinInfo voisin in lstVoisin)
+            {
+                influence = Mathf.Clamp(1 - (voisin.distance / m_CohesionRange), 0, 1);
+                CentreDeMasse += (Vector2)voisin.intance.tr.position * influence;
+            }
 
-        if(lstVoisin.Count > 0)
+        if (lstVoisin.Count > 0)
         {
             CentreDeMasse /= lstVoisin.Count;
 
@@ -148,24 +178,22 @@ public class SheepComponent : MonoBehaviour {
     }
 
     //  Met à jour la force de séparation avec tout les chèvre voisine
-    private void AlignementF(List<GameObject> lstVoisin)
-    {
-        Vector2 DirMoyenne = new Vector2(0, 0);
+    //private void AlignementF(List<VoisinInfo> lstVoisin)
+    //{
+    //    Vector2 DirMoyenne = new Vector2(0, 0);
 
-        foreach (GameObject voisin in lstVoisin)
-        {
-            DirMoyenne += (voisin.GetComponent < Rigidbody2D >() as Rigidbody2D).velocity.normalized;
-        }
+    //    float influence = 0;
+    //    if (m_AlignRange != 0)
+    //        foreach (VoisinInfo voisin in lstVoisin)
+    //        {
+    //            influence = Mathf.Clamp(1 - (voisin.distance / m_AlignRange), 0, 1) * Mathf.Clamp(voisin.intance.mySpeed / m_MaxSpeed, 0, 1);
+    //            DirMoyenne += voisin.intance.myDirection * influence;
+    //        }
 
-        if(lstVoisin.Count > 0)
-        {
-            DirMoyenne /= lstVoisin.Count;
+    //    DirMoyenne.Normalize();
 
-            DirMoyenne -= rb.velocity.normalized;
-        }
-
-        m_FAlign = DirMoyenne;
-    }
+    //    m_FAlign = DirMoyenne;
+    //}
 
     private Vector2 seek(Vector2 Target)
     {
@@ -179,9 +207,15 @@ public class SheepComponent : MonoBehaviour {
 
     private Vector2 Flee(Vector2 target)
     {
-        Vector2 ForceTot = ((Vector2)tr.position - target).normalized * m_MaxSpeed;
 
-        return (ForceTot - rb.velocity);
+        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        float PanicDistance = m_FleeRange;
+        Vector2 v = (Vector2)tr.position - target;
+        float influence = Mathf.Clamp(1 - (v.magnitude / m_FleeRange), 0, 1);
+
+        Vector2 ForceTot = v.normalized * m_MaxSpeed * influence;
+
+        return ForceTot;// - rb.velocity);
     }
 
     private Vector2 Evade(GameObject poursuivant)
@@ -190,8 +224,8 @@ public class SheepComponent : MonoBehaviour {
 
         Vector2 ToPursuer = poursuivant.transform.position - tr.position;
 
-        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance
-        float distMenace = 10.0f;
+        //      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!       Arranger la distance !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        float distMenace = m_FleeRange;//10.0f;
         if (ToPursuer.sqrMagnitude > distMenace * distMenace) return new Vector2();
 
         float LookAhead = ToPursuer.magnitude / (m_MaxSpeed + poursuiRB.velocity.magnitude);

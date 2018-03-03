@@ -29,7 +29,6 @@ public class GridSubscriber: MonoBehaviour
     private static int instanceCount = 0;
     private int instanceNumber;
 
-    [HideInInspector]
     public Vector2Int currentCell = new Vector2Int(-1, -1);
 
     public int RequestPerSeconds = 5;
@@ -37,7 +36,11 @@ public class GridSubscriber: MonoBehaviour
     private Vector2 position { get  { return (Vector2)gameObject.transform.position; } }
     private List<NeighborsRequest> neighborsRequest = new List<NeighborsRequest>();
 
-    
+
+    public void OnDestroy()
+    {
+        UnitGrid.Instance.UnsuscribeUnit(this);
+    }
 
     public void Start()
     {
@@ -51,6 +54,7 @@ public class GridSubscriber: MonoBehaviour
         if (newCell != currentCell)
             UnitGrid.Instance.SuscribeUnit(this, newCell);
 
+        Debug.DrawLine(position, UnitGrid.Instance.GridToWorld(newCell), Color.red,Time.deltaTime, false);
 
         for (int i = 0; i < neighborsRequest.Count; i++)
         {
@@ -78,7 +82,7 @@ public class GridSubscriber: MonoBehaviour
        
     private List<GameObject> NewNRequest<T>(float range) where T : UnityEngine.MonoBehaviour
     {
-        NeighborsRequest newNRequest = new NeighborsRequest(typeof(T), 1 / RequestPerSeconds, range);
+        NeighborsRequest newNRequest = new NeighborsRequest(typeof(T), 1.0f / RequestPerSeconds, range);
         neighborsRequest.Add(newNRequest);
         return ResetNRequest<T>(neighborsRequest.IndexOf(newNRequest), range);
     }
@@ -87,10 +91,10 @@ public class GridSubscriber: MonoBehaviour
     {
         var nRequest = neighborsRequest[i];
         nRequest.neighbors = RefreshNeighbors<T>(range);
-        nRequest.lifetime = 1 / RequestPerSeconds;
+        nRequest.lifetime = 1.0f / RequestPerSeconds;
         if (!nRequest.delayed)
         {
-            nRequest.lifetime *= (1 - ((instanceNumber % 10) / 10));
+            nRequest.lifetime *= (1.0f - ((instanceNumber % 10.0f) / 10.0f));
             nRequest.delayed = true;
         }
         neighborsRequest[i] = nRequest;
