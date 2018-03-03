@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour {
 
-    public DefaultAudioSourcesRemote sources;
     public AudioAssetGroup dogBark;
     public AudioAssetGroup dogGrowl;
     public AudioAsset wolfHowl;
 
+    void Start()
+    {
+        Game.OnGameReady += delegate ()
+        {
+            PlayWolfHowl();
+        };
+    }
+
     public void PlayDogBark()
     {
-        sources.PlaySFX_AudioPlayable(dogBark.clips[Random.Range(0, dogBark.clips.Length - 1)]);
+        DefaultAudioSources.PlaySFX(dogBark.clips[Random.Range(0, dogBark.clips.Length - 1)]);
     }
 
     public void PlayDogGrowl()
     {
-        sources.PlaySFX_AudioPlayable(dogGrowl.clips[Random.Range(0,dogGrowl.clips.Length-1)]);
+        DefaultAudioSources.PlaySFX(dogGrowl.clips[Random.Range(0,dogGrowl.clips.Length-1)]);
     }
 
     public void PlayWolfHowl()
     {
-        sources.PlaySFX_AudioPlayable(wolfHowl);
+        DefaultAudioSources.PlaySFX(wolfHowl);
     }
 }

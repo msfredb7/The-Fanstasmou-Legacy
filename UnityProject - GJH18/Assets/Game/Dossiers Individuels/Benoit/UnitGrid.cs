@@ -65,13 +65,19 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
     }
 
 
-    public List<GameObject> GetNeighbors(Vector2 postion, float range)
+    public List<GameObject> GetNeighbors<T>(Vector2 postion, float range) where T: UnityEngine.MonoBehaviour
     {
-        List<GridRegion> neighboringCells = GetNeighborsCells(postion, range);
+        // List<GridRegion> neighboringCells = GetNeighborsCells(postion, range);
 
         List<GameObject> neighbors = new List<GameObject>();
-        for (int i = 0; i < neighboringCells.Count; i++)
-            neighbors.AddRange(neighboringCells[i].GetUnits());
+
+        T[] sheeps = FindObjectsOfType<T>();
+
+        for (int i = 0; i < sheeps.Length; i++)
+            neighbors.Add(sheeps[i].gameObject);
+
+       // for (int i = 0; i < neighboringCells.Count; i++)
+        //    neighbors.AddRange(neighboringCells[i].GetUnits());
 
         Vector2 min = new Vector2(postion.x - range, postion.y - range);
         Vector2 max = new Vector2(postion.x + range, postion.y + range);
@@ -87,7 +93,11 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
         float sqRange = range * range;
         for (int i = 0; i < neighbors.Count; i++)
             if(((Vector2)neighbors[i].transform.position - postion).SqrMagnitude() > range)
-                neighbors.RemoveAt(i);    
+                neighbors.RemoveAt(i);
+
+        for (int i = 0; i < neighbors.Count; i++)
+            if (!(neighbors[i] is T))
+                neighbors.RemoveAt(i);
 
         return neighbors;
     }
@@ -97,10 +107,10 @@ public class UnitGrid : CCC.DesignPattern.PublicSingleton<UnitGrid> {
         Vector2Int oldCell = subscriber.currentCell;
 
         if (oldCell.x >= 0 && oldCell.y >= 0 && oldCell.x < horizontalCell && oldCell.y < VerticalCell)
-            grid[oldCell.x, oldCell.y].Unsubscribe(subscriber.owner);
+            grid[oldCell.x, oldCell.y].Unsubscribe(subscriber.gameObject);
     
         if (newCell.x >= 0 && newCell.y >= 0 && newCell.x < horizontalCell && newCell.y < VerticalCell)
-            grid[newCell.x, newCell.y].Suscribe(subscriber.owner);
+            grid[newCell.x, newCell.y].Suscribe(subscriber.gameObject);
 
         subscriber.currentCell = newCell;
     }

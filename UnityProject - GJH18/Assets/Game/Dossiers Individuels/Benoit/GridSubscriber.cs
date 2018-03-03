@@ -2,22 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridSubscriber
+public class GridSubscriber: MonoBehaviour
 {
+    [HideInInspector]
     public Vector2Int currentCell = new Vector2Int(-1 ,-1);
-    public GameObject owner;
+
     Vector2 position {
         get  {
-            if (owner)
-                return (Vector2)owner.transform.position;
-            else
-                return new Vector3(0, 0, 0);
+                return (Vector2)gameObject.transform.position;
         }
     }
 
-    public void Initiate(GameObject o)
+    public void Start()
     {
-        owner = o;
         Update();
     }
 
@@ -28,9 +25,9 @@ public class GridSubscriber
             UnitGrid.Instance.SuscribeUnit(this, newCell);
     }
 
-    public List<GameObject> GetNeighbors(float range)
+    public List<GameObject> GetNeighbors<T>(float range) where T : UnityEngine.MonoBehaviour
     {
-        return UnitGrid.Instance.GetNeighbors(owner.transform.position, range);
+        return UnitGrid.Instance.GetNeighbors<T>(gameObject.transform.position, range);
     }
 }
 

@@ -18,20 +18,19 @@ public class SheepComponent : MonoBehaviour {
 
         tr = GetComponent<Transform>() as Transform;
 
-       InvokeRepeating("WanderF", 1.0f, m_WanderRefresh);
+        //InvokeRepeating("WanderF", 1.0f, m_WanderRefresh);
+        
 
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        //m_Force = WanderF() * m_PoidWandering;
-
-        if(Input.GetKeyDown("d"))
-            rb.AddRelativeForce(new Vector2(10.0f, 10.0f));
     }
 
     private void FixedUpdate()
     {
+        //SeparationF();
+
+        //m_Force = m_FWandering * m_PoidWandering;
+
+        m_Force = m_FSepare * m_PoidSeparation;
+
         rb.AddRelativeForce(m_Force);
 
         if (rb.velocity.x > m_MaxSpeed)
@@ -46,7 +45,8 @@ public class SheepComponent : MonoBehaviour {
 
     }
 
-    public void WanderF()
+    //  met a jour la direction des sheep quand il n'ont pas de voisin, ce dirige aléatoirement
+    private void WanderF()
     {
         Vector2 cible = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
 
@@ -55,7 +55,19 @@ public class SheepComponent : MonoBehaviour {
         cible *= m_WanderRadius;
 
         m_FWandering = cible;
+    }
 
-        m_Force = m_FWandering * m_PoidWandering;
+    private void SeparationF(List<GameObject> lstVoisin)
+    {
+        Vector2 ForceTot = new Vector2(0,0);
+
+        foreach (GameObject voisin in lstVoisin)
+        {
+            Vector2 ToV = tr.position - voisin.transform.position;
+
+            ForceTot += ToV.normalized / ToV.magnitude;
+        }
+
+        m_FSepare = ForceTot;
     }
 }

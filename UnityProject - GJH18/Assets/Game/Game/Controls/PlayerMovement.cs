@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     private const float sensitivity = 0.15f;
     [HideInInspector]
     public bool movementEnable = false;
+    public bool IsMoving { get; private set; }
+    [ReadOnly]
+    public Vector2 LastPlayerInput;
 
     [HideInInspector]
     public float accelerationRate;
@@ -35,27 +38,39 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        UpdateTargetPosition();
+            UpdateTargetPosition();
     }
 
     public void UpdateTargetPosition()
     {
+        if (inputs == null)
+        {
+            currentTarget = Vector2.zero;
+            return;
+        }
+        IsMoving = false;
         Vector2 newTarget = new Vector2();
         if (inputs.GetPlayerHorizontal().Abs() > sensitivity)
         {
-            newTarget.x = transform.position.x + (inputs.GetPlayerHorizontal() * targetDisplacement);
+            LastPlayerInput.x = inputs.GetPlayerHorizontal();
+            newTarget.x = transform.position.x + (LastPlayerInput.x * targetDisplacement);
+            IsMoving = true;
         }
         else
         {
+            LastPlayerInput.x = 0;
             newTarget.x = transform.position.x;
         }
 
         if (inputs.GetPlayerVertical().Abs() > sensitivity)
         {
-            newTarget.y = transform.position.y + (inputs.GetPlayerVertical() * targetDisplacement);
+            LastPlayerInput.y = inputs.GetPlayerVertical();
+            newTarget.y = transform.position.y + (LastPlayerInput.y * targetDisplacement);
+            IsMoving = true;
         }
         else
         {
+            LastPlayerInput.y = 0;
             newTarget.y = transform.position.y;
         }
 

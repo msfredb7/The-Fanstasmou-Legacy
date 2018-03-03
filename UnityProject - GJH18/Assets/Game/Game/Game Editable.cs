@@ -8,8 +8,10 @@ public partial class Game
     public GameUI gameUI;
 
     public Map map;
+    public Transform unitContainer;
 
-    public GameAudio gameAudio;
+    public MusicManager music;
+    public SFXManager sfx;
 
     [Header("PREFABS")]
     public PlayerInfo playerPrefab;
@@ -46,16 +48,16 @@ public partial class Game
 
     void SpawnPlayers()
     {
-        playerOne = Instantiate(playerPrefab, map.spawnpointPlayerOne.position, Quaternion.identity);
+        playerOne = Instantiate(playerPrefab, map.spawnpointPlayerOne.position, Quaternion.identity, unitContainer);
         playerOne.player = PlayerInfo.PlayerNumber.One;
 
-        playerTwo = Instantiate(playerPrefab, map.spawnpointPlayerTwo.position, Quaternion.identity);
+        playerTwo = Instantiate(playerPrefab, map.spawnpointPlayerTwo.position, Quaternion.identity, unitContainer);
         playerTwo.player = PlayerInfo.PlayerNumber.Two;
 
-        playerThree = Instantiate(playerPrefab, map.spawnpointPlayerThree.position, Quaternion.identity);
+        playerThree = Instantiate(playerPrefab, map.spawnpointPlayerThree.position, Quaternion.identity, unitContainer);
         playerThree.player = PlayerInfo.PlayerNumber.Three;
 
-        playerFour = Instantiate(playerPrefab, map.spawnpointPlayerFour.position, Quaternion.identity);
+        playerFour = Instantiate(playerPrefab, map.spawnpointPlayerFour.position, Quaternion.identity, unitContainer);
         playerFour.player = PlayerInfo.PlayerNumber.Four;
     }
 }

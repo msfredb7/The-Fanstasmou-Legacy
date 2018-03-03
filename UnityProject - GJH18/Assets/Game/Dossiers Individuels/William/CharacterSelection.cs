@@ -31,8 +31,8 @@ public class CharacterSelection : MonoBehaviour {
             {
                 InputPlayerAxis playerAxis = child.GetComponent<InputPlayerAxis>();
 
-                PlayerPrefs.SetString("Player" + playerAxis.player + "Team", playerSelectionInputs.team.ToString());
-                Debug.Log("Player " + playerAxis.player + " team " + PlayerPrefs.GetString("Player" + playerAxis.player + "Team"));
+                PlayerPrefs.SetInt(playerAxis.player + " team", (int)playerSelectionInputs.team);
+                Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
             }
         }
         LoadingScreen.TransitionTo(GameScene.SceneName, null);
