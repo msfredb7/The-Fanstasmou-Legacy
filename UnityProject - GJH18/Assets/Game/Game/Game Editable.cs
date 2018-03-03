@@ -1,11 +1,14 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public partial class Game
 {
     public SceneInfo uiScene;
     [ReadOnly]
     public GameUI gameUI;
+
+    public SceneInfo tutorial;
 
     public Map map;
     public Transform unitContainer;
@@ -27,22 +30,23 @@ public partial class Game
     [ReadOnly]
     public PlayerInfo playerFour;
 
+    [Header("INTRO")]
+    public float tutorialAppearanceDelay = 2.0f;
+
     void FetchAllReferences(Action onComplete)
     {
         SpawnPlayers();
 
         // C'est ici qu'on peut aller chercher tous les références.
 
-        int scenesToLoad = 1;
-        int loadCount = 0;
+        Scenes.Load(uiScene, (uiScene) => {
+            gameUI = uiScene.FindRootObject<GameUI>();
 
-        Scenes.Load(uiScene, (scene) =>
-        {
-            gameUI = scene.FindRootObject<GameUI>();
-
-            loadCount++;
-            if (scenesToLoad == loadCount)
-                onComplete();
+            this.DelayedCall(() => {
+                Scenes.Load(tutorial, (tutorialScene) => { tutorialScene.FindRootObject<Tutorial>().Init(delegate() {
+                    gameUI.Countdown(onComplete);
+                }); });
+            }, tutorialAppearanceDelay);
         });
     }
 

@@ -8,14 +8,6 @@ public class SFXManager : MonoBehaviour {
     public AudioAssetGroup dogGrowl;
     public AudioAsset wolfHowl;
 
-    void Start()
-    {
-        Game.OnGameReady += delegate ()
-        {
-            PlayWolfHowl();
-        };
-    }
-
     public void PlayDogBark()
     {
         DefaultAudioSources.PlaySFX(dogBark.clips[Random.Range(0, dogBark.clips.Length - 1)]);

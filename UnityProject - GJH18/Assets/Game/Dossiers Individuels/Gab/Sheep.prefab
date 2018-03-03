@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50689918191562392}
   - component: {fileID: 61651746269067328}
   - component: {fileID: 114184113407760692}
+  - component: {fileID: 114713073955666192}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512002220359000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.89, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,7 +56,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -101,12 +102,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PoidWandering: 1
   m_PoidSeparation: 0
-  m_PoidAlign: 0
+  m_PoidAlign: 5
   m_PoidCohesion: 0
   m_WanderRadius: 5
-  m_WanderRange: 0
-  m_MaxSpeed: 0.5
+  m_MaxSpeed: 10
   m_WanderRefresh: 3
+  m_WanderRange: 0
+  m_SepareRange: 2
+  m_CohesionRange: 1
+  m_AlignRange: 3
+--- !u!114 &114713073955666192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1512002220359000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6432343ecff52ff4b988ed69804007cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCell: {x: -1, y: -1}
 --- !u!212 &212696124405851628
 SpriteRenderer:
   m_ObjectHideFlags: 1

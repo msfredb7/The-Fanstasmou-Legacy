@@ -7,11 +7,7 @@ public class GridSubscriber: MonoBehaviour
     [HideInInspector]
     public Vector2Int currentCell = new Vector2Int(-1 ,-1);
 
-    Vector2 position {
-        get  {
-                return (Vector2)gameObject.transform.position;
-        }
-    }
+    Vector2 position { get  { return (Vector2)gameObject.transform.position; } }
 
     public void Start()
     {
@@ -27,7 +23,13 @@ public class GridSubscriber: MonoBehaviour
 
     public List<GameObject> GetNeighbors<T>(float range) where T : UnityEngine.MonoBehaviour
     {
-        return UnitGrid.Instance.GetNeighbors<T>(gameObject.transform.position, range);
+        List<GameObject> objects = UnitGrid.Instance.GetObjectsInRange<T>(gameObject.transform.position, range);
+        for (int i = 0; i < objects.Count; i++)
+        {
+            if (objects[i] == gameObject)
+                objects.RemoveAt(i);
+        }
+        return objects;
     }
 }
 

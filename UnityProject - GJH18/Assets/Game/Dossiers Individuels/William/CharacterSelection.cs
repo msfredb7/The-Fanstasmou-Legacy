@@ -6,8 +6,13 @@ public class CharacterSelection : MonoBehaviour {
 
     public SceneInfo GameScene;
 
+    [SerializeField]
+    [Header("À METTRE À 'VRAI' QUAND ON BUILD")]
+    bool FourPlayers;
+
     InputPlayerButton buttons;
 
+    
     bool isStartPressed = false;
 
 	void Start () {
@@ -18,23 +23,44 @@ public class CharacterSelection : MonoBehaviour {
 		if (buttons.GetPlayerStart() && !isStartPressed)
         {
             StartGame();
-            isStartPressed = true;
         };
 	}
 
     public void StartGame()
     {
+        bool allSelected = true;
         foreach (Transform child in transform)
         {
             SelectionInputs playerSelectionInputs = child.GetComponent<SelectionInputs>();
             if (playerSelectionInputs != null)
             {
-                InputPlayerAxis playerAxis = child.GetComponent<InputPlayerAxis>();
-
-                PlayerPrefs.SetInt(playerAxis.player + " team", (int)playerSelectionInputs.team);
-                Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
+                if (playerSelectionInputs.team != SelectionInputs.Team.None)
+                {
+                    AddPlayerToTeam(child, playerSelectionInputs);
+                }
+                else
+                {
+                    allSelected = false;
+                    break;
+                }
             }
         }
-        LoadingScreen.TransitionTo(GameScene.SceneName, null);
+        if (!allSelected && FourPlayers)
+        {
+            MessagePopup.DisplayMessage("Veuillez tous sélectionner un camp");
+            isStartPressed = false;
+        }
+        else
+        {
+            LoadingScreen.TransitionTo(GameScene.SceneName, null);
+            isStartPressed = true;
+        }
+    }
+
+    private void AddPlayerToTeam(Transform _player, SelectionInputs _playerSelectionInputs)
+    {
+        InputPlayerAxis playerAxis = _player.GetComponent<InputPlayerAxis>();
+        PlayerPrefs.SetInt(playerAxis.player + " team", (int)_playerSelectionInputs.team);
+        Debug.Log("Player " + playerAxis.player + " team: " + PlayerPrefs.GetInt(playerAxis.player + " team"));
     }
 }

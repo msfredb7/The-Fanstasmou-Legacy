@@ -20,9 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4498758281848788}
   - component: {fileID: 114307527836046598}
+  - component: {fileID: 114172149865977616}
   - component: {fileID: 114530411358905690}
   - component: {fileID: 114748568728281662}
   - component: {fileID: 50026282492599686}
+  - component: {fileID: 114396527074533766}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -63,6 +65,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &114172149865977616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766939312901162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5379a610bb83f08448a60e124f4da13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 0
 --- !u!114 &114307527836046598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,6 +89,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 0
+--- !u!114 &114396527074533766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766939312901162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e799056220f8a47bcf982592b6608f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputplayerbutton: {fileID: 114172149865977616}
 --- !u!114 &114530411358905690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,9 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementEnable: 1
+  LastPlayerInput: {x: 0, y: 0}
   accelerationRate: 1
   maximumSpeed: 2.5
-  brakeDistance: 1.5
   targetDisplacement: 10
   currentTarget: {x: 0, y: 0}
 --- !u!114 &114748568728281662

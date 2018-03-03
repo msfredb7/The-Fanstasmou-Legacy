@@ -6,6 +6,6 @@ public class Alex_TestScript : MonoBehaviour
 {
     void Start()
     {
-        Game.Instance.sfx.PlayWolfHowl();
+        //Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition()
     }  
 }
