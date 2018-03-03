@@ -23,7 +23,7 @@ public class GridSubscriber: MonoBehaviour
 
     public List<GameObject> GetNeighbors<T>(float range) where T : UnityEngine.MonoBehaviour
     {
-        List<GameObject> objects = UnitGrid.Instance.GetNeighbors<T>(gameObject.transform.position, range);
+        List<GameObject> objects = UnitGrid.Instance.GetObjectsInRange<T>(gameObject.transform.position, range);
         for (int i = 0; i < objects.Count; i++)
         {
             if (objects[i] == gameObject)
