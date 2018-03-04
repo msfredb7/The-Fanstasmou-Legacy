@@ -6,6 +6,8 @@ public class MusicManager : MonoBehaviour {
 
     public AudioAssetGroup music;
 
+    public bool playOnStart = true;
+
     public float introDelay = 1.0f;
 
     private int musicCount = 0;
@@ -13,10 +15,16 @@ public class MusicManager : MonoBehaviour {
 
     public void Start()
     {
-        Game.OnGameStart += delegate ()
+        if (playOnStart)
         {
             PlayNextSong();
-        };
+        } else
+        {
+            Game.OnGameStart += delegate ()
+            {
+                PlayNextSong();
+            };
+        }
     }
 
     void PlayNextSong()

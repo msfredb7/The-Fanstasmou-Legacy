@@ -11,11 +11,15 @@ public class HerdMember : MonoBehaviour
     private Voisin voisin;
     private Transform endangeredVisuals_TR;
 
+    private bool UIenabled = true;
+
     [HideInInspector]
     private Herd herd = null;
 
     public void Start()
     {
+        Game.OnGameStart += () => DisableUI();
+
         voisin = GetComponent<Voisin>() as Voisin;
         herd = HerdList.Instance.NewHerd(this);
         endangeredVisuals_TR = endangeredVisuals.transform;
@@ -71,7 +75,16 @@ public class HerdMember : MonoBehaviour
             Destroy(endangeredVisuals_TR.gameObject);
     }
 
+    public void EnableUI()
+    {
+        endangeredVisuals.SetAlpha(1.0f);
+       
+    }
 
+    public void DisableUI()
+    {
+        endangeredVisuals.SetAlpha(0.0f);
+    }
 
     public void Evac(GameObject evacSheepFeedbackPrefab)
     {
@@ -81,7 +94,7 @@ public class HerdMember : MonoBehaviour
         PlayerInfo closestPlayer = null;
         for (int i = 0; i < bergers.Count; i++)
         {
-            float dist = ((Vector2)transform.position - (Vector2)bergers[i].transform.position).magnitude;
+            float dist = ((Vector2)bergers[i].transform.position - (Vector2)transform.position).magnitude;
             if (dist < minDistance)
                 closestPlayer = bergers[i];
         }
