@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour {
 
+    // Players
     public Transform spawnpointPlayerOne;
     public Transform spawnpointPlayerTwo;
     public Transform spawnpointPlayerThree;
@@ -12,6 +13,10 @@ public class Map : MonoBehaviour {
     public Transform spawnpointWolfEnter2;
     public Transform spawnpointDog1;
     public Transform spawnpointDog2;
+
+    // Cars
+    public List<Transform> carSpawnPoint;
+    public List<Transform> carEnterPoint;
 
     public List<Transform> spawnpointWolfEnter;
     public List<Transform> dogSpawnPoints;

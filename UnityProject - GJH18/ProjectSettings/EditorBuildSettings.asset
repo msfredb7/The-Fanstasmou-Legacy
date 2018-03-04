@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Dossiers Individuels/William/CharacterSelectScene.unity
     guid: e9071786b0a288948a4a8fa893e00ae1
-  - enabled: 1
+  - enabled: 0
     path: 
-    guid: eab4a5066baa4fc47875fd12b4adbaab
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Game/Dossiers Individuels/Fred/Fred_TestSceneB.unity
     guid: 0f5d6a1fd2889834484f08472bedf84a
@@ -46,7 +46,7 @@ EditorBuildSettings:
     guid: beb86ce867a9fa8468e6e7ce726c2539
   - enabled: 1
     path: 
-    guid: 0ed686f99bf4ab944b64f48f1df8dd53
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Game/Game/Rounds/BeginRound.unity
     guid: 18f196ebf5d35cb418d28abf2fbe062c
