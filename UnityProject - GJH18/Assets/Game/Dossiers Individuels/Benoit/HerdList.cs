@@ -11,7 +11,7 @@ public class HerdList : CCC.DesignPattern.PublicSingleton<HerdList>
         int count = 0;
         for (int i = 0; i < herds.Count; i++)
             count += herds[i].MemberCount();
-        return = 0;
+        return count;
     }
 
     public Herd NewHerd(HerdMember member)
