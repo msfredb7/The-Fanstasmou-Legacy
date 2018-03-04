@@ -99,6 +99,7 @@ public class PlayerIntro : MonoBehaviour {
             doSpawnCount++;
         }
         sqc.OnComplete(() => {
+            Game.Instance.gameUI.timer.Init((int)Rounds.Instance.Timer);
             for (int i = 0; i < doggies.Count; i++)
             {
                 doggies[i].GetComponent<PlayerMovement>().enabled = true;

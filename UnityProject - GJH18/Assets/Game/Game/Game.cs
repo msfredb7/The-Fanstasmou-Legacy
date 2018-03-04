@@ -69,6 +69,7 @@ public partial class Game : PublicSingleton<Game>
         FetchAllReferences(()=>
         {
             ReadyGame();
+            PlayerPrefs.SetInt("FirstGame", 1);
             // DEBUG START
             if (debugStart)
             {
@@ -86,6 +87,7 @@ public partial class Game : PublicSingleton<Game>
                             sfx.PlayDogHowl();
                             gameUI.DogsArrive(delegate () {
                                 intros.IntroTheDoggies(delegate () {
+                                    
                                     //Indicators
                                     playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                                     playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();

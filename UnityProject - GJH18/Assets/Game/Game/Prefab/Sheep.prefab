@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3872c4928cc82d2429e37ac9bb1a4914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AIenabled: 1
   m_MaxSpeed: 1.25
   log: 0
   m_CohesionCentering: 1
@@ -302,7 +303,7 @@ MonoBehaviour:
   m_PoidCohesion: 15
   m_PoidFlee: 140
   m_PoidEvade: 0
-  m_PoidSeek: 45
+  m_PoidSeek: 40
   m_FleePower: 2
   m_SeekPower: 0.5
   m_EvadePower: 1
@@ -376,7 +377,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 300287447
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 186c071b1727437438f55d00185e05e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -420,7 +421,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -562440385
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: 6f7718132bc63524495cd7c5f2d54c06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

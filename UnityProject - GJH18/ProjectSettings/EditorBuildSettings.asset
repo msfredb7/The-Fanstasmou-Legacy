@@ -8,51 +8,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Dossiers Individuels/William/CharacterSelectScene.unity
     guid: e9071786b0a288948a4a8fa893e00ae1
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Game/Dossiers Individuels/Fred/Fred_TestSceneB.unity
-    guid: 0f5d6a1fd2889834484f08472bedf84a
-  - enabled: 1
-    path: Assets/Game/Dossiers Individuels/Fred/Fred_TestSceneA.unity
-    guid: 86bab5ca35d49574aa7a36b801730051
-  - enabled: 1
-    path: Assets/Plugins/CCC/Scenes/Scene Transition/LoadingScreen.unity
-    guid: 2515ee5371940174f90bd274f9d478d0
-  - enabled: 1
-    path: Assets/Game/Dossiers Individuels/Benoit/Benoit_TestScene.unity
-    guid: 6657bf8f0572519439cc6f49fc51a65d
-  - enabled: 1
-    path: Assets/Game/Dossiers Individuels/William/William_TestScene.unity
-    guid: 93a13168791ccfc4aaf657ff7a1da23d
-  - enabled: 1
-    path: Assets/Game/Dossiers Individuels/Alex/Alex_TestScene.unity
-    guid: e210c4848817e3a4b892f868190c3e68
-  - enabled: 1
-    path: Assets/Game/Dossiers Individuels/Gab/Gab_TestScene.unity
-    guid: 13f234688c74adf418e30289c32b724f
-  - enabled: 1
-    path: Assets/Game/GameUI/GameUI.unity
-    guid: 3d5579f2e1fbd154888c6972a0d40be3
   - enabled: 1
     path: Assets/Game/Game/Game.unity
     guid: abae6ed4f50a0654093bb035e1d0788e
   - enabled: 1
-    path: Assets/Game/Game/Tutorial/Tutorial.unity
-    guid: 1e6ab1a0fde66104b898cacb57fbfed2
-  - enabled: 1
     path: Assets/Plugins/CCC/UI/Generic Windows/Message Popup/MessagePopup.unity
     guid: beb86ce867a9fa8468e6e7ce726c2539
-  - enabled: 1
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Game/Game/Rounds/BeginRound.unity
     guid: 18f196ebf5d35cb418d28abf2fbe062c
   - enabled: 1
+    path: Assets/Game/Game/Rounds/EndGame.unity
+    guid: a1599fb627fb04d40a674e5362087c0e
+  - enabled: 1
     path: Assets/Game/Game/Rounds/EndRound.unity
     guid: 66712087f9875d94594ab17d820695a6
   - enabled: 1
-    path: Assets/Game/Game/Rounds/EndGame.unity
-    guid: a1599fb627fb04d40a674e5362087c0e
+    path: Assets/Game/Game/Tutorial/Tutorial.unity
+    guid: 1e6ab1a0fde66104b898cacb57fbfed2
+  - enabled: 1
+    path: Assets/Game/GameUI/GameUI.unity
+    guid: 3d5579f2e1fbd154888c6972a0d40be3
+  - enabled: 1
+    path: Assets/Plugins/CCC/Scenes/Scene Transition/LoadingScreen.unity
+    guid: 2515ee5371940174f90bd274f9d478d0
