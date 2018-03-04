@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CharacterSelection : MonoBehaviour {
 
     public SceneInfo GameScene;
+
+    public AudioSource music;
 
     [SerializeField]
     [Header("À METTRE À 'VRAI' QUAND ON BUILD")]
@@ -82,7 +85,9 @@ public class CharacterSelection : MonoBehaviour {
             }
         }
 
+        music.DOFade(0, 1).OnComplete(null);
         LoadingScreen.TransitionTo(GameScene.SceneName, null);
+
         isStartPressed = true;
     }
 

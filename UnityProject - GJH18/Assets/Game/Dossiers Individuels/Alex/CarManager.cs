@@ -53,7 +53,8 @@ public class CarManager : MonoBehaviour {
         for (int i = 0; i < Game.Instance.map.carSpawnPoint.Count; i++)
         {
             GameObject newCar = Instantiate(carPrefab, Game.Instance.map.carSpawnPoint[i].position, Quaternion.identity);
-            if(i == 2)
+            newCar.GetComponent<Camion>().popUpLocation = Game.Instance.map.moutonPopUp[i].gameObject;
+            if (i == 2)
                 newCar.GetComponentInChildren<SpriteRenderer>().transform.localScale = new Vector3(-1,1,1);
             cars.Add(newCar);
             carsExiting.Add(false);
@@ -87,8 +88,11 @@ public class CarManager : MonoBehaviour {
             {
                 this.DelayedCall(delegate ()
                 {
-                    cars[i].GetComponentInChildren<Animator>().SetBool("closed", true);
-                    evacuationSpeed = cars[i].GetComponent<Camion>().EvacSpeed;
+                    if(cars[i] != null)
+                    {
+                        cars[i].GetComponentInChildren<Animator>().SetBool("closed", true);
+                        evacuationSpeed = cars[i].GetComponent<Camion>().EvacSpeed;
+                    }
                 }, cars[i].GetComponent<Camion>().EvacSpeed);
             }
             else
