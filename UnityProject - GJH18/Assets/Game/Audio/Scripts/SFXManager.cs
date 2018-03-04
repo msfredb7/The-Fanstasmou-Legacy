@@ -11,6 +11,7 @@ public class SFXManager : MonoBehaviour {
     public AudioAssetGroup dogHurt;
     public AudioAssetGroup wolfDash;
     public AudioAsset wolfBite;
+    public AudioAssetGroup GrassExplode;
 
     public void PlayDogBark()
     {
@@ -45,5 +46,10 @@ public class SFXManager : MonoBehaviour {
     public void PlayWolfBiteSound()
     {
         DefaultAudioSources.PlaySFX(wolfBite);
+    }
+
+    public void PlayGrassExplode()
+    {
+        DefaultAudioSources.PlaySFX(GrassExplode.clips[Random.Range(0, GrassExplode.clips.Length - 1)]);
     }
 }
