@@ -6,6 +6,15 @@ public class WolfBehavior : MonoBehaviour {
 
     [SerializeField]
     private GameObject scratchAnimation;
+    [SerializeField]
+    private GameObject dashTrailPrefab;
+    [SerializeField]
+    private Transform leftEye;
+    [SerializeField]
+    private Transform rightEye;
+
+    private GameObject leftTrail;
+    private GameObject rightTrail;
 
     public float dashCooldown = 0.5f;
     [SerializeField]
@@ -96,10 +105,12 @@ public class WolfBehavior : MonoBehaviour {
     {
         transform.parent.GetComponent<PlayerMovement>().maximumSpeed = dashSpeed;
         transform.parent.GetComponent<PlayerMovement>().accelerationRate = dashAcceleration;
+        spawnTrail();
         this.DelayedCall(() =>
         {
             transform.parent.GetComponent<PlayerMovement>().maximumSpeed = GetComponent<WolfInfo>().maximumSpeed;
             transform.parent.GetComponent<PlayerMovement>().accelerationRate = GetComponent<WolfInfo>().accelerationRate;
+            deleteTrail();
         }, dashDuration);
     }
 
@@ -119,6 +130,21 @@ public class WolfBehavior : MonoBehaviour {
             }
         }
     }
+    void spawnTrail()
+    {
+        leftTrail = Instantiate(dashTrailPrefab, leftEye.transform.position, Quaternion.identity, leftEye);
+        rightTrail = Instantiate(dashTrailPrefab, rightEye.transform.position, Quaternion.identity, rightEye);
+
+        leftTrail.GetComponent<TrailRenderer>().enabled = true;
+        rightTrail.GetComponent<TrailRenderer>().enabled = true;
+    }
+
+    void deleteTrail()
+    {
+        leftTrail.transform.SetParent(null);
+        rightTrail.transform.SetParent(null);
+    }
+
 
     // BUMP DE OCEAN EMPIRE
     [Header("Settings"), SerializeField]
