@@ -23,8 +23,8 @@ public class PlayerIntro : MonoBehaviour {
                         for (int i = 0; i < wolves.Count; i++)
                         {
                             wolves[i].GetComponentInChildren<WolfBehavior>().ActivateFeedbacks();
+                            wolves[i].GetComponent<PlayerMovement>().enabled = true;
                         }
-
 
                         Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowWolfIndicator();
                         Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowWolfIndicator();

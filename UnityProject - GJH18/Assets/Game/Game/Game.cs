@@ -90,6 +90,7 @@ public partial class Game : PublicSingleton<Game>
                                     for(int i =0; i < doogies.Count; i++)
                                     {
                                         doogies[i].GetComponentInChildren<BergerBehavior>().ActivateFeedbacks();
+                                        doogies[i].GetComponent<PlayerMovement>().enabled = true;
                                     }
 
                                     //Indicators
