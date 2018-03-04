@@ -57,7 +57,7 @@ public class CarManager : MonoBehaviour {
 
             float rotationAngle = ((Vector2)(Game.Instance.map.carEnterPoint[i].position - newCar.transform.position)).ToAngle();
             Vector3 rotation = newCar.transform.forward * rotationAngle;
-            newCar.transform.rotation = Quaternion.Euler(rotation);
+            newCar.GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.Euler(rotation);
 
             sqc.Join(newCar.transform.DOMove(Game.Instance.map.carEnterPoint[i].position,enteringAnimDuration));
         }
