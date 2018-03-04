@@ -157,8 +157,7 @@ public class WolfBehavior : MonoBehaviour {
                 {
                     GameObject instantiatedScratch = Instantiate(scratchAnimation);
                     instantiatedScratch.transform.position = herd.GetMiddle();
-                    herd.Eat();
-                    Rounds.Instance.AddSheepEaten(1, transform.parent.GetComponent<PlayerInfo>());
+                    herd.Eat(transform.parent.GetComponent<PlayerInfo>());
                 }
             }
         }
