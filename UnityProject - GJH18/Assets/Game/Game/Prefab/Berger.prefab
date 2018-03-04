@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMode: 0
   repulsionStrength: 7500
+  triggerSensitivity: 0.2
   attract:
     active: 0
     range: 3
@@ -255,10 +256,17 @@ MonoBehaviour:
     range: 3
     strength: 1
     owner: {fileID: 0}
+  barkRepulse:
+    active: 0
+    range: 8
+    strength: 1
+    owner: {fileID: 0}
   RepulseAnimation: {fileID: 1466494833031980}
   AttractAnimation: {fileID: 1036155098440658}
   changeModeCooldown: 0.5
   knockbackCooldown: 0.5
+  callingBarkCooldown: 10
+  callingBarkEffectLength: 2.5
 --- !u!114 &114419342091526222
 MonoBehaviour:
   m_ObjectHideFlags: 1
