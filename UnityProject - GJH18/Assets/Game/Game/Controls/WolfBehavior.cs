@@ -36,7 +36,10 @@ public class WolfBehavior : MonoBehaviour {
 
     public int maxSheepEaten = 1;
 
+    public float triggerSensitivity = 0.2f;
+
     private InputPlayerButton inputButtons;
+    private InputPlayerAxis inputAxis;
 
     SheepDetector sheepDetector;
 
@@ -49,6 +52,8 @@ public class WolfBehavior : MonoBehaviour {
 
         if (inputButtons == null)
             GetInputButtonsRef();
+        if (inputAxis == null)
+            GetInputAxisRef();
         sheepDetector = GetComponent<SheepDetector>();
         if(sheepDetector != null)
         {
@@ -67,8 +72,7 @@ public class WolfBehavior : MonoBehaviour {
     {
         if (inputButtons == null)
             GetInputButtonsRef();
-
-        if (inputButtons.GetPlayerA())
+        if (inputAxis.GetPlayerTriggerAxis() > triggerSensitivity)
         {
             if (!canEat)
             {
@@ -77,7 +81,7 @@ public class WolfBehavior : MonoBehaviour {
             EatSheep();
             canEat = false;
             this.DelayedCall(() => { canEat = true; }, eatCooldown);
-        } else if (inputButtons.GetPlayerB())
+        } else if (inputButtons.GetPlayerA())
         {
             if (!canDash)
             {
@@ -111,8 +115,15 @@ public class WolfBehavior : MonoBehaviour {
     {
         inputButtons = GetComponentInParent<InputPlayerButton>();
         if (inputButtons == null)
-            Debug.Log("wtf doggy");
-    }   
+            Debug.Log("wtf wolfy");
+    }
+
+    void GetInputAxisRef()
+    {
+        inputAxis = GetComponentInParent<InputPlayerAxis>();
+        if (inputAxis == null)
+            Debug.Log("wtf wolfy");
+    }
 
     void dash()
     {
