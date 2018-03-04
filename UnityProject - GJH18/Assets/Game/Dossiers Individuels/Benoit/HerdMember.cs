@@ -102,7 +102,8 @@ public class HerdMember : MonoBehaviour
         if(closestPlayer != null && Rounds.Instance != null)
         {
             Rounds.Instance.AddSheepRescued(1, closestPlayer);
-            OnComplete();
+            if(OnComplete != null)
+                OnComplete();
             herd.RemoveMember(this);
             Destroy(gameObject);
         }
