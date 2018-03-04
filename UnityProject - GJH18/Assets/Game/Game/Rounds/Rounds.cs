@@ -30,35 +30,43 @@ public class Rounds : PublicSingleton<Rounds>
     private bool roundEnded;
     private bool roundEndedByTimer;
 
+    private bool canUpdate;
+
     void Start () {
         CurrentRound = 1;
         TeamOne = new Team();
         TeamTwo = new Team();
+
+        this.DelayedCall(() =>
+        {
+            canUpdate = true;
+        }, 2);
     }
 	
 	void Update () {
-        if (timerStart)
+        if (canUpdate)
         {
-            Timer -= Time.deltaTime;
-            Debug.Log(Timer);
-        }
-        if (Timer < 0 && !roundEndedByTimer)
-        {
-            roundEndedByTimer = true;
-            EndRound(OnRoundEnd);
-        }
+            if (timerStart)
+            {
+                Timer -= Time.deltaTime;
+            }
+            if (Timer < 0 && !roundEndedByTimer)
+            {
+                roundEndedByTimer = true;
+                EndRound(OnRoundEnd);
+            }
 
-        if (!roundEnded && HerdList.Instance != null && HerdList.Instance.GetSheepCount() == 0)
-        {
-            roundEnded = true;
-            EndRound(OnRoundEnd);
-        }
+            if (!roundEnded && HerdList.Instance != null && HerdList.Instance.GetSheepCount() == 0)
+            {
+                roundEnded = true;
+                EndRound(OnRoundEnd);
+            }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            EndRound(OnRoundEnd);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                EndRound(OnRoundEnd);
+            }
         }
-        
     }
 
     public void StartTimer()
@@ -129,6 +137,7 @@ public class Rounds : PublicSingleton<Rounds>
         SwapTeams();
         CurrentRound++;
         StopTimer();
+        canUpdate = false;
     }
 
     public void OnGameEnd()
