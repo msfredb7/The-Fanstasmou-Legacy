@@ -499,7 +499,6 @@ GameObject:
   - component: {fileID: 718092930}
   - component: {fileID: 718092931}
   - component: {fileID: 718092932}
-  - component: {fileID: 718092933}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -551,7 +550,7 @@ MonoBehaviour:
   playerThree: {fileID: 0}
   playerFour: {fileID: 0}
   tutorialAppearanceDelay: 0.75
-  debugStart: 1
+  debugStart: 0
 --- !u!114 &718092931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,18 +576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54da17a73571b7b498aa0a01e29697a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &718092933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 718092928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 807b5360a7e7ead49a4af831a51b7325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentRounnd: 0
 --- !u!1 &752643794
 GameObject:
   m_ObjectHideFlags: 0

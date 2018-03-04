@@ -79,15 +79,14 @@ public partial class Game : PublicSingleton<Game>
                 // TUTORIAL
                 this.DelayedCall(() =>
                 {
-                    Scenes.Load(tutorial, (tutorialScene) =>
+                    if (Rounds.Instance.CurrentRound > 1)
                     {
-                        tutorialScene.FindRootObject<Tutorial>().Init(delegate ()
+                        Rounds.Instance.BeginNextRound(delegate ()
                         {
-                            // DOGS ARRIVE
                             gameUI.DogsArrive(delegate () {
                                 intros.IntroTheDoggies(delegate () {
                                     List<PlayerInfo> doogies = GetDoggies();
-                                    for(int i =0; i < doogies.Count; i++)
+                                    for (int i = 0; i < doogies.Count; i++)
                                     {
                                         doogies[i].GetComponentInChildren<BergerBehavior>().ActivateFeedbacks();
                                         doogies[i].GetComponent<PlayerMovement>().enabled = true;
@@ -104,14 +103,53 @@ public partial class Game : PublicSingleton<Game>
                                         playerTwo.GetComponent<PlayerIndicator>().HidePlayerIndicator();
                                         playerThree.GetComponent<PlayerIndicator>().HidePlayerIndicator();
                                         playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
-                                        
+
                                     }, 2);
                                     StartGame();
                                 });
                             });
                         });
-                    });
+                    }
+                    else
+                    {
+                        Scenes.Load(tutorial, (tutorialScene) =>
+                        {
+                            tutorialScene.FindRootObject<Tutorial>().Init(delegate ()
+                            {
+                                // DOGS ARRIVE
+                                Rounds.Instance.BeginNextRound(delegate ()
+                                {
+                                    gameUI.DogsArrive(delegate () {
+                                        intros.IntroTheDoggies(delegate () {
+                                            List<PlayerInfo> doogies = GetDoggies();
+                                            for (int i = 0; i < doogies.Count; i++)
+                                            {
+                                                doogies[i].GetComponentInChildren<BergerBehavior>().ActivateFeedbacks();
+                                                doogies[i].GetComponent<PlayerMovement>().enabled = true;
+                                            }
+
+                                            //Indicators
+                                            playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                                            playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                                            playerThree.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                                            playerFour.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
+                                            this.DelayedCall(delegate ()
+                                            {
+                                                playerOne.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                                                playerTwo.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                                                playerThree.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                                                playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+
+                                            }, 2);
+                                            StartGame();
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    }
                 }, tutorialAppearanceDelay);
+                
             }
         });
     }
