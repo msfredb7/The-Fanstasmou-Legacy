@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
+  canKockBackWolves: 0
   repulsionStrength: 7500
   triggerSensitivity: 0.2
   attract:
@@ -359,8 +360,8 @@ MonoBehaviour:
     owner: {fileID: 0}
   RepulseAnimation: {fileID: 1466494833031980}
   AttractAnimation: {fileID: 1036155098440658}
-  SingleRepulseAnimation: {fileID: 0}
-  SingleAttractAnimation: {fileID: 0}
+  MegaBarkPrefab: {fileID: 1392849104946440, guid: b1c47efd8ae821f4ea862da8cc8b1029,
+    type: 2}
   changeModeCooldown: 0.5
   knockbackCooldown: 0.5
   callingBarkCooldown: 10

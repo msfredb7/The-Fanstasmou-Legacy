@@ -155,7 +155,6 @@ public class BergerBehavior : MonoBehaviour {
 
     public void SetAttract()
     {
-        print("attract");
         currentMode = BergerMode.Attract;
 
         attract.active = true;
@@ -172,7 +171,6 @@ public class BergerBehavior : MonoBehaviour {
 
     public void SetRepulse()
     {
-        print("repulse");
         currentMode = BergerMode.Repulse;
 
         attract.active = false;
@@ -200,13 +198,13 @@ public class BergerBehavior : MonoBehaviour {
             WolfBehavior wolf = wolves[i].GetComponentInChildren<WolfBehavior>();
 
             float range = barkAttract.range;
-            Vector2 v = (Vector2)transform.position - (Vector2)wolf.transform.position;
+            Vector2 v = (Vector2)wolf.transform.position - (Vector2)transform.position;
             float dist = v.magnitude;
             if (dist > range || dist < 0)
                 continue;
 
-            float influence = Mathf.Pow(dist, 2.0f);
-            wolf.Bump(wolf.GetComponentInChildren<WolfInfo>().transform.right * -1 * influence);
+            float influence = Mathf.Pow( (1- dist/range), 2.0f);
+            wolf.Bump(v.normalized * influence * barkAttract.strength * repulsionStrength);
         }
         /*
     barkAttract.active = true;
