@@ -132,6 +132,9 @@ public class CarManager : MonoBehaviour {
         if (car.GetComponent<BoxCollider2D>().isTrigger == false)
         {
             this.DelayedCall(delegate () {
+                if (car == null)
+                    return;
+
                 car.GetComponentInChildren<Animator>().SetBool("closed", true);
                 this.DelayedCall(delegate ()
                 {
