@@ -65,4 +65,10 @@ public class HerdMember : MonoBehaviour
         return herd;
     }
 
+    void OnDestroy()
+    {
+        if (endangeredVisuals_TR != null && Application.isPlaying)
+            Destroy(endangeredVisuals_TR.gameObject);
+    }
+
 }
