@@ -158,6 +158,7 @@ public class WolfBehavior : MonoBehaviour {
                     GameObject instantiatedScratch = Instantiate(scratchAnimation);
                     instantiatedScratch.transform.position = herd.GetMiddle();
                     herd.Eat(transform.parent.GetComponent<PlayerInfo>());
+                    Game.Instance.sfx.PlayWolfBiteSound();
                 }
             }
         }
