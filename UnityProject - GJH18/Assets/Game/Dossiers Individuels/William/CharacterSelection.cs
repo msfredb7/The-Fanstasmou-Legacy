@@ -16,6 +16,14 @@ public class CharacterSelection : MonoBehaviour {
 	void Start () {
         buttons = GetComponent<InputPlayerButton>();	
 	}
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartGame();
+        }
+    }
 	
 	void FixedUpdate () {
 		if (buttons.GetPlayerStart() && !isStartPressed)
