@@ -42,6 +42,7 @@ public class Camion : MonoBehaviour {
         sheep.DisableUI();
         sheep.GetComponent<SheepComponent>().AIenabled = false;
 
+        Game.Instance.sfx.PlaySaveMouton();
         Sequence sqc = DOTween.Sequence();
         MoveToCheckpoint(sheep.transform, (Vector2)plateformCheckpoint.transform.position, sqc);
         sqc.AppendCallback(() =>

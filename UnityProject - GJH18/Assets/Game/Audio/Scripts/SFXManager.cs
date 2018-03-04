@@ -17,6 +17,7 @@ public class SFXManager : MonoBehaviour {
     public AudioAsset dogHowl;
     public AudioAsset Wind;
     public AudioSource AmbianceLoopSource;
+    public AudioAsset SaveMouton;
 
     public void PlayDogBark()
     {
@@ -76,5 +77,10 @@ public class SFXManager : MonoBehaviour {
     public void PlayWind()
     {
         DefaultAudioSources.PlaySFX(Wind, 0.0f, 1.0f, AmbianceLoopSource);
+    }
+
+    public void PlaySaveMouton()
+    {
+        DefaultAudioSources.PlaySFX(SaveMouton, 0.5f);
     }
 }
