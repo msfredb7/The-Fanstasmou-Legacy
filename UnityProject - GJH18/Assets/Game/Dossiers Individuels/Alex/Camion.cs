@@ -12,12 +12,13 @@ public class Camion : MonoBehaviour {
     public BoxCollider2D triggerBox;
     public GameObject plateformCheckpoint;
     public GameObject camionCheckpoint;
+
     public float EvacSpeed = 1.25f;
 
     public GameObject sheepCaughtPrefab;
 
 
-
+    public GameObject popUpLocation;
 
     void OnTriggerStay2D(Collider2D collider)
     {
@@ -46,7 +47,10 @@ public class Camion : MonoBehaviour {
         MoveToCheckpoint(sheep.transform, (Vector2)camionCheckpoint.transform.position, sqc);
         sqc.OnComplete(()=>
         {
-            sheep.Evac(sheepCaughtPrefab);
+            sheep.Evac(()=>
+            {
+                Instantiate(sheepCaughtPrefab, popUpLocation.transform.position, Quaternion.identity);
+            });
             OnComplete.Invoke();
         });
         
