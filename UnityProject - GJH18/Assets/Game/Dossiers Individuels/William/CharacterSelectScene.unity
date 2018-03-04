@@ -457,13 +457,23 @@ Prefab:
     - target: {fileID: 114363264192909926, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: FourPlayers
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114363264192909926, guid: 45d52dad059981840a06ece1522b64a7,
         type: 2}
       propertyPath: music
       value: 
       objectReference: {fileID: 1336841439}
+    - target: {fileID: 114674664539919098, guid: 45d52dad059981840a06ece1522b64a7,
+        type: 2}
+      propertyPath: m_Text
+      value: "Troupeau en D\xE9tresse"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114674664539919098, guid: 45d52dad059981840a06ece1522b64a7,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45d52dad059981840a06ece1522b64a7, type: 2}
   m_IsPrefabParent: 0
