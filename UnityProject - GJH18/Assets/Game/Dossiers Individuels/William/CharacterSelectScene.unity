@@ -459,6 +459,11 @@ Prefab:
       propertyPath: FourPlayers
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114363264192909926, guid: 45d52dad059981840a06ece1522b64a7,
+        type: 2}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 1336841439}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45d52dad059981840a06ece1522b64a7, type: 2}
   m_IsPrefabParent: 0
@@ -612,7 +617,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243000014151132012, guid: 548ef68a56858c84b81982d360f26110,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 259da45d06830e241a0107bd9da8d57d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9bb8dba0e8792684799d3dbe490aee52, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
