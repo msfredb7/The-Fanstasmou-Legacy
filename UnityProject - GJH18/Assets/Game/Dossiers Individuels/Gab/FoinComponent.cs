@@ -10,6 +10,7 @@ public class FoinComponent : MonoBehaviour
 
     public GameObject m_PlusPrefab;
     GameObject m_PlusSprite;
+    AudioMixerSaver s;
 
     bool m_contact;
 
@@ -17,6 +18,13 @@ public class FoinComponent : MonoBehaviour
 
     void Awake()
     {
+        float volume = 1;
+        DOTween.To(() => volume, (x) =>
+        {
+            s.SetVolume(AudioMixerSaver.ChannelType.Master, volume);
+            volume = x;
+        }, 0, 1);
+
         tr = GetComponent<Transform>();
     }
 
