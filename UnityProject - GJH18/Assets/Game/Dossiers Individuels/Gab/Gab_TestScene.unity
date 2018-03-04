@@ -208,6 +208,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 114240559067732428, guid: 79889fed1430fce439ed1528b10aa2eb,
+        type: 2}
+      propertyPath: m_TimeSpawnMin
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114240559067732428, guid: 79889fed1430fce439ed1528b10aa2eb,
+        type: 2}
+      propertyPath: m_TimeSpawnMax
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
   m_IsPrefabParent: 0
@@ -548,7 +558,8 @@ Prefab:
       propertyPath: m_UnitContain
       value: 
       objectReference: {fileID: 1430820220}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114750282758093074, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &522395121
@@ -833,6 +844,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 13.492039}
   m_EdgeRadius: 0
+--- !u!1 &841920322 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1975311885104120, guid: fa40cc23c0ec7844f97d245f65be4635,
+    type: 2}
+  m_PrefabInternal: {fileID: 489525021}
+--- !u!114 &841920323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 841920322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f4c0eed06ae044a85a4f3667f7aa64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BordHautDroit: {fileID: 1491187220}
+  m_BordBasGauche: {fileID: 1110877167}
+  m_SheepPrefab: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94,
+    type: 2}
+  blackSheepPrefab: {fileID: 1512002220359000, guid: 4937126b4ffe2c84e9147305808f8aae,
+    type: 2}
+  chanceOfSpawningBlackSheep: 0.1
+  m_UnitContain: {fileID: 1430820220}
+  m_NbSheepStart: 15
 --- !u!1 &1062864799
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +897,11 @@ Transform:
   m_Father: {fileID: 1791636333}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1110877167 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1043543656612220, guid: fa40cc23c0ec7844f97d245f65be4635,
+    type: 2}
+  m_PrefabInternal: {fileID: 489525021}
 --- !u!1 &1146888497
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +986,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1491187220 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1200452916782360, guid: fa40cc23c0ec7844f97d245f65be4635,
+    type: 2}
+  m_PrefabInternal: {fileID: 489525021}
 --- !u!1 &1496162232
 GameObject:
   m_ObjectHideFlags: 0
