@@ -517,4 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PrefabFoin: {fileID: 1099149747710838, guid: 643a19eba81719b4aa6d0ee2302b8858,
     type: 2}
+  m_StartDelay: 10
+  m_TimeSpawnMin: 10
+  m_TimeSpawnMax: 20
   m_lstNode: []
