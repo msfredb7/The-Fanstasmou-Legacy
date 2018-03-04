@@ -45,11 +45,11 @@ EditorBuildSettings:
     path: Assets/Plugins/CCC/UI/Generic Windows/Message Popup/MessagePopup.unity
     guid: beb86ce867a9fa8468e6e7ce726c2539
   - enabled: 1
-    path: Assets/__DELETED_GUID_Trash/0ed686f99bf4ab944b64f48f1df8dd53
+    path: 
     guid: 0ed686f99bf4ab944b64f48f1df8dd53
   - enabled: 1
-    path: Assets/Game/Game/Round/BeginRound.unity
+    path: Assets/Game/Game/Rounds/BeginRound.unity
     guid: 18f196ebf5d35cb418d28abf2fbe062c
   - enabled: 1
-    path: Assets/Game/Game/Round/EndRound.unity
+    path: Assets/Game/Game/Rounds/EndRound.unity
     guid: 66712087f9875d94594ab17d820695a6
