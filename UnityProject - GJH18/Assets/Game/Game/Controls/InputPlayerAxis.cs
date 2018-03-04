@@ -12,7 +12,11 @@ public class InputPlayerAxis : MonoBehaviour {
         if (Game.Instance != null)
         {
             if(GetComponent<PlayerInfo>() != null)
+            {
                 realPlayerNumber = GetComponent<PlayerInfo>().player;
+                player = realPlayerNumber;
+            }
+
             else
                 realPlayerNumber = player;
         }
@@ -56,7 +60,10 @@ public class InputPlayerAxis : MonoBehaviour {
         if (Game.Instance != null)
         {
             if (GetComponent<PlayerInfo>() != null)
+            {
                 realPlayerNumber = GetComponent<PlayerInfo>().player;
+                player = realPlayerNumber;
+            }
             else
                 realPlayerNumber = player;
         }
@@ -69,16 +76,16 @@ public class InputPlayerAxis : MonoBehaviour {
         {
             default:
             case PlayerInfo.PlayerNumber.One:
-                result = Input.GetAxis("TriggerPlayerOne");
+                result = Input.GetAxisRaw("TriggerPlayerOne");
                 break;
             case PlayerInfo.PlayerNumber.Two:
-                result = Input.GetAxis("TriggerPlayerTwo");
+                result = Input.GetAxisRaw("TriggerPlayerTwo");
                 break;
             case PlayerInfo.PlayerNumber.Three:
-                result = Input.GetAxis("TriggerPlayerThree");
+                result = Input.GetAxisRaw("TriggerPlayerThree");
                 break;
             case PlayerInfo.PlayerNumber.Four:
-                result = Input.GetAxis("TriggerPlayerFour");
+                result = Input.GetAxisRaw("TriggerPlayerFour");
                 break;
         }
         return result;
