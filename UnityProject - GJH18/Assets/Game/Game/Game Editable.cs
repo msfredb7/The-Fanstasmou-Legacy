@@ -60,15 +60,19 @@ public partial class Game
     {
         playerOne = Instantiate(playerPrefab, map.spawnpointPlayerOne.position, Quaternion.identity, unitContainer);
         playerOne.player = PlayerInfo.PlayerNumber.One;
+        playerOne.GetComponent<PlayerMovement>().enabled = false;
 
         playerTwo = Instantiate(playerPrefab, map.spawnpointPlayerTwo.position, Quaternion.identity, unitContainer);
         playerTwo.player = PlayerInfo.PlayerNumber.Two;
+        playerTwo.GetComponent<PlayerMovement>().enabled = false;
 
         playerThree = Instantiate(playerPrefab, map.spawnpointPlayerThree.position, Quaternion.identity, unitContainer);
         playerThree.player = PlayerInfo.PlayerNumber.Three;
+        playerThree.GetComponent<PlayerMovement>().enabled = false;
 
         playerFour = Instantiate(playerPrefab, map.spawnpointPlayerFour.position, Quaternion.identity, unitContainer);
         playerFour.player = PlayerInfo.PlayerNumber.Four;
+        playerFour.GetComponent<PlayerMovement>().enabled = false;
     }
 
     public List<PlayerInfo> GetWolves()
