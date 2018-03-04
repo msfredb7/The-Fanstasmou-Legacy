@@ -26,7 +26,11 @@ public class Rounds : PublicSingleton<Rounds>
     }
 	
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.R))
+
+        if (HerdList.Instance.GetSheepCount() == 0)
+            Debug.Log("Wolves Win!");
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
             EndRound(OnRoundEnd);
         }

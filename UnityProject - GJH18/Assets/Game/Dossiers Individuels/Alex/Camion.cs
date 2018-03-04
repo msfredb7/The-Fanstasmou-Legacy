@@ -6,10 +6,10 @@ using DG.Tweening;
 
 public class Camion : MonoBehaviour {
 
-    public int amountOfSheep = 1;
+    public int MaxSheepEvac = 1;
+    private int SheepEvacuated = 0;
 
-
-    //public BoxCollider2D collsiion;
+    public BoxCollider2D triggerBox;
     public GameObject plateformCheckpoint;
     public GameObject camionCheckpoint;
     public float EvacSpeed = 1.25f;
@@ -18,19 +18,31 @@ public class Camion : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider)
     {
         HerdMember sheep = collider.GetComponent<HerdMember>();
-        if (sheep != null)
+        if (sheep != null && SheepEvacuated < MaxSheepEvac)
         {
-            EvacSheep(sheep);
-            Game.Instance.carManager.ExitCar(gameObject);
+            SheepEvacuated++;
+            if(SheepEvacuated == MaxSheepEvac)
+                triggerBox.isTrigger = false;
+
+            EvacSheep(sheep, ()=>
+            {
+                Game.Instance.carManager.ExitCar(gameObject);
+            });
+           
         }
     }
 
-    public void EvacSheep(HerdMember sheep)
+    public void EvacSheep(HerdMember sheep, Action OnComplete)
     {
         Sequence sqc = DOTween.Sequence();
         MoveToCheckpoint(sheep.transform, (Vector2)plateformCheckpoint.transform.position, sqc);
         MoveToCheckpoint(sheep.transform, (Vector2)camionCheckpoint.transform.position, sqc);
-        sheep.Evac();
+        sqc.OnComplete(()=>
+        {
+            sheep.Evac();
+            OnComplete.Invoke();
+        });
+        
     }
 
     public void MoveToCheckpoint(Transform sheep, Vector2 checkpoint, Sequence sqc)

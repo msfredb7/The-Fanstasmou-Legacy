@@ -48,6 +48,8 @@ public class FoinComponent : MonoBehaviour
         {
             m_contact = true;
 
+            Game.Instance.sfx.PlayGrassExplode();
+
             m_SpawnS.SpawnPrefAtLocation(tr.position);
 
             m_PlusSprite = Instantiate(m_PlusPrefab, tr.position, Quaternion.identity);

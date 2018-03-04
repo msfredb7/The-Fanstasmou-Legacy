@@ -709,8 +709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5053e04ecca724d8a7f58459e08f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sources: {fileID: 114435143662575478}
   music: {fileID: 11400000, guid: 4f526af8af4ac0c4e8a9c224d63389f0, type: 2}
+  introDelay: 1
 --- !u!114 &114814066618232538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -722,7 +722,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6482a4e086152a646b548d440135efb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sources: {fileID: 114435143662575478}
   dogBark: {fileID: 0}
   dogGrowl: {fileID: 0}
+  dogWarCry: {fileID: 0}
   wolfHowl: {fileID: 11400000, guid: 396a665c5e27d2044a81ea790533fe77, type: 2}
+  dogHurt: {fileID: 0}
+  wolfDash: {fileID: 0}
+  wolfBite: {fileID: 11400000, guid: 30758f35cb1181b438f99e458c68ba89, type: 2}

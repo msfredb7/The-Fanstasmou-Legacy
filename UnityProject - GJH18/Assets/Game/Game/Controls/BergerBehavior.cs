@@ -89,7 +89,6 @@ public class BergerBehavior : MonoBehaviour {
             canCallingBark = false;
             this.DelayedCall(() => { canCallingBark = true; }, callingBarkCooldown);
         }
-        else 
         if (inputButtons.GetPlayerA())
         {
             if (!canChange)
@@ -97,25 +96,14 @@ public class BergerBehavior : MonoBehaviour {
                 return;
             }
             if(currentMode == BergerMode.Repulse)
-            {
-                currentMode = BergerMode.Attract;
-
+            {  
                 Game.Instance.sfx.PlayDogBark();
-
                 SetAttract();
 
-                canChange = false;
-                this.DelayedCall(() => { canChange = true; },changeModeCooldown);
             } else
             {
-                currentMode = BergerMode.Repulse;
-
                 Game.Instance.sfx.PlayDogGrowl();
-
                 SetRepulse();
-
-                canChange = false;
-                this.DelayedCall(() => { canChange = true; }, changeModeCooldown);
             }
         }
     }
@@ -153,6 +141,8 @@ public class BergerBehavior : MonoBehaviour {
 
     private void SetAttract()
     {
+        currentMode = BergerMode.Attract;
+
         attract.active = true;
         repulse.active = false;
 
@@ -160,10 +150,15 @@ public class BergerBehavior : MonoBehaviour {
 
         AttractAnimation.SetActive(true);
         RepulseAnimation.SetActive(false);
+
+        canChange = false;
+        this.DelayedCall(() => { canChange = true; }, changeModeCooldown);
     }
 
     private void SetRepulse()
     {
+        currentMode = BergerMode.Repulse;
+
         attract.active = false;
         repulse.active = true;
 
@@ -171,6 +166,9 @@ public class BergerBehavior : MonoBehaviour {
 
         AttractAnimation.SetActive(false);
         RepulseAnimation.SetActive(true);
+
+        canChange = false;
+        this.DelayedCall(() => { canChange = true; }, changeModeCooldown);
     }
 
     public void CallingBark()
