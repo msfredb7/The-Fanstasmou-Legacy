@@ -35,6 +35,8 @@ public class PlayerContainer : CCC.DesignPattern.PublicSingleton<PlayerContainer
         {
             if (bergers[i].repulse.active == true)
                 output.Add(bergers[i].repulse);
+            if (bergers[i].barkRepulse.active == true)
+                output.Add(bergers[i].barkRepulse);
         }
         return output;
     }
