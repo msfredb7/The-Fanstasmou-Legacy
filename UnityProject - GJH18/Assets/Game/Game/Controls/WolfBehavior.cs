@@ -20,7 +20,7 @@ public class WolfBehavior : MonoBehaviour {
     private Transform normalEyes;
 
 
-    public GameObject RepusleAnimation;
+    public GameObject RepulseAnimation;
 
     private GameObject leftTrail;
     private GameObject rightTrail;
@@ -48,14 +48,22 @@ public class WolfBehavior : MonoBehaviour {
 
     public Repulse repulse;
 
+    private void Awake()
+    {
+        standardDrag = GetComponentInParent<Rigidbody2D>().drag;
+        RepulseAnimation.transform.SetParent(transform.parent);
+        RepulseAnimation.SetActive(false);
+    }
+
+
     void Start()
     {
         PlayerContainer.Instance.AddWolves(this);
 
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
-        RepusleAnimation.transform.SetParent(transform.parent);
-        RepusleAnimation.transform.localScale = Vector3.one * repulse.range * 0.7f;
-        RepusleAnimation.SetActive(false);
+        RepulseAnimation.transform.SetParent(transform.parent);
+        RepulseAnimation.transform.localScale = Vector3.one * repulse.range * 0.7f;
+
 
         if (inputButtons == null)
             GetInputButtonsRef();
@@ -193,10 +201,6 @@ public class WolfBehavior : MonoBehaviour {
     private float reactivationTimer = 0;
     private float standardDrag = 0;
 
-    void Awake()
-    {
-        standardDrag = GetComponentInParent<Rigidbody2D>().drag;
-    }
 
     public void Bump(Vector2 force)
     {
@@ -224,7 +228,6 @@ public class WolfBehavior : MonoBehaviour {
 
     public void ActivateFeedbacks()
     {
-        RepusleAnimation.SetActive(true);
-       
+        RepulseAnimation.SetActive(true);      
     }
 }
