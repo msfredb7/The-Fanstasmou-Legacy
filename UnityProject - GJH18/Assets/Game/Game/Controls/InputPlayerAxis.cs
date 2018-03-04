@@ -49,4 +49,38 @@ public class InputPlayerAxis : MonoBehaviour {
     {
         return GetPlayerAxis("Vertical");
     }
+
+    public float GetPlayerTriggerAxis()
+    {
+        PlayerInfo.PlayerNumber realPlayerNumber;
+        if (Game.Instance != null)
+        {
+            if (GetComponent<PlayerInfo>() != null)
+                realPlayerNumber = GetComponent<PlayerInfo>().player;
+            else
+                realPlayerNumber = player;
+        }
+        else
+            realPlayerNumber = player;
+
+        float result = 0;
+
+        switch (realPlayerNumber)
+        {
+            default:
+            case PlayerInfo.PlayerNumber.One:
+                result = Input.GetAxis("TriggerPlayerOne");
+                break;
+            case PlayerInfo.PlayerNumber.Two:
+                result = Input.GetAxis("TriggerPlayerTwo");
+                break;
+            case PlayerInfo.PlayerNumber.Three:
+                result = Input.GetAxis("TriggerPlayerThree");
+                break;
+            case PlayerInfo.PlayerNumber.Four:
+                result = Input.GetAxis("TriggerPlayerFour");
+                break;
+        }
+        return result;
+    }
 }
