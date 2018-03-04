@@ -75,6 +75,8 @@ public class PlayerIntro : MonoBehaviour {
             doggies[i].GetComponentInChildren<CharacterOrientation>().enabled = false;
             doggies[i].GetComponentInChildren<CharacterOrientation>().GetComponentInChildren<Animator>().SetBool("running", true);
 
+            
+
             float rotationAngle = ((Vector2)(Game.Instance.map.dogSpawnPoints[doSpawnCount].position - doggies[i].transform.position)).ToAngle();
             Vector3 rotation = transform.forward * rotationAngle;
             doggies[i].GetComponentInChildren<BergerBehavior>().gameObject.transform.rotation = Quaternion.Euler(rotation);
