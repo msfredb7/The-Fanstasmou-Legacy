@@ -29,9 +29,9 @@ public class BergerBehavior : MonoBehaviour {
     public float knockbackCooldown = 0.5f;
     private bool canKockback = true;
 
-    public float callingBarkCooldown = 10.0f;
+    public float callingBarkCooldown = 20.0f;
     private bool canCallingBark = true;
-    public float callingBarkEffectLength = 2.5f;
+    public float callingBarkEffectLength = 3f;
 
     private InputPlayerButton inputButtons;
     private InputPlayerAxis inputAxis;
