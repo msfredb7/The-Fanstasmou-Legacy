@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class WolfBehavior : MonoBehaviour {
 
@@ -9,9 +10,17 @@ public class WolfBehavior : MonoBehaviour {
     [SerializeField]
     private GameObject dashTrailPrefab;
     [SerializeField]
+    private GameObject eyeBurst;
+    [SerializeField]
     private Transform leftEye;
     [SerializeField]
     private Transform rightEye;
+
+    [SerializeField]
+    private Transform normalEyes;
+
+
+    public GameObject RepusleAnimation;
 
     private GameObject leftTrail;
     private GameObject rightTrail;
@@ -30,7 +39,10 @@ public class WolfBehavior : MonoBehaviour {
 
     public int maxSheepEaten = 1;
 
+    public float triggerSensitivity = 0.2f;
+
     private InputPlayerButton inputButtons;
+    private InputPlayerAxis inputAxis;
 
     SheepDetector sheepDetector;
 
@@ -40,9 +52,14 @@ public class WolfBehavior : MonoBehaviour {
     {
         PlayerContainer.Instance.AddWolves(this);
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+        RepusleAnimation.transform.SetParent(transform.parent);
+        RepusleAnimation.transform.localScale = Vector3.one * repulse.range * 0.7f;
+
 
         if (inputButtons == null)
             GetInputButtonsRef();
+        if (inputAxis == null)
+            GetInputAxisRef();
         sheepDetector = GetComponent<SheepDetector>();
         if(sheepDetector != null)
         {
@@ -51,7 +68,7 @@ public class WolfBehavior : MonoBehaviour {
                 sheepDetector.onSheepInRange.AddListener(delegate() {
                     Herd herd = sheepDetector.GetHerd();
                     if (herd != null && herd.MemberCount() <= maxSheepEaten)
-                        Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition(Game.Instance.mainCamera.WorldToScreenPoint(transform.position), ButtonPopUp.ButtonType.A, 0.5f, "EAT");
+                        Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition(Game.Instance.mainCamera.WorldToScreenPoint(transform.position), ButtonPopUp.ButtonType.Trigger, 0.5f, "EAT");
                 });
             }
         }
@@ -61,8 +78,7 @@ public class WolfBehavior : MonoBehaviour {
     {
         if (inputButtons == null)
             GetInputButtonsRef();
-
-        if (inputButtons.GetPlayerA())
+        if (inputAxis.GetPlayerTriggerAxis() > triggerSensitivity)
         {
             if (!canEat)
             {
@@ -71,7 +87,7 @@ public class WolfBehavior : MonoBehaviour {
             EatSheep();
             canEat = false;
             this.DelayedCall(() => { canEat = true; }, eatCooldown);
-        } else if (inputButtons.GetPlayerB())
+        } else if (inputButtons.GetPlayerA())
         {
             if (!canDash)
             {
@@ -80,7 +96,14 @@ public class WolfBehavior : MonoBehaviour {
             Game.Instance.sfx.PlayWolfDashSound();
             dash();
             canDash = false;
-            this.DelayedCall(() => { canDash = true; }, dashCooldown);
+            this.DelayedCall(() => 
+            {
+                canDash = true;
+                normalEyes.GetComponent<SpriteRenderer>().DOFade(1, 0.1f).OnComplete(delegate 
+                {
+                    
+                });
+            }, dashCooldown);
         }
 
         if (IsBumped)
@@ -98,8 +121,15 @@ public class WolfBehavior : MonoBehaviour {
     {
         inputButtons = GetComponentInParent<InputPlayerButton>();
         if (inputButtons == null)
-            Debug.Log("wtf doggy");
-    }   
+            Debug.Log("wtf wolfy");
+    }
+
+    void GetInputAxisRef()
+    {
+        inputAxis = GetComponentInParent<InputPlayerAxis>();
+        if (inputAxis == null)
+            Debug.Log("wtf wolfy");
+    }
 
     void dash()
     {
@@ -143,6 +173,7 @@ public class WolfBehavior : MonoBehaviour {
     {
         leftTrail.transform.SetParent(null);
         rightTrail.transform.SetParent(null);
+        normalEyes.GetComponent<SpriteRenderer>().DOFade(0, 0);
     }
 
 

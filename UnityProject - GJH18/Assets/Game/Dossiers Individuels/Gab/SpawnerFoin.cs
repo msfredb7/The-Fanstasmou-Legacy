@@ -2,36 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerFoin : MonoBehaviour {
-
-    float m_waitTime;
-
+public class SpawnerFoin : MonoBehaviour
+{
     public GameObject m_PrefabFoin;
 
-    public float m_TimeSpawnMin, m_TimeSpawnMax;
+    public float m_StartDelay, m_TimeSpawnMin, m_TimeSpawnMax;
 
     [ReadOnly]
     public List<Transform> m_lstNode;
 
     private List<int> m_lstNodeFill;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         m_lstNodeFill = new List<int>();
 
         m_lstNode.AddRange(FindComponentsInChildrenWithTag<Transform>(gameObject, "Node"));
 
-        SpawnFoinAtRandom();
+        //SpawnFoinAtRandom();
+        Invoke("SpawnFoinAtRandom", m_StartDelay);
 
         //InvokeRepeating(, 10.0f, Random.Range(0, 20));
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown("f"))
             SpawnFoinAtRandom();
-	}
+    }
 
     private void SpawnFoinAtRandom()
     {
@@ -41,7 +42,7 @@ public class SpawnerFoin : MonoBehaviour {
             return;
         }
 
-        if(FindComponentsInChildrenWithTag<Transform>(gameObject, "Foin").LastIndex() > 2)
+        if (FindComponentsInChildrenWithTag<Transform>(gameObject, "Foin").LastIndex() > 2)
         {
             Debug.Log("Plus de 4 foin, stop du spawn de foin");
             return;
@@ -65,7 +66,7 @@ public class SpawnerFoin : MonoBehaviour {
     //  reçoit le transforme du foin pour libéré le noeud dans lstNodeFill
     public void FoinRemove(Transform posNode)
     {
-        if(m_lstNode.Contains(posNode) == true)
+        if (m_lstNode.Contains(posNode) == true)
         {
             m_lstNodeFill.Remove(m_lstNode.IndexOf(posNode));
             Invoke("SpawnFoinAtRandom", Random.Range(m_TimeSpawnMin, m_TimeSpawnMax));

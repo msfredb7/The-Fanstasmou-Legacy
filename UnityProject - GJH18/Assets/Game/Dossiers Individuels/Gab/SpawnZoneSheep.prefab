@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4491958632697330}
-  - component: {fileID: 114750282758093074}
+  - component: {fileID: 114975021472876626}
   m_Layer: 0
   m_Name: SpawnZoneSheep
   m_TagString: Untagged
@@ -98,7 +98,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114750282758093074
+--- !u!114 &114975021472876626
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975311885104120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 591af9add49894d418ee413e0489fdd7, type: 3}
+  m_Script: {fileID: 11500000, guid: d4f4c0eed06ae044a85a4f3667f7aa64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_BordHautDroit: {fileID: 1200452916782360}
@@ -115,5 +115,6 @@ MonoBehaviour:
     type: 2}
   blackSheepPrefab: {fileID: 1512002220359000, guid: 4937126b4ffe2c84e9147305808f8aae,
     type: 2}
+  chanceOfSpawningBlackSheep: 0.1
   m_UnitContain: {fileID: 0}
   m_NbSheepStart: 15

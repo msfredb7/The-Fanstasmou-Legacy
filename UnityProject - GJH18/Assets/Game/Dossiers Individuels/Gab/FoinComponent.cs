@@ -15,11 +15,15 @@ public class FoinComponent : MonoBehaviour
 
     SpawnerSheep m_SpawnS;
 
+    void Awake()
+    {
+        tr = GetComponent<Transform>();
+    }
+
     // Use this for initialization
     void Start()
     {
         m_contact = false;
-        tr = GetComponent<Transform>() as Transform;
         if (Game.Instance != null)
         {
             m_SpawnS = Game.Instance.SheepSpawn;
