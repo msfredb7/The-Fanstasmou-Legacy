@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class HerdMember : MonoBehaviour
 {
@@ -86,7 +87,7 @@ public class HerdMember : MonoBehaviour
         endangeredVisuals.SetAlpha(0.0f);
     }
 
-    public void Evac(GameObject evacSheepFeedbackPrefab)
+    public void Evac(Action OnComplete)
     {
         List<PlayerInfo> bergers = Game.Instance.GetDoggies();
 
@@ -101,7 +102,7 @@ public class HerdMember : MonoBehaviour
         if(closestPlayer != null && Rounds.Instance != null)
         {
             Rounds.Instance.AddSheepRescued(1, closestPlayer);
-            Instantiate(evacSheepFeedbackPrefab, transform.position, Quaternion.identity);
+            OnComplete();
             herd.RemoveMember(this);
             Destroy(gameObject);
         }
