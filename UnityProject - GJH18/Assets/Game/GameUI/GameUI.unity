@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPopUp: {fileID: 393272018}
+  audioMixerSaver: {fileID: 11400000, guid: e28b0bc15f60e8e438842ae1e4d69b0e, type: 2}
   dogsArrive: {fileID: 1594355096}
   wolfsArrive: {fileID: 1009779018}
   animalArriveAnimDuration: 3
