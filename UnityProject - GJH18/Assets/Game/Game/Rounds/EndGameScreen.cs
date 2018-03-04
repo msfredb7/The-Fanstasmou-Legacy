@@ -43,12 +43,28 @@ public class EndGameScreen : MonoBehaviour {
 	
     private void WriteWinningMessage(Team winningTeam)
     {
-        WinningText.text += "Player " + winningTeam.PlayersInfo[0].player + " et " + "Player " + winningTeam.PlayersInfo[1].player;
+        WinningText.text += "Joueur " + convertToFrench(winningTeam.PlayersInfo[0].player) + " et " + "Joueur " + convertToFrench(winningTeam.PlayersInfo[1].player);
     }
 
     private void WriteWinningMessage()
     {
         WinningText.text = "Égalité";
+    }
+
+    private string convertToFrench(PlayerInfo.PlayerNumber _playerNumber)
+    {
+        switch (_playerNumber)
+        {
+            default:
+            case PlayerInfo.PlayerNumber.One:
+                return "Un";
+            case PlayerInfo.PlayerNumber.Two:
+                return "Deux";
+            case PlayerInfo.PlayerNumber.Three:
+                return "Trois";
+            case PlayerInfo.PlayerNumber.Four:
+                return "Quatre";
+        }
     }
 
     // Update is called once per frame

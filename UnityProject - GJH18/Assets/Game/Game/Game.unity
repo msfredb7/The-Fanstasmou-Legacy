@@ -796,6 +796,7 @@ MonoBehaviour:
   dogHowl: {fileID: 11400000, guid: 4481625a57e096545be2e91889c86aaa, type: 2}
   Wind: {fileID: 11400000, guid: 4918e0c431ed0c747b45111372ec1bdf, type: 2}
   AmbianceLoopSource: {fileID: 752643798}
+  SaveMouton: {fileID: 11400000, guid: c9a56dc7957b9e143ac620acc563fed5, type: 2}
 --- !u!82 &752643798
 AudioSource:
   m_ObjectHideFlags: 0

@@ -108,6 +108,7 @@ public class BergerBehavior : MonoBehaviour {
             {
                 return;
             }
+
             CallingBark();
             canCallingBark = false;
             this.DelayedCall(() => {
