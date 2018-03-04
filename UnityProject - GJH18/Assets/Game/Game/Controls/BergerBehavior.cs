@@ -20,6 +20,9 @@ public class BergerBehavior : MonoBehaviour {
     public float changeModeCooldown = 0.5f;
     private bool canChange = true;
 
+    public float knockbackCooldown = 0.5f;
+    private bool canKockback = true;
+
     private InputPlayerButton inputButtons;
 	
     void Start()
@@ -73,18 +76,26 @@ public class BergerBehavior : MonoBehaviour {
             Debug.Log("wtf doggy");
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        foreach (ContactPoint contact in collision.contacts)
+        foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (contact.otherCollider.GetComponent<WolfInfo>() != null)
-                Repulse(GetComponentInParent<Rigidbody2D>(), contact.otherCollider.GetComponentInParent<Rigidbody2D>().position);
+            if (contact.collider.GetComponent<WolfInfo>() != null)
+                Repulse(contact.collider.GetComponentInParent<Rigidbody2D>(), contact.otherCollider.GetComponentInParent<Rigidbody2D>().position);
         }
     }
 
     protected void Repulse(Rigidbody2D target, Vector2 myPosition)
     {
-        var repulsionDirection = (target.position - myPosition).normalized;
-        target.AddForce(repulsionDirection * repulsionStrength, ForceMode2D.Impulse);
+        if (canKockback)
+        {
+            Debug.Log("Kockback");
+            target.GetComponentInChildren<WolfBehavior>().Bump(target.GetComponentInChildren<WolfInfo>().transform.right * -1 * repulsionStrength);
+            canKockback = false;
+            this.DelayedCall(delegate ()
+            {
+                canKockback = true;
+            }, knockbackCooldown);
+        }
     }
 }

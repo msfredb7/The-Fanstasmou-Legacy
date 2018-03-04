@@ -72,6 +72,16 @@ public class WolfBehavior : MonoBehaviour {
             canDash = false;
             this.DelayedCall(() => { canDash = true; }, dashCooldown);
         }
+
+        if (IsBumped)
+        {
+            if (GetComponentInParent<Rigidbody2D>().velocity.magnitude < reactivVelocity)
+                ReactivatePlayerMovement();
+
+            reactivationTimer -= Time.deltaTime;
+            if (!IsBumped)
+                ReactivatePlayerMovement();
+        }
     }
 
     void GetInputButtonsRef()
@@ -101,11 +111,52 @@ public class WolfBehavior : MonoBehaviour {
                 Herd herd = sheepDetector.GetHerd();
                 if (herd.MemberCount() <= maxSheepEaten)
                 {
-                    herd.Eat();
                     GameObject instantiatedScratch = Instantiate(scratchAnimation);
-                    instantiatedScratch.transform.position = transform.position + (transform.right);
+                    instantiatedScratch.transform.position = herd.GetMiddle();
+                    herd.Eat();
                 }
             }
         }
+    }
+
+    // BUMP DE OCEAN EMPIRE
+    [Header("Settings"), SerializeField]
+    float bumpedLinearDrag = 5;
+    [SerializeField]
+    float reactivVelocity = 0.5f;
+    [SerializeField]
+    float reactivMaxDelay = 2;
+
+    private const string CAN_ACCELERATE_KEY = "bmp";
+
+    private float reactivationTimer = 0;
+    private float standardDrag = 0;
+
+    void Awake()
+    {
+        standardDrag = GetComponentInParent<Rigidbody2D>().drag;
+    }
+
+    public void Bump(Vector2 force)
+    {
+        GetComponentInParent<Rigidbody2D>().drag = bumpedLinearDrag;
+
+        GetComponentInParent<PlayerMovement>().enabled = false;
+        reactivationTimer = reactivMaxDelay;
+
+        GetComponentInParent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+    }
+
+    public bool IsBumped
+    {
+        get { return reactivationTimer > 0; }
+    }
+
+    void ReactivatePlayerMovement()
+    {
+        reactivationTimer = -1;
+
+        GetComponentInParent<Rigidbody2D>().drag = standardDrag;
+        GetComponentInParent<PlayerMovement>().enabled = true;
     }
 }
