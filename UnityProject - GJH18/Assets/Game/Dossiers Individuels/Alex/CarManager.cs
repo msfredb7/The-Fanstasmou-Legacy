@@ -12,6 +12,7 @@ public class CarManager : MonoBehaviour {
     public float delayBetweenCarSpawns = 1f;
     public float carStayDuration = 1f;
     public float enteringAnimDuration = 1f;
+    public float doorAnimDuration = 1;
 
     private List<GameObject> cars;
     private List<bool> carsExiting;
@@ -57,66 +58,96 @@ public class CarManager : MonoBehaviour {
 
             float rotationAngle = ((Vector2)(Game.Instance.map.carEnterPoint[i].position - newCar.transform.position)).ToAngle();
             Vector3 rotation = newCar.transform.forward * rotationAngle;
-            newCar.GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.Euler(rotation);
+            newCar.transform.rotation = Quaternion.Euler(rotation);
 
-            sqc.Join(newCar.transform.DOMove(Game.Instance.map.carEnterPoint[i].position,enteringAnimDuration));
+            sqc.Join(newCar.transform.DOMove(Game.Instance.map.carEnterPoint[i].position, enteringAnimDuration).OnComplete(delegate () {
+                newCar.GetComponentInChildren<Animator>().enabled = true;
+                this.DelayedCall(delegate () {
+                    newCar.GetComponent<BoxCollider2D>().isTrigger = true;
+                },doorAnimDuration);
+            }));
         }
         Debug.Log("Son de camion ici");
         sqc.OnComplete(delegate ()
         {
-            for (int i = 0; i < cars.Count; i++)
-            {
-                Debug.Log("Ouverture de la porte du char " + i);
-            }
             onComplete();
         });
     }
 
     void ExitCars(Action onComplete)
     {
-        Sequence sqc = DOTween.Sequence();
+        float evacuationSpeed = 0;
         for (int i = 0; i < cars.Count; i++)
         {
             if (cars[i] == null || carsExiting[i])
                 continue;
+            if (cars[i].GetComponent<BoxCollider2D>().isTrigger == false)
+            {
+                this.DelayedCall(delegate ()
+                {
+                    cars[i].GetComponentInChildren<Animator>().SetBool("closed", true);
+                    evacuationSpeed = cars[i].GetComponent<Camion>().EvacSpeed;
+                }, cars[i].GetComponent<Camion>().EvacSpeed);
+            }
+            else
+                cars[i].GetComponent<BoxCollider2D>().isTrigger = false;
 
-
-            Debug.Log("Fermture de la porte du char " + i);
-            sqc.Join(cars[i].transform.DOMove(Game.Instance.map.carSpawnPoint[i].position, enteringAnimDuration));
-            carsExiting[i] = true;
         }
-        sqc.OnComplete(delegate ()
-        {
+        this.DelayedCall(delegate () {
+            Sequence sqc = DOTween.Sequence();
             for (int i = 0; i < cars.Count; i++)
             {
-                if (cars[i] == null)
+                if (cars[i] == null || carsExiting[i])
                     continue;
-                Destroy(cars[i]);
-                cars[i] = null;
+
+                sqc.Join(cars[i].transform.DOMove(Game.Instance.map.carSpawnPoint[i].position, enteringAnimDuration));
+                carsExiting[i] = true;
             }
-            onComplete();
-        });
+            sqc.OnComplete(delegate ()
+            {
+                for (int i = 0; i < cars.Count; i++)
+                {
+                    if (cars[i] == null)
+                        continue;
+                    Destroy(cars[i]);
+                    cars[i] = null;
+                }
+                onComplete();
+            });
+        }, doorAnimDuration + evacuationSpeed);
     }
 
     public void ExitCar(GameObject car)
     {
         if (car == null)
             return;
-        Debug.Log("Fermture de la porte d'un char");
-        int destinationIndex = 0;
-        for (int i = 0; i < cars.Count; i++)
+        if (car.GetComponent<BoxCollider2D>().isTrigger == false)
         {
-            if (cars[i] == null)
-                continue;
-            if (car == cars[i])
-                destinationIndex = i;
+            this.DelayedCall(delegate () {
+                car.GetComponentInChildren<Animator>().SetBool("close", true);
+                this.DelayedCall(delegate ()
+                {
+                    int destinationIndex = 0;
+                    for (int i = 0; i < cars.Count; i++)
+                    {
+                        if (cars[i] == null)
+                            continue;
+                        if (car == cars[i])
+                            destinationIndex = i;
+                    }
+                    if (carsExiting[destinationIndex])
+                        return;
+                    carsExiting[destinationIndex] = true;
+                    car.transform.DOMove(Game.Instance.map.carSpawnPoint[destinationIndex].position, enteringAnimDuration).OnComplete(delegate () {
+                        Destroy(car);
+                        cars[destinationIndex] = null;
+                    });
+                }, doorAnimDuration);
+            }, car.GetComponent<Camion>().EvacSpeed);
+        } else
+        {
+            car.GetComponent<BoxCollider2D>().isTrigger = false;
         }
-        if (carsExiting[destinationIndex])
-            return;
-        carsExiting[destinationIndex] = true;
-        car.transform.DOMove(Game.Instance.map.carSpawnPoint[destinationIndex].position, enteringAnimDuration).OnComplete(delegate () {
-            Destroy(car);
-            cars[destinationIndex] = null;
-        });
+            
     }
 }
