@@ -157,8 +157,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1566506573833200}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2434707, y: -1.9451442, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1443923, y: -4.34, z: 0.9267391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4155072660373410}
@@ -258,6 +258,7 @@ MonoBehaviour:
     type: 2}
   leftEye: {fileID: 4155072660373410}
   rightEye: {fileID: 4748705566457304}
+  normalEyes: {fileID: 4932096427116868}
   dashCooldown: 1
   dashSpeed: 10
   dashAcceleration: 10
