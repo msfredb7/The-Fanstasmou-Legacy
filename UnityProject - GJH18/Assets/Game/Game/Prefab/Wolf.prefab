@@ -266,9 +266,9 @@ MonoBehaviour:
   eatCooldown: 0.5
   maxSheepEaten: 1
   repulse:
-    active: 0
-    range: 0
-    strength: 0
+    active: 1
+    range: 3.5
+    strength: 1
     owner: {fileID: 0}
   bumpedLinearDrag: 5
   reactivVelocity: 0.5

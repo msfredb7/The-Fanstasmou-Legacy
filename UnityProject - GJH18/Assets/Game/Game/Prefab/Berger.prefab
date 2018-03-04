@@ -151,12 +151,12 @@ MonoBehaviour:
   repulsionStrength: 100
   attract:
     active: 0
-    range: 5
+    range: 3.5
     strength: 1
     owner: {fileID: 0}
   repulse:
     active: 0
-    range: 5
+    range: 3.5
     strength: 1
     owner: {fileID: 0}
   changeModeCooldown: 0.5

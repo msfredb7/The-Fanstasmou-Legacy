@@ -5,7 +5,7 @@ using UnityEngine;
 public class SheepComponent : MonoBehaviour
 {
 
-    Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion, m_FEvade, m_FSeek;
+    Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion, m_FEvade, m_FSeek, m_FFlee;
 
     public float m_MaxSpeed;
     public bool log = false;
@@ -20,6 +20,8 @@ public class SheepComponent : MonoBehaviour
     public float m_PoidFlee;
     public float m_PoidEvade;
     public float m_PoidSeek;
+
+
 
     [Header("Powers")]
     public float m_FleePower = 1;
@@ -101,15 +103,16 @@ public class SheepComponent : MonoBehaviour
             m_Force += m_FAlign * m_PoidAlign;
 
             m_Force += m_FCohesion * m_PoidCohesion;
-
-            m_Force += m_FEvade * m_PoidEvade;
-
-            m_Force += m_FSeek * m_PoidSeek;
         }
         else
         {
             m_Force += m_FWandering * m_PoidWandering;
         }
+
+        m_Force += m_FFlee * m_PoidFlee;
+
+        m_Force += m_FSeek * m_PoidSeek;
+
 
         if (FuirSourie == true)
             m_Force += Flee((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) * m_PoidFlee;
@@ -128,6 +131,12 @@ public class SheepComponent : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * m_MaxSpeed;
         }
+
+        if(log)
+        {
+            Debug.Log(rb.velocity);
+        }
+    
 
     }
 
@@ -236,37 +245,49 @@ public class SheepComponent : MonoBehaviour
         return Mathf.Pow(Mathf.Clamp(1 - (distance / range), 0, 1), power);
     }
 
-    private Vector2 SmoothSeek(Vector2 target, float range = -1, float playerPower = -1)
+    private Vector2 SmoothSeek(Vector2 target, float range = -1, float playerPower = 1, float offset = 0)
     {
-        if (range != -1)
-        {
-            if (((Vector2)transform.position - target).magnitude > range)
-                return new Vector2(0, 0);
-        }
-        else
+        if (range == -1)
+        range = m_SeekRange;
+
+        if(offset != 0)
+            target -= (target - (Vector2)tr.position).normalized * offset;
+        
+
+
+        return -GetRepulsePowerFrom(target, range, m_SeekPower) * playerPower;
+    }
+
+    private Vector2 SmoothSeek(Rigidbody2D target, float range = -1, float playerPower = 1, float offset = 0)
+    {
+        if (range == -1)
             range = m_SeekRange;
+   
+        Vector2 cible = target.position;
 
-        if (playerPower == -1)
-            playerPower = m_SeekPower;
+        if (offset != 0)
+        {
+            BergerBehavior Be = target.GetComponentInChildren<BergerBehavior>();
+            Vector2 decalage = new Vector2(Be.transform.right.x * -offset, Be.transform.right.y * -offset);
+            cible = cible + decalage;
+        }
 
-        return -GetRepulsePowerFrom(target, range, playerPower);
+
+
+        return -GetRepulsePowerFrom(cible, range, m_SeekPower) * playerPower;
     }
 
     private Vector2 Seek(Vector2 target, float range = -1, float playerPower = -1)
     {
-
-
         return ((target - (Vector2)tr.position).normalized * m_MaxSpeed * playerPower) - rb.velocity;
     }
 
-    private Vector2 Flee(Vector2 target, float range =-1, float playerPower = -1)
+    private Vector2 Flee(Vector2 target, float range =-1, float playerPower = 1)
     {
         if (range == -1)
             range = m_FleeRange;
-        if (playerPower == -1)
-            playerPower = m_FleePower;
 
-        return GetRepulsePowerFrom(target, range, playerPower);
+        return GetRepulsePowerFrom(target, range, m_FleePower) * playerPower / 10;
     }
 
     private Vector2 Evade(Rigidbody2D poursuivant, float range = -1, float playerPower = 1)
@@ -294,14 +315,14 @@ public class SheepComponent : MonoBehaviour
 
     private void EvadeF()
     {
-        m_FEvade = Vector2.zero;
+        m_FFlee = Vector2.zero;
 
-        List<Repulse> replusions= PlayerContainer.Instance.GetAllRepuslion();
+        List<Repulse> replusions = PlayerContainer.Instance.GetAllRepuslion();
         for(int i =0; i < replusions.Count; i++)
         {
             Repulse R = replusions[i];
             if ((R.position - (Vector2)tr.position).magnitude < R.range)
-                m_FEvade += Flee(R.position, R.range, R.strength);
+                m_FFlee += Flee(R.position, R.range, R.strength);
         }
     }
 
@@ -314,7 +335,7 @@ public class SheepComponent : MonoBehaviour
         {
             Attract A = attractions[i];
             if ((A.position - (Vector2)tr.position).magnitude < A.range)
-                m_FSeek += Seek(A.position, A.range, A.strength);
+                m_FSeek += SmoothSeek(A.owner, A.range, A.strength, 1f);
         }
     }
 

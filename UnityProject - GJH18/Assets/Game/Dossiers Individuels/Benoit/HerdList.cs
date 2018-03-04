@@ -27,8 +27,14 @@ public class HerdList : CCC.DesignPattern.PublicSingleton<HerdList>
         herd = null;
     }
 
-	void Update () {
+	public void Update () {
         for (int i = 0; i < herds.Count; i++)
             herds[i].Update();
 	}
+
+    public void FixedUpdate()
+    {
+        for (int i = 0; i < herds.Count; i++)
+            herds[i].FixedUpdate();
+    }
 }

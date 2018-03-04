@@ -22,6 +22,8 @@ public class Herd{
             members[i].SetHerd(this);
     }
 
+
+
     public void Update ()
     {
         List<HerdMember> memberLeftToCheck = herdMembers;
@@ -40,6 +42,8 @@ public class Herd{
                 UpdateHerd(connectedSheeps);
         }
     }
+
+
 
     public void NewHerd(List<HerdMember> members)
     {
@@ -97,4 +101,47 @@ public class Herd{
            (herdMembers[i].gameObject).Destroy();
         HerdList.Instance.RemoveHerd(this);
     }
+
+    public void FixedUpdate()
+    {
+        //CalculateBehaviors();
+    }
+
+    /*
+    public void CalculateBehaviors()
+    {
+        Vector2 middle = GetMiddle();
+
+        m_FSeek = Vector2.zero;
+        AttractF(middle);
+    }
+
+
+    private void AttractF(Vector2 middle)
+    {
+        m_FSeek = Vector2.zero;
+
+        List<Attract> attractions = PlayerContainer.Instance.GetAllAttraction();
+        for (int i = 0; i < attractions.Count; i++)
+        {
+            Attract A = attractions[i];
+            if ((A.position - middle).magnitude < A.range)
+                m_FSeek += HerdFollow(middle, A.position, A.range, A.strength);
+        }
+    }
+    private Vector2 HerdFollow(Vector2 middle, Vector2 target, float range = 0, float playerPower = 0)
+    {
+        float targetDistance = 1;
+
+
+        Vector2 v = middle - target;
+        float influence = Mathf.Clamp(1 - (v.magnitude / range), 0, 1);
+
+        influence = Mathf.Pow(influence, playerPower);
+
+        Vector2 ForceTot = v.normalized * herdMembers[0].GetComponent<SheepComponent>().m_MaxSpeed * influence;
+
+        return ForceTot;
+
+       */
 }
