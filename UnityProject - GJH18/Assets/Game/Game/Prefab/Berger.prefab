@@ -256,10 +256,10 @@ MonoBehaviour:
     range: 3
     strength: 1
     owner: {fileID: 0}
-  barkRepulse:
+  barkAttract:
     active: 0
     range: 8
-    strength: 1
+    strength: 2
     owner: {fileID: 0}
   RepulseAnimation: {fileID: 1466494833031980}
   AttractAnimation: {fileID: 1036155098440658}

@@ -18,7 +18,7 @@ public class BergerBehavior : MonoBehaviour {
     public Attract attract;
     public Repulse repulse;
 
-    public Repulse barkRepulse;
+    public Attract barkAttract;
 
     public GameObject RepulseAnimation;
     public GameObject AttractAnimation;
@@ -41,13 +41,15 @@ public class BergerBehavior : MonoBehaviour {
         PlayerContainer.Instance.AddBerger(this);
         attract.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+        barkAttract.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+
         RepulseAnimation.transform.SetParent(transform.parent);
         AttractAnimation.transform.SetParent(transform.parent);
 
         AttractAnimation.SetActive(false);
         RepulseAnimation.SetActive(false);
 
-        barkRepulse.active = false;
+        barkAttract.active = false;
 
 
 
@@ -173,8 +175,8 @@ public class BergerBehavior : MonoBehaviour {
 
     public void CallingBark()
     {
-        barkRepulse.active = true;
-        this.DelayedCall(() => { barkRepulse.active = false; }, callingBarkEffectLength);
+        barkAttract.active = true;
+        this.DelayedCall(() => { barkAttract.active = false; }, callingBarkEffectLength);
     }
 
     public void ActivateFeedbacks()
