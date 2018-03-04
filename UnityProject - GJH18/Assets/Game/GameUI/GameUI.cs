@@ -9,12 +9,9 @@ public class GameUI : MonoBehaviour {
 
     public ButtonPopUp buttonPopUp;
 
-    public GameObject countdown1;
-    public GameObject countdown2;
-    public GameObject countdown3;
-    public float countdownFadeDuration = 1;
-
-    public GameObject wolfTimer;
+    public Image dogsArrive;
+    public Image wolfsArrive;
+    public float animalArriveAnimDuration = 1;
 
     [SerializeField]
     private GameObject pauseOverlay;
@@ -41,21 +38,21 @@ public class GameUI : MonoBehaviour {
         return true;
     }
 
-    public void Countdown(Action onComplete)
+    public void DogsArrive(Action onComplete)
     {
-        countdown3.GetComponent<Text>().color = countdown3.GetComponent<Text>().color.ChangedAlpha(0);
-        countdown2.GetComponent<Text>().color = countdown2.GetComponent<Text>().color.ChangedAlpha(0);
-        countdown1.GetComponent<Text>().color = countdown1.GetComponent<Text>().color.ChangedAlpha(0);
-        countdown3.SetActive(true);
-        countdown2.SetActive(true);
-        countdown1.SetActive(true);
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(countdown3.GetComponent<Text>().DOFade(1, countdownFadeDuration));
-        sequence.Append(countdown3.GetComponent<Text>().DOFade(0, countdownFadeDuration));
-        sequence.Append(countdown2.GetComponent<Text>().DOFade(1, countdownFadeDuration));
-        sequence.Append(countdown2.GetComponent<Text>().DOFade(0, countdownFadeDuration));
-        sequence.Append(countdown1.GetComponent<Text>().DOFade(1, countdownFadeDuration));
-        sequence.Append(countdown1.GetComponent<Text>().DOFade(0, countdownFadeDuration));
+        sequence.Append(dogsArrive.DOFade(1, animalArriveAnimDuration / 2));
+        sequence.Join(dogsArrive.transform.DOScale(1.5f,animalArriveAnimDuration / 2));
+        sequence.Append(dogsArrive.DOFade(0, animalArriveAnimDuration / 2));
+        sequence.OnComplete(() => { onComplete(); });
+    }
+
+    public void WolfsArrive(Action onComplete)
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(wolfsArrive.DOFade(1, animalArriveAnimDuration / 2));
+        sequence.Join(wolfsArrive.transform.DOScale(1.5f, animalArriveAnimDuration / 2));
+        sequence.Append(wolfsArrive.DOFade(0, animalArriveAnimDuration / 2));
         sequence.OnComplete(() => { onComplete(); });
     }
 }

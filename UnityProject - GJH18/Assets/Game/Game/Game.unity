@@ -208,50 +208,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114750282758093074, guid: fa40cc23c0ec7844f97d245f65be4635,
+    - target: {fileID: 114975021472876626, guid: fa40cc23c0ec7844f97d245f65be4635,
         type: 2}
       propertyPath: m_UnitContain
       value: 
       objectReference: {fileID: 1627954239}
-    m_RemovedComponents:
-    - {fileID: 114750282758093074, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa40cc23c0ec7844f97d245f65be4635, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &122198914 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1975311885104120, guid: fa40cc23c0ec7844f97d245f65be4635,
-    type: 2}
-  m_PrefabInternal: {fileID: 122198913}
---- !u!1 &122198915 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1043543656612220, guid: fa40cc23c0ec7844f97d245f65be4635,
-    type: 2}
-  m_PrefabInternal: {fileID: 122198913}
---- !u!1 &122198916 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1200452916782360, guid: fa40cc23c0ec7844f97d245f65be4635,
-    type: 2}
-  m_PrefabInternal: {fileID: 122198913}
---- !u!114 &122198917
+--- !u!114 &122198917 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 122198914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 114975021472876626, guid: fa40cc23c0ec7844f97d245f65be4635,
+    type: 2}
+  m_PrefabInternal: {fileID: 122198913}
   m_Script: {fileID: 11500000, guid: d4f4c0eed06ae044a85a4f3667f7aa64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BordHautDroit: {fileID: 122198916}
-  m_BordBasGauche: {fileID: 122198915}
-  m_SheepPrefab: {fileID: 1512002220359000, guid: 112ac6a34faa4fd419f4a84e836d0c94,
-    type: 2}
-  blackSheepPrefab: {fileID: 1512002220359000, guid: 4937126b4ffe2c84e9147305808f8aae,
-    type: 2}
-  chanceOfSpawningBlackSheep: 0.1
-  m_UnitContain: {fileID: 1627954239}
-  m_NbSheepStart: 15
 --- !u!1 &151835374
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +286,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 288015253}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.53, y: 0.32, z: 0}
+  m_LocalPosition: {x: 9.4, y: 0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1885238182}
@@ -515,16 +485,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114240559067732428, guid: 79889fed1430fce439ed1528b10aa2eb,
-        type: 2}
-      propertyPath: m_TimeSpawnMin
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114240559067732428, guid: 79889fed1430fce439ed1528b10aa2eb,
-        type: 2}
-      propertyPath: m_TimeSpawnMax
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
   m_IsPrefabParent: 0
@@ -699,7 +659,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 831751624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.53, y: 0.32, z: 0}
+  m_LocalPosition: {x: -9.4, y: 0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1885238182}
