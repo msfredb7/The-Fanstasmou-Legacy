@@ -8,6 +8,8 @@ public class SpawnerFoin : MonoBehaviour {
 
     public GameObject m_PrefabFoin;
 
+    public float m_TimeSpawnMin, m_TimeSpawnMax;
+
     [ReadOnly]
     public List<Transform> m_lstNode;
 
@@ -15,6 +17,9 @@ public class SpawnerFoin : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        m_lstNodeFill = new List<int>();
+
         m_lstNode.AddRange(FindComponentsInChildrenWithTag<Transform>(gameObject, "Node"));
 
         SpawnFoinAtRandom();
@@ -48,18 +53,23 @@ public class SpawnerFoin : MonoBehaviour {
         {
             index = Random.Range(0, (m_lstNode.Count - 1));
 
-        } while (m_lstNodeFill.Contains(index) && m_lstNodeFill.Count < m_lstNode.Count);// node index ==  occuper
+        } while (m_lstNodeFill.Contains(index) == true);// node index ==  occuper
 
         m_lstNodeFill.Add(index);
 
         Instantiate(m_PrefabFoin, m_lstNode[index].position, m_lstNode[index].rotation, transform);
+
+        Invoke("SpawnFoinAtRandom", Random.Range(m_TimeSpawnMin, m_TimeSpawnMax));
     }
 
     //  reçoit le transforme du foin pour libéré le noeud dans lstNodeFill
     public void FoinRemove(Transform posNode)
     {
         if(m_lstNode.Contains(posNode) == true)
+        {
             m_lstNodeFill.Remove(m_lstNode.IndexOf(posNode));
+            Invoke("SpawnFoinAtRandom", Random.Range(m_TimeSpawnMin, m_TimeSpawnMax));
+        }
     }
 
     public T[] FindComponentsInChildrenWithTag<T>(GameObject parent, string tag, bool forceActive = false) where T : Component

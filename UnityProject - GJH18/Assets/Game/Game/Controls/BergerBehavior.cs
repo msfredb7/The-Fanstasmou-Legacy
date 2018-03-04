@@ -90,8 +90,7 @@ public class BergerBehavior : MonoBehaviour {
         if (canKockback)
         {
             Debug.Log("Kockback");
-            var repulsionDirection = (target.position - myPosition).normalized;
-            target.AddForce(repulsionDirection * repulsionStrength, ForceMode2D.Impulse);
+            target.GetComponentInChildren<WolfBehavior>().Bump(target.GetComponentInChildren<WolfInfo>().transform.right * -1 * repulsionStrength);
             canKockback = false;
             this.DelayedCall(delegate ()
             {

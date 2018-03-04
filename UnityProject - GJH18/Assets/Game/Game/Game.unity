@@ -515,6 +515,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 114240559067732428, guid: 79889fed1430fce439ed1528b10aa2eb,
+        type: 2}
+      propertyPath: m_TimeSpawnMin
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114240559067732428, guid: 79889fed1430fce439ed1528b10aa2eb,
+        type: 2}
+      propertyPath: m_TimeSpawnMax
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79889fed1430fce439ed1528b10aa2eb, type: 2}
   m_IsPrefabParent: 0
