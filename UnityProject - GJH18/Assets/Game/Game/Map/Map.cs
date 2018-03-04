@@ -18,6 +18,9 @@ public class Map : MonoBehaviour {
     public List<Transform> carSpawnPoint;
     public List<Transform> carEnterPoint;
 
+    // Mouton pop up
+    public List<Transform> moutonPopUp;
+
     public List<Transform> spawnpointWolfEnter;
     public List<Transform> dogSpawnPoints;
 
@@ -32,5 +35,10 @@ public class Map : MonoBehaviour {
         Gizmos.DrawSphere(spawnpointWolfEnter2.position, 0.25f);
         Gizmos.DrawSphere(spawnpointDog1.position, 0.25f);
         Gizmos.DrawSphere(spawnpointDog2.position, 0.25f);
+        Gizmos.color = Color.green;
+        foreach (var item in moutonPopUp)
+        {
+            Gizmos.DrawSphere(item.position, 0.25f);
+        }
     }
 }
