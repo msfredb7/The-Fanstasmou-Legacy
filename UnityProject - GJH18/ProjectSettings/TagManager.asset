@@ -77,3 +77,6 @@ TagManager:
   - name: Sun
     uniqueID: 161973825
     locked: 0
+  - name: HUD
+    uniqueID: 1968525625
+    locked: 0
