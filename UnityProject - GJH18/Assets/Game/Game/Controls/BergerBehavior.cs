@@ -36,7 +36,10 @@ public class BergerBehavior : MonoBehaviour {
         RepulseAnimation.transform.SetParent(transform.parent);
         AttractAnimation.transform.SetParent(transform.parent);
 
-        SetAttract();
+        AttractAnimation.SetActive(false);
+        RepulseAnimation.SetActive(false);
+
+      
 
 
 
@@ -139,5 +142,10 @@ public class BergerBehavior : MonoBehaviour {
 
         AttractAnimation.SetActive(false);
         RepulseAnimation.SetActive(true);
+    }
+
+    public void ActivateFeedbacks()
+    {
+        SetAttract();
     }
 }

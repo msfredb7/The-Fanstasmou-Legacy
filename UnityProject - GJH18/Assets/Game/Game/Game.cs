@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using CCC.DesignPattern;
+using System.Collections.Generic;
 
 public delegate void SimpleEvent();
 
@@ -85,6 +86,12 @@ public partial class Game : PublicSingleton<Game>
                             // DOGS ARRIVE
                             gameUI.DogsArrive(delegate () {
                                 intros.IntroTheDoggies(delegate () {
+                                    List<PlayerInfo> doogies = GetDoggies();
+                                    for(int i =0; i < doogies.Count; i++)
+                                    {
+                                        doogies[i].GetComponentInChildren<BergerBehavior>().ActivateFeedbacks();
+                                    }
+
                                     //Indicators
                                     playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                                     playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
