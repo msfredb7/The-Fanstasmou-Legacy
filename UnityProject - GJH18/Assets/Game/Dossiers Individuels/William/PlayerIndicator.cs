@@ -40,7 +40,7 @@ public class PlayerIndicator : MonoBehaviour {
 
     public void HidePlayerIndicator()
     {
-        indicator.GetComponent<SpriteRenderer>().DOFade(0, 1f).onComplete = onFadeComplet;
+        indicator.GetComponent<SpriteRenderer>().DOFade(0, 1f);
     }
 
     public void ShowWolfIndicator()
