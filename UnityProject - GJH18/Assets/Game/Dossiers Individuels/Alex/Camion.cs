@@ -44,13 +44,14 @@ public class Camion : MonoBehaviour {
 
         Sequence sqc = DOTween.Sequence();
         MoveToCheckpoint(sheep.transform, (Vector2)plateformCheckpoint.transform.position, sqc);
+        sqc.AppendCallback(() =>
+        {
+            Instantiate(sheepCaughtPrefab, popUpLocation.transform.position, Quaternion.identity);
+        });
         MoveToCheckpoint(sheep.transform, (Vector2)camionCheckpoint.transform.position, sqc);
         sqc.OnComplete(()=>
         {
-            sheep.Evac(()=>
-            {
-                Instantiate(sheepCaughtPrefab, popUpLocation.transform.position, Quaternion.identity);
-            });
+            sheep.Evac(null);
             OnComplete.Invoke();
         });
         

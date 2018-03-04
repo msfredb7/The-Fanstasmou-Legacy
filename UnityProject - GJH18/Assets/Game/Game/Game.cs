@@ -119,7 +119,7 @@ public partial class Game : PublicSingleton<Game>
                                             List<PlayerInfo> doogies = GetDoggies();
                                             for (int i = 0; i < doogies.Count; i++)
                                             {
-                                                doogies[i].GetComponentInChildren<BergerBehavior>().ActivateFeedbacks();
+                                                doogies[i].GetComponentInChildren<BergerBehavior>().SetAttract();
                                                 doogies[i].GetComponent<PlayerMovement>().enabled = true;
                                             }
 

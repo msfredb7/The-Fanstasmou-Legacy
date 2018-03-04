@@ -36,8 +36,18 @@ public class BergerBehavior : MonoBehaviour {
     private bool canCallingBark = true;
     public float callingBarkEffectLength = 3f;
 
+
     private InputPlayerButton inputButtons;
     private InputPlayerAxis inputAxis;
+
+    private void Awake()
+    {
+        RepulseAnimation.transform.SetParent(transform.parent);
+        AttractAnimation.transform.SetParent(transform.parent);
+
+        AttractAnimation.SetActive(false);
+        RepulseAnimation.SetActive(false);
+    }
 
     void Start()
     {
@@ -46,15 +56,10 @@ public class BergerBehavior : MonoBehaviour {
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
         barkAttract.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
 
-        RepulseAnimation.transform.SetParent(transform.parent);
-        AttractAnimation.transform.SetParent(transform.parent);
-
-        AttractAnimation.SetActive(false);
-        RepulseAnimation.SetActive(false);
+        RepulseAnimation.transform.localPosition = Vector3.zero;
+        AttractAnimation.transform.localPosition = Vector3.zero;
 
         barkAttract.active = false;
-
-
 
         if (inputButtons == null)
             GetInputButtonsRef();
@@ -145,8 +150,9 @@ public class BergerBehavior : MonoBehaviour {
     }
 
 
-    private void SetAttract()
+    public void SetAttract()
     {
+        print("attract");
         currentMode = BergerMode.Attract;
 
         attract.active = true;
@@ -161,8 +167,9 @@ public class BergerBehavior : MonoBehaviour {
         this.DelayedCall(() => { canChange = true; }, changeModeCooldown);
     }
 
-    private void SetRepulse()
+    public void SetRepulse()
     {
+        print("repulse");
         currentMode = BergerMode.Repulse;
 
         attract.active = false;
@@ -179,17 +186,27 @@ public class BergerBehavior : MonoBehaviour {
 
     public void CallingBark()
     {
-        barkAttract.active = true;
         Game.Instance.sfx.PlayDogUltimate();
-        GameObject obj = Instantiate(MegaBarkPrefab, transform);
-        obj.transform.localPosition = Vector3.zero;
+        GameObject obj = Instantiate(MegaBarkPrefab);
+        obj.transform.position = transform.position;
         obj.transform.localScale = Vector3.one * 2.0f;
 
-        this.DelayedCall(() => { barkAttract.active = false; }, callingBarkEffectLength);
-    }
+        List<PlayerInfo> wolves = Game.Instance.GetWolves();
+        for (int i = 0; i < wolves.Count; i++)
+        {
+            WolfBehavior wolf = wolves[i].GetComponentInChildren<WolfBehavior>();
 
-    public void ActivateFeedbacks()
-    {
-        SetAttract();
+            float range = barkAttract.range;
+            Vector2 v = (Vector2)transform.position - (Vector2)wolf.transform.position;
+            float dist = v.magnitude;
+            if (dist > range || dist < 0)
+                continue;
+
+            float influence = Mathf.Pow(dist, 2.0f);
+            wolf.Bump(wolf.GetComponentInChildren<WolfInfo>().transform.right * -1 * influence);
+        }
+        /*
+    barkAttract.active = true;
+    this.DelayedCall(() => { barkAttract.active = false; }, callingBarkEffectLength);*/
     }
 }
