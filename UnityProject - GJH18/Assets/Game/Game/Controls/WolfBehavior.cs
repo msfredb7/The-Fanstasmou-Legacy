@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class WolfBehavior : MonoBehaviour {
 
     [SerializeField]
-    private GameObject scratchAnimation;
+    private GameObject scratchAnimationPrefab;
+    [SerializeField]
+    private GameObject dashTrailPrefab;
+    [SerializeField]
+    private Transform leftEye;
+    [SerializeField]
+    private Transform rightEye;
+
+    private GameObject leftTrail;
+    private GameObject rightTrail;
 
     public float dashCooldown = 0.5f;
     [SerializeField]
@@ -85,10 +95,12 @@ public class WolfBehavior : MonoBehaviour {
     {
         transform.parent.GetComponent<PlayerMovement>().maximumSpeed = dashSpeed;
         transform.parent.GetComponent<PlayerMovement>().accelerationRate = dashAcceleration;
+        spawnTrail();
         this.DelayedCall(() =>
         {
             transform.parent.GetComponent<PlayerMovement>().maximumSpeed = GetComponent<WolfInfo>().maximumSpeed;
             transform.parent.GetComponent<PlayerMovement>().accelerationRate = GetComponent<WolfInfo>().accelerationRate;
+            deleteTrail();
         }, dashDuration);
     }
 
@@ -101,11 +113,25 @@ public class WolfBehavior : MonoBehaviour {
                 Herd herd = sheepDetector.GetHerd();
                 if (herd.MemberCount() <= maxSheepEaten)
                 {
-                    GameObject instantiatedScratch = Instantiate(scratchAnimation);
+                    GameObject instantiatedScratch = Instantiate(scratchAnimationPrefab);
                     instantiatedScratch.transform.position = herd.GetMiddle();
                     herd.Eat();
                 }
             }
         }
+    }
+
+    void spawnTrail()
+    {
+        leftTrail = Instantiate(dashTrailPrefab, leftEye);
+        leftTrail.transform.position = leftEye.position;
+        rightTrail = Instantiate(dashTrailPrefab, rightEye);
+        rightTrail.transform.position = rightEye.position;
+    }
+
+    void deleteTrail()
+    {
+        leftTrail.transform.SetParent(null);
+        rightTrail.transform.SetParent(null);
     }
 }
