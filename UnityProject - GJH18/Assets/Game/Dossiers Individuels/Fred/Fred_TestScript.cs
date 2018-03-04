@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class Fred_TestScript : MonoBehaviour
 {
-    public void LoadScene(SceneInfo sceneInfo)
+    public float strength = 1.2f;
+    public float duration = 0.2f;
+    public VectorShaker shaker;
+
+    void Start()
     {
-        //PersistentLoader.LoadIfNotLoaded();
-        LoadingScreen.TransitionTo(sceneInfo.SceneName, null);
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            shaker.Shake(strength, duration);
+        }
     }
 }
