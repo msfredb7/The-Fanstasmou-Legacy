@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BergerBehavior : MonoBehaviour {
 
@@ -9,6 +10,17 @@ public class BergerBehavior : MonoBehaviour {
         Repulse = 0,
         Attract = 1
     }
+
+    [SerializeField]
+    private GameObject eyeBurst;
+    [SerializeField]
+    private Transform leftEye;
+    [SerializeField]
+    private Transform rightEye;
+
+    [SerializeField]
+    private Transform normalEyes;
+
 
     public BergerMode currentMode = BergerMode.Repulse;
 
@@ -98,7 +110,14 @@ public class BergerBehavior : MonoBehaviour {
             }
             CallingBark();
             canCallingBark = false;
-            this.DelayedCall(() => { canCallingBark = true; }, callingBarkCooldown);
+            this.DelayedCall(() => {
+                canCallingBark = true;
+                normalEyes.GetComponent<SpriteRenderer>().DOFade(1, 0.1f).OnComplete(delegate
+                {
+                    Instantiate(eyeBurst, leftEye.transform.position, Quaternion.identity, leftEye);
+                    Instantiate(eyeBurst, rightEye.transform.position, Quaternion.identity, rightEye);
+                });    
+            }, callingBarkCooldown);
         }
         if (inputButtons.GetPlayerA())
         {
@@ -187,6 +206,7 @@ public class BergerBehavior : MonoBehaviour {
 
     public void CallingBark()
     {
+        normalEyes.GetComponent<SpriteRenderer>().DOFade(0, 0.1f);
         Game.Instance.sfx.PlayDogUltimate();
         GameObject obj = Instantiate(MegaBarkPrefab);
         obj.transform.position = transform.position;
