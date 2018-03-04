@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 4396929959162772}
   - component: {fileID: 212918063956495850}
   - component: {fileID: 95376318052701522}
+  - component: {fileID: 114661998790744062}
   m_Layer: 0
   m_Name: Foin
   m_TagString: Untagged
@@ -164,6 +165,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114661998790744062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181531986556474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f88c6904421190419369885c8b85b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1427170128320642, guid: d9f7a553dcdf40d478e98f1cc91e7cb9, type: 2}
 --- !u!114 &114699549701067150
 MonoBehaviour:
   m_ObjectHideFlags: 1

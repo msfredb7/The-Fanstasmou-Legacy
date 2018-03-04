@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class WolfBehavior : MonoBehaviour {
 
@@ -12,6 +13,9 @@ public class WolfBehavior : MonoBehaviour {
     private Transform leftEye;
     [SerializeField]
     private Transform rightEye;
+
+    [SerializeField]
+    private Transform normalEyes;
 
     private GameObject leftTrail;
     private GameObject rightTrail;
@@ -80,7 +84,14 @@ public class WolfBehavior : MonoBehaviour {
             Game.Instance.sfx.PlayWolfDashSound();
             dash();
             canDash = false;
-            this.DelayedCall(() => { canDash = true; }, dashCooldown);
+            this.DelayedCall(() => 
+            {
+                canDash = true;
+                normalEyes.GetComponent<SpriteRenderer>().DOFade(1, 0.1f).OnComplete(delegate 
+                {
+                    
+                });
+            }, dashCooldown);
         }
 
         if (IsBumped)
@@ -143,6 +154,7 @@ public class WolfBehavior : MonoBehaviour {
     {
         leftTrail.transform.SetParent(null);
         rightTrail.transform.SetParent(null);
+        normalEyes.GetComponent<SpriteRenderer>().DOFade(0, 0);
     }
 
 
