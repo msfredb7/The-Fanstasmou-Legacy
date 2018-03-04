@@ -93,55 +93,16 @@ public class Herd{
         return herdMembers.Count;
     }
 
-    public void Eat()
+    public void Eat(PlayerInfo eater)
     {
         //Eat sheep Function to be call
 
         for (int i = 0; i < herdMembers.Count; i++)
-           (herdMembers[i].gameObject).Destroy();
+        {
+            (herdMembers[i].gameObject).Destroy();
+            Rounds.Instance.AddSheepEaten(1, eater);
+        }
+         
         HerdList.Instance.RemoveHerd(this);
     }
-
-    public void FixedUpdate()
-    {
-        //CalculateBehaviors();
-    }
-
-    /*
-    public void CalculateBehaviors()
-    {
-        Vector2 middle = GetMiddle();
-
-        m_FSeek = Vector2.zero;
-        AttractF(middle);
-    }
-
-
-    private void AttractF(Vector2 middle)
-    {
-        m_FSeek = Vector2.zero;
-
-        List<Attract> attractions = PlayerContainer.Instance.GetAllAttraction();
-        for (int i = 0; i < attractions.Count; i++)
-        {
-            Attract A = attractions[i];
-            if ((A.position - middle).magnitude < A.range)
-                m_FSeek += HerdFollow(middle, A.position, A.range, A.strength);
-        }
-    }
-    private Vector2 HerdFollow(Vector2 middle, Vector2 target, float range = 0, float playerPower = 0)
-    {
-        float targetDistance = 1;
-
-
-        Vector2 v = middle - target;
-        float influence = Mathf.Clamp(1 - (v.magnitude / range), 0, 1);
-
-        influence = Mathf.Pow(influence, playerPower);
-
-        Vector2 ForceTot = v.normalized * herdMembers[0].GetComponent<SheepComponent>().m_MaxSpeed * influence;
-
-        return ForceTot;
-
-       */
 }

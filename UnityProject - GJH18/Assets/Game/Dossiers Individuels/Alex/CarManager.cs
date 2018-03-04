@@ -18,10 +18,13 @@ public class CarManager : MonoBehaviour {
 
     void Start()
     {
-        this.DelayedCall(delegate ()
+        Game.OnGameStart += delegate ()
         {
-            SpawnCarsLoop();
-        },startSpawningCarsAt);
+            this.DelayedCall(delegate ()
+            {
+                SpawnCarsLoop();
+            }, startSpawningCarsAt);
+        };
     }
 
     void SpawnCarsLoop()
@@ -51,6 +54,11 @@ public class CarManager : MonoBehaviour {
             GameObject newCar = Instantiate(carPrefab, Game.Instance.map.carSpawnPoint[i].position, Quaternion.identity);
             cars.Add(newCar);
             carsExiting.Add(false);
+
+            float rotationAngle = ((Vector2)(Game.Instance.map.carEnterPoint[i].position - newCar.transform.position)).ToAngle();
+            Vector3 rotation = newCar.transform.forward * rotationAngle;
+            newCar.GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.Euler(rotation);
+
             sqc.Join(newCar.transform.DOMove(Game.Instance.map.carEnterPoint[i].position,enteringAnimDuration));
         }
         Debug.Log("Son de camion ici");

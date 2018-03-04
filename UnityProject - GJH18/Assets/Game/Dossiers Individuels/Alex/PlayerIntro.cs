@@ -55,7 +55,7 @@ public class PlayerIntro : MonoBehaviour {
             wolfies[i].GetComponentInChildren<CharacterOrientation>().GetComponentInChildren<Animator>().SetBool("running", true);
 
             float rotationAngle = ((Vector2)(Game.Instance.map.spawnpointWolfEnter[doSpawnCount].position - wolfies[i].transform.position)).ToAngle();
-            Vector3 rotation = transform.forward * rotationAngle;
+            Vector3 rotation = wolfies[i].transform.forward * rotationAngle;
             wolfies[i].GetComponentInChildren<WolfInfo>().gameObject.transform.rotation = Quaternion.Euler(rotation);
 
             sqc.Join(wolfies[i].transform.DOMove(Game.Instance.map.spawnpointWolfEnter[doSpawnCount].position, animSpeed));
