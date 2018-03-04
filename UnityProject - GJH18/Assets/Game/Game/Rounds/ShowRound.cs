@@ -10,6 +10,8 @@ public class ShowRound : MonoBehaviour {
     public WindowAnimation windowAnimation;
     public Action onComplete;
 
+    public float WindowDuration = 3f;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -32,6 +34,6 @@ public class ShowRound : MonoBehaviour {
                 Scenes.UnloadAsync(RoundSceneInfo);
                 _onComplete();
             });
-        }, 3f);
+        }, WindowDuration);
     }
 }

@@ -6,18 +6,23 @@ using CCC.DesignPattern;
 
 public class Rounds : PublicSingleton<Rounds>
 {
-
     [HideInInspector]
     public int CurrentRound;
+
+    public int nbRounds = 4;
 
     public Action onComplet;
 
     public SceneInfo BeginRoundScene;
     public SceneInfo EndRoundScene;
     public SceneInfo GameSceneInfo;
+    public SceneInfo EndGameSceneInfo;
+    public SceneInfo CharacterSelectSceneInfo;
 
     public Team TeamOne;
     public Team TeamTwo;
+
+    private bool roundEnded;
 
     void Start () {
         CurrentRound = 1;
@@ -26,14 +31,17 @@ public class Rounds : PublicSingleton<Rounds>
     }
 	
 	void Update () {
-
-        if (HerdList.Instance.GetSheepCount() == 0)
-            Debug.Log("Wolves Win!");
+        if (!roundEnded && HerdList.Instance != null && HerdList.Instance.GetSheepCount() == 0)
+        {
+            roundEnded = true;
+            EndRound(OnRoundEnd);
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             EndRound(OnRoundEnd);
         }
+
 	}
 
     public void BeginNextRound(Action _onComplete)
@@ -56,9 +64,27 @@ public class Rounds : PublicSingleton<Rounds>
 
     public void EndRound(Action _onComplete)
     {
-        Scenes.Load(EndRoundScene, (EndRoundScene) =>
+        if (CurrentRound == nbRounds)
         {
-            EndRoundScene.FindRootObject<ShowRound>().Show(_onComplete);
+            Scenes.Load(EndRoundScene, (EndRoundScene) =>
+            {
+                EndRoundScene.FindRootObject<ShowRound>().Show(OnGameEnd);
+            });
+        }
+        else
+        {
+            Scenes.Load(EndRoundScene, (EndRoundScene) =>
+            {
+                EndRoundScene.FindRootObject<ShowRound>().Show(_onComplete);
+            });
+        }
+    }
+
+    public void EndGame(Action _onComplete)
+    {
+        Scenes.Load(EndGameSceneInfo, (EndGameScene) =>
+        {
+            EndGameScene.FindRootObject<ShowRound>().Show(_onComplete);
         });
     }
 
@@ -67,6 +93,18 @@ public class Rounds : PublicSingleton<Rounds>
         LoadingScreen.TransitionTo(GameSceneInfo.SceneName, null);
         SwapTeams();
         CurrentRound++;
+        roundEnded = false;
+    }
+
+    public void OnGameEnd()
+    {
+        Scenes.Load(EndGameSceneInfo, (EndGameScene) =>
+        {
+            EndGameScene.FindRootObject<ShowRound>().Show(delegate()
+            {
+                LoadingScreen.TransitionTo(CharacterSelectSceneInfo.SceneName, null);
+            });
+        });
     }
 
     public void AddSheepRescued(int _nbSheepRescued, PlayerInfo _playerInfo)
