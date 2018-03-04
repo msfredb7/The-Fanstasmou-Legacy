@@ -61,15 +61,29 @@ public class CharacterSelection : MonoBehaviour {
             if (FourPlayers && !twoShepherdTwoWolf())
             {
                 MessagePopup.DisplayMessage("Il faut avoir 2 bergers et 2 loups pour pouvoir jouer");
-                
             }
             else
             {
-                LoadingScreen.TransitionTo(GameScene.SceneName, null);
-                isStartPressed = true;
+                loadGameScene();
             }
         }
         wolfDogDifference = 0;
+    }
+
+    private void loadGameScene()
+    {
+        foreach (Transform child in transform)
+        {
+            SelectionInputs playerSelectionInputs = child.GetComponent<SelectionInputs>();
+
+            if (playerSelectionInputs.team == SelectionInputs.Team.None)
+            {
+                AddPlayerToTeam(child, playerSelectionInputs);
+            }
+        }
+
+        LoadingScreen.TransitionTo(GameScene.SceneName, null);
+        isStartPressed = true;
     }
 
     private void AddPlayerToTeam(Transform _player, SelectionInputs _playerSelectionInputs)
@@ -78,6 +92,11 @@ public class CharacterSelection : MonoBehaviour {
         if (_playerSelectionInputs.team == SelectionInputs.Team.Shepherd) wolfDogDifference++;
         else if (_playerSelectionInputs.team == SelectionInputs.Team.Wolf) wolfDogDifference--;
         PlayerPrefs.SetInt(playerAxis.player + " team", (int)_playerSelectionInputs.team);
+    }
+
+    private void AddPlayerToTeam(Transform _player, SelectionInputs.Team _team)
+    {
+        PlayerPrefs.SetInt(GetComponent<InputPlayerAxis>().player + " team", (int)_team);
     }
 
     private bool twoShepherdTwoWolf()

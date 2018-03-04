@@ -102,8 +102,8 @@ public class WolfBehavior : MonoBehaviour {
                 canDash = true;
                 normalEyes.GetComponent<SpriteRenderer>().DOFade(1, 0.1f).OnComplete(delegate 
                 {
-                    //Instantiate(eyeBurst, leftEye.transform.position, Quaternion.identity, leftEye);
-                    //Instantiate(eyeBurst, rightEye.transform.position, Quaternion.identity, rightEye);
+                    Instantiate(eyeBurst, leftEye.transform.position, Quaternion.identity, leftEye);
+                    Instantiate(eyeBurst, rightEye.transform.position, Quaternion.identity, rightEye);
                 });
             }, dashCooldown);
         }
