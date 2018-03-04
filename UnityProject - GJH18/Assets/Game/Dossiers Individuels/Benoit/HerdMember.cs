@@ -41,7 +41,7 @@ public class HerdMember : MonoBehaviour
 
     public void Update()
     {
-        Debug.DrawLine(transform.position, (Vector3)herd.GetMiddle(), Color.red);
+        //Debug.DrawLine(transform.position, (Vector3)herd.GetMiddle(), Color.red);
 
         var endangered = herd.MemberCount() <= WolfBehavior.maxSheepEaten;
         endangeredVisuals.enabled = endangered;
@@ -65,10 +65,31 @@ public class HerdMember : MonoBehaviour
         return herd;
     }
 
-    void OnDestroy()
+    public void OnDestroy()
     {
         if (endangeredVisuals_TR != null && Application.isPlaying)
             Destroy(endangeredVisuals_TR.gameObject);
     }
 
+
+
+    public void Evac()
+    {
+        List<PlayerInfo> bergers = Game.Instance.GetDoggies();
+
+        float minDistance = float.MaxValue;
+        PlayerInfo closestPlayer = null;
+        for (int i = 0; i < bergers.Count; i++)
+        {
+            float dist = ((Vector2)transform.position - (Vector2)bergers[i].transform.position).magnitude;
+            if (dist < minDistance)
+                closestPlayer = bergers[i];
+        }
+        if(closestPlayer != null && Rounds.Instance != null)
+        {
+            Rounds.Instance.AddSheepEaten(1, closestPlayer);
+            herd.RemoveMember(this);
+            Destroy(gameObject);
+        }
+    }
 }
