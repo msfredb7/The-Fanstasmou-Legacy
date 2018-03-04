@@ -16,11 +16,13 @@ public class Rounds : PublicSingleton<Rounds>
     public SceneInfo EndRoundScene;
     public SceneInfo GameSceneInfo;
 
-    public List<PlayerInfo> TeamOne;
-    public List<PlayerInfo> TeamTwo;
+    public Team TeamOne;
+    public Team TeamTwo;
 
     void Start () {
         CurrentRound = 1;
+        TeamOne = new Team();
+        TeamTwo = new Team();
     }
 	
 	void Update () {
@@ -34,16 +36,13 @@ public class Rounds : PublicSingleton<Rounds>
     {
         if (CurrentRound % 2 == 1)
         {
-            TeamOne = new List<PlayerInfo>();
-            TeamTwo = new List<PlayerInfo>();
-
-            TeamOne = Game.Instance.GetDoggies();
-            TeamTwo = Game.Instance.GetWolves();
+            TeamOne.PlayersInfo = Game.Instance.GetDoggies();
+            TeamTwo.PlayersInfo = Game.Instance.GetWolves();
         }
         else if (CurrentRound % 2 == 0)
         {
-            TeamOne = Game.Instance.GetWolves();
-            TeamTwo = Game.Instance.GetDoggies();
+            TeamOne.PlayersInfo = Game.Instance.GetWolves();
+            TeamTwo.PlayersInfo = Game.Instance.GetDoggies();
         }
         Scenes.Load(BeginRoundScene, (RoundScene) => 
         {
@@ -64,6 +63,30 @@ public class Rounds : PublicSingleton<Rounds>
         LoadingScreen.TransitionTo(GameSceneInfo.SceneName, null);
         SwapTeams();
         CurrentRound++;
+    }
+
+    public void AddSheepRescued(int _nbSheepRescued, PlayerInfo _playerInfo)
+    {
+        if (TeamOne.PlayersInfo.Contains(_playerInfo))
+        {
+            TeamOne.NBSheepRescued += _nbSheepRescued;
+        }
+        else if (TeamTwo.PlayersInfo.Contains(_playerInfo))
+        {
+            TeamTwo.NBSheepRescued += _nbSheepRescued;
+        }
+    }
+
+    public void AddSheepEaten(int _nbSheepEaten, PlayerInfo _playerInfo)
+    {
+        if (TeamOne.PlayersInfo.Contains(_playerInfo))
+        {
+            TeamOne.NbSheepEaten += _nbSheepEaten;
+        }
+        else if (TeamTwo.PlayersInfo.Contains(_playerInfo))
+        {
+            TeamTwo.NbSheepEaten += _nbSheepEaten;
+        }
     }
 
     private void SwapTeams()
