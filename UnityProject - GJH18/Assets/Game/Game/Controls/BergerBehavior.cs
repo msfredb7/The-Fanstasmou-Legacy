@@ -59,6 +59,9 @@ public class BergerBehavior : MonoBehaviour {
         RepulseAnimation.transform.localPosition = Vector3.zero;
         AttractAnimation.transform.localPosition = Vector3.zero;
 
+        AttractAnimation.SetActive(false);
+        RepulseAnimation.SetActive(true);
+
         barkAttract.active = false;
 
         if (inputButtons == null)

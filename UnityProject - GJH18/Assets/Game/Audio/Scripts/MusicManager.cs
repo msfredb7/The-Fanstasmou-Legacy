@@ -17,11 +17,13 @@ public class MusicManager : MonoBehaviour {
     {
         if (playOnStart)
         {
+            Game.Instance.sfx.PlayWind();
             PlayNextSong();
         } else
         {
             Game.OnGameStart += delegate ()
             {
+                Game.Instance.sfx.PlayWind();
                 PlayNextSong();
             };
         }

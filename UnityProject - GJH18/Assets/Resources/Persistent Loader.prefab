@@ -96,9 +96,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentRound: 0
+  nbRounds: 4
   BeginRoundScene: {fileID: 11400000, guid: c769bec824090ee4c94214bdca39f452, type: 2}
   EndRoundScene: {fileID: 11400000, guid: 77c477f9c7422ae46b58650bf14f79d3, type: 2}
   GameSceneInfo: {fileID: 11400000, guid: 004c9b3af2e0b22459bb80a03f0d9c30, type: 2}
+  EndGameSceneInfo: {fileID: 11400000, guid: 520c72d17dda4b9459bef4c1a63b4498, type: 2}
+  CharacterSelectSceneInfo: {fileID: 11400000, guid: ce89d3c5c757293438f44e0a2459d68e,
+    type: 2}
 --- !u!114 &114897648460914260
 MonoBehaviour:
   m_ObjectHideFlags: 1
