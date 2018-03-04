@@ -41,11 +41,15 @@ public class SpawnerSheep : MonoBehaviour {
 
         for (int i = 0; i < NbToSpawn; i++)
         {
+            GameObject newSheep = null;
             pos = new Vector3(Random.Range(m_xMin, m_xMax), Random.Range(m_yMin, m_yMax));
             if(Random.Range(0.0f,1.0f) <= chanceOfSpawningBlackSheep)
-                Instantiate(blackSheepPrefab, pos, Quaternion.identity, m_UnitContain);
+                newSheep = Instantiate(blackSheepPrefab, pos, Quaternion.identity, m_UnitContain);
             else
-                Instantiate(m_SheepPrefab, pos, Quaternion.identity, m_UnitContain);
+                newSheep = Instantiate(m_SheepPrefab, pos, Quaternion.identity, m_UnitContain);
+            HerdMember member = newSheep.GetComponent<HerdMember>();
+            if (member)
+                member.DisableUI();
         }
     }
 
