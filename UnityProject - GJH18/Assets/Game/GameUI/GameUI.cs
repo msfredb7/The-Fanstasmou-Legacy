@@ -9,6 +9,9 @@ public class GameUI : MonoBehaviour {
 
     public ButtonPopUp buttonPopUp;
 
+    public AudioMixerSaver audioMixerSaver;
+    public float pauseMenuVolume = -40;
+
     public Image dogsArrive;
     public Image wolfsArrive;
     public float animalArriveAnimDuration = 1;
@@ -22,6 +25,13 @@ public class GameUI : MonoBehaviour {
     {
         if (gameIsPaused)
             return false;
+
+        // Change Volume in Pause menu
+        DOTween.To(() => audioMixerSaver.GetVolume(AudioMixerSaver.ChannelType.Music), (x) =>
+        {
+            audioMixerSaver.SetVolume(AudioMixerSaver.ChannelType.Music, x);
+        }, pauseMenuVolume, 1);
+
         Time.timeScale = 0;
         pauseOverlay.SetActive(true);
         gameIsPaused = true;
@@ -32,6 +42,13 @@ public class GameUI : MonoBehaviour {
     {
         if (!gameIsPaused)
             return false;
+
+        // Change Volume in Pause menu
+        DOTween.To(() => audioMixerSaver.GetVolume(AudioMixerSaver.ChannelType.Music), (x) =>
+        {
+            audioMixerSaver.SetVolume(AudioMixerSaver.ChannelType.Music, x);
+        }, 0, 1);
+
         Time.timeScale = 1;
         pauseOverlay.SetActive(false);
         gameIsPaused = false;
