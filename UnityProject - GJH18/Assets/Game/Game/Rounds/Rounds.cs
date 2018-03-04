@@ -110,6 +110,7 @@ public class Rounds : PublicSingleton<Rounds>
     {
         if (CurrentRound == nbRounds)
         {
+            Game.instance.gameUI.timer.timerStarted = false;
             Scenes.Load(EndRoundScene, (EndRoundScene) =>
             {
                 EndRoundScene.FindRootObject<ShowRound>().Show(OnGameEnd);
@@ -117,6 +118,7 @@ public class Rounds : PublicSingleton<Rounds>
         }
         else
         {
+            Game.instance.gameUI.timer.timerStarted = false;
             Scenes.Load(EndRoundScene, (EndRoundScene) =>
             {
                 EndRoundScene.FindRootObject<ShowRound>().Show(_onComplete);
