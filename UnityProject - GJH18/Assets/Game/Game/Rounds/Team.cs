@@ -5,8 +5,8 @@ using UnityEngine;
 public class Team {
 
     public List<PlayerInfo> PlayersInfo;
-    public int NBSheepRescued;
-    public int NbSheepEaten;
+    public int NBSheepRescued = 0;
+    public int NbSheepEaten = 0;
 
     public Team()
     {

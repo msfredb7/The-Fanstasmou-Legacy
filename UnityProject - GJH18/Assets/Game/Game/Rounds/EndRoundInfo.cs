@@ -7,10 +7,21 @@ public class EndRoundInfo : MonoBehaviour {
 
     public Text roundCountText;
 
-	// Use this for initialization
-	void Start () {
+    public Text LeftRescued;
+    public Text LeftEaten;
+
+    public Text RightRescued;
+    public Text RightEaten;
+
+    // Use this for initialization
+    void Start () {
         roundCountText.text += Rounds.Instance.CurrentRound;
-	}
+        LeftRescued.text = "Moutons sauvés : " + Rounds.Instance.TeamOne.NBSheepRescued;
+        LeftEaten.text = "Moutons mangés : " + Rounds.Instance.TeamOne.NbSheepEaten;
+
+        RightRescued.text = Rounds.Instance.TeamTwo.NBSheepRescued + " : Moutons sauvés";
+        RightEaten.text = Rounds.Instance.TeamTwo.NbSheepEaten + " : Moutons mangés";
+    }
 	
 	// Update is called once per frame
 	void Update () {
