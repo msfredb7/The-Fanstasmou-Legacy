@@ -10,6 +10,7 @@ public class SFXManager : MonoBehaviour {
     public AudioAsset wolfHowl;
     public AudioAssetGroup dogHurt;
     public AudioAssetGroup wolfDash;
+    public AudioAsset wolfBite;
 
     public void PlayDogBark()
     {
@@ -39,5 +40,10 @@ public class SFXManager : MonoBehaviour {
     public void PlayDogHurtSound()
     {
         DefaultAudioSources.PlaySFX(dogHurt.clips[Random.Range(0, dogHurt.clips.Length - 1)],0,0.5f);
+    }
+
+    public void PlayWolfBiteSound()
+    {
+        DefaultAudioSources.PlaySFX(wolfBite);
     }
 }

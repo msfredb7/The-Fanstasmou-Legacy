@@ -53,6 +53,9 @@ TagManager:
   - name: Foin
     uniqueID: 394234335
     locked: 0
+  - name: Under Truck
+    uniqueID: 2586987387
+    locked: 0
   - name: Sheeps
     uniqueID: 300287447
     locked: 0
@@ -64,6 +67,9 @@ TagManager:
     locked: 0
   - name: Over foin
     uniqueID: 3496484145
+    locked: 0
+  - name: Truck
+    uniqueID: 3445053473
     locked: 0
   - name: Cloud
     uniqueID: 3732526911

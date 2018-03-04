@@ -665,6 +665,7 @@ MonoBehaviour:
   wolfHowl: {fileID: 11400000, guid: 396a665c5e27d2044a81ea790533fe77, type: 2}
   dogHurt: {fileID: 11400000, guid: a333cc25b652a6f49bdbba1b35a48402, type: 2}
   wolfDash: {fileID: 11400000, guid: 50d4835ab1c8de546b130394e6600047, type: 2}
+  wolfBite: {fileID: 11400000, guid: 30758f35cb1181b438f99e458c68ba89, type: 2}
 --- !u!1 &831751624
 GameObject:
   m_ObjectHideFlags: 0
