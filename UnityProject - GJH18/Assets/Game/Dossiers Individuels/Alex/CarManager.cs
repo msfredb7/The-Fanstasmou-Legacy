@@ -87,8 +87,11 @@ public class CarManager : MonoBehaviour {
             {
                 this.DelayedCall(delegate ()
                 {
-                    cars[i].GetComponentInChildren<Animator>().SetBool("closed", true);
-                    evacuationSpeed = cars[i].GetComponent<Camion>().EvacSpeed;
+                    if(cars[i] != null)
+                    {
+                        cars[i].GetComponentInChildren<Animator>().SetBool("closed", true);
+                        evacuationSpeed = cars[i].GetComponent<Camion>().EvacSpeed;
+                    }
                 }, cars[i].GetComponent<Camion>().EvacSpeed);
             }
             else
