@@ -19,6 +19,9 @@ public class WolfBehavior : MonoBehaviour {
     [SerializeField]
     private Transform normalEyes;
 
+
+    public GameObject RepusleAnimation;
+
     private GameObject leftTrail;
     private GameObject rightTrail;
 
@@ -49,6 +52,9 @@ public class WolfBehavior : MonoBehaviour {
     {
         PlayerContainer.Instance.AddWolves(this);
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+        RepusleAnimation.transform.SetParent(transform.parent);
+        RepusleAnimation.transform.localScale = Vector3.one * repulse.range * 0.7f;
+
 
         if (inputButtons == null)
             GetInputButtonsRef();

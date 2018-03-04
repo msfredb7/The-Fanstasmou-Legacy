@@ -33,6 +33,9 @@ public class BergerBehavior : MonoBehaviour {
         PlayerContainer.Instance.AddBerger(this);
         attract.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+        RepulseAnimation.transform.SetParent(transform.parent);
+        AttractAnimation.transform.SetParent(transform.parent);
+
         SetAttract();
 
 
