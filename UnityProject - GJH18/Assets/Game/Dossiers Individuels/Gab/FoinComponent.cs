@@ -34,9 +34,9 @@ public class FoinComponent : MonoBehaviour
 
             m_SpawnS.SpawnPrefAtLocation(tr.position);
 
-            GetComponentInParent<SpawnerFoin>().FoinRemove(tr);
+            gameObject.GetComponentInParent<SpawnerFoin>().FoinRemove(tr);
 
-            Destroy(gameObject, 1);
+            Destroy(gameObject);
         }
     }
 }
