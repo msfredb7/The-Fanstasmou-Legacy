@@ -15,23 +15,22 @@ public class PlayerIntro : MonoBehaviour {
     {
         Game.OnGameStart += () =>
         {
-            Game.Instance.gameUI.wolfTimer.GetComponent<WolfTimer>().SetCounterValue(wolfIntroDelay);
-            Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(1, animSpeed);
             this.DelayedCall(delegate () {
-                Game.Instance.gameUI.wolfTimer.GetComponent<CanvasGroup>().DOFade(0, animSpeed);
                 Game.Instance.sfx.PlayWolfHowl();
-                IntroTheWolves(delegate () {
-                    Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowWolfIndicator();
-                    Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowWolfIndicator();
-                    Game.Instance.playerThree.GetComponent<PlayerIndicator>().ShowWolfIndicator();
-                    Game.Instance.playerFour.GetComponent<PlayerIndicator>().ShowWolfIndicator();
-                    this.DelayedCall(delegate ()
-                    {
-                        Game.Instance.playerOne.GetComponent<PlayerIndicator>().HidePlayerIndicator();
-                        Game.Instance.playerTwo.GetComponent<PlayerIndicator>().HidePlayerIndicator();
-                        Game.Instance.playerThree.GetComponent<PlayerIndicator>().HidePlayerIndicator();
-                        Game.Instance.playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
-                    }, indicatorDelay);
+                Game.Instance.gameUI.WolfsArrive(delegate() {
+                    IntroTheWolves(delegate () {
+                        Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowWolfIndicator();
+                        Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowWolfIndicator();
+                        Game.Instance.playerThree.GetComponent<PlayerIndicator>().ShowWolfIndicator();
+                        Game.Instance.playerFour.GetComponent<PlayerIndicator>().ShowWolfIndicator();
+                        this.DelayedCall(delegate ()
+                        {
+                            Game.Instance.playerOne.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                            Game.Instance.playerTwo.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                            Game.Instance.playerThree.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                            Game.Instance.playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
+                        }, indicatorDelay);
+                    });
                 });
             }, wolfIntroDelay);
         };
