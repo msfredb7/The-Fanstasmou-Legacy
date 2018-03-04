@@ -174,6 +174,7 @@ public class BergerBehavior : MonoBehaviour {
     public void CallingBark()
     {
         barkAttract.active = true;
+        Game.Instance.sfx.PlayDogUltimate();
         this.DelayedCall(() => { barkAttract.active = false; }, callingBarkEffectLength);
     }
 
