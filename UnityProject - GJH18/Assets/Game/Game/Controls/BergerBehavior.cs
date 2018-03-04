@@ -24,13 +24,15 @@ public class BergerBehavior : MonoBehaviour {
     public GameObject RepulseAnimation;
     public GameObject AttractAnimation;
 
+    public GameObject MegaBarkPrefab;
+
     public float changeModeCooldown = 0.5f;
     private bool canChange = true;
 
     public float knockbackCooldown = 0.5f;
     private bool canKockback = true;
 
-    public float callingBarkCooldown = 20.0f;
+    public float callingBarkCooldown = 10.0f;
     private bool canCallingBark = true;
     public float callingBarkEffectLength = 3f;
 
@@ -179,6 +181,10 @@ public class BergerBehavior : MonoBehaviour {
     {
         barkAttract.active = true;
         Game.Instance.sfx.PlayDogUltimate();
+        GameObject obj = Instantiate(MegaBarkPrefab, transform);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localScale = Vector3.one * 2.0f;
+
         this.DelayedCall(() => { barkAttract.active = false; }, callingBarkEffectLength);
     }
 
