@@ -287,7 +287,7 @@ public class SheepComponent : MonoBehaviour
         if (range == -1)
             range = m_FleeRange;
 
-        return GetRepulsePowerFrom(target, range, m_FleePower) * playerPower / 10;
+        return GetRepulsePowerFrom(target, range, m_FleePower) * playerPower;
     }
 
     private Vector2 Evade(Rigidbody2D poursuivant, float range = -1, float playerPower = 1)
