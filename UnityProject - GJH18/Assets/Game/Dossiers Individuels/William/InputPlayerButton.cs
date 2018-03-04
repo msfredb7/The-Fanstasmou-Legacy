@@ -37,7 +37,10 @@ public class InputPlayerButton : MonoBehaviour {
         if (Game.Instance != null)
         {
             if (GetComponent<PlayerInfo>() != null)
+            {
                 realPlayerNumber = GetComponent<PlayerInfo>().player;
+                player = realPlayerNumber;
+            }
             else
                 realPlayerNumber = player;
         }

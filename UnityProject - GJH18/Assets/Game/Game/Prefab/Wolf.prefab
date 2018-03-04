@@ -315,8 +315,7 @@ MonoBehaviour:
   dashAcceleration: 10
   dashDuration: 0.2
   eatCooldown: 0.5
-  maxSheepEaten: 1
-  triggerSensitivity: 0.2
+  triggerSensitivity: 0
   repulse:
     active: 1
     range: 3.5

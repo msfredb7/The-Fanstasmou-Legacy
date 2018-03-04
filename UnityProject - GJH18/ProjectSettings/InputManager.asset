@@ -480,10 +480,10 @@ InputManager:
     gravity: 1
     dead: 0.1
     sensitivity: 1
-    snap: 0
-    invert: 0
+    snap: 1
+    invert: 1
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 1
   - serializedVersion: 3
     m_Name: TriggerPlayerTwo
@@ -496,10 +496,10 @@ InputManager:
     gravity: 1
     dead: 0.1
     sensitivity: 1
-    snap: 0
-    invert: 0
+    snap: 1
+    invert: 1
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: TriggerPlayerThree
@@ -512,10 +512,10 @@ InputManager:
     gravity: 1
     dead: 0.1
     sensitivity: 1
-    snap: 0
-    invert: 0
+    snap: 1
+    invert: 1
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 3
   - serializedVersion: 3
     m_Name: TriggerPlayerFour
@@ -528,8 +528,8 @@ InputManager:
     gravity: 1
     dead: 0.1
     sensitivity: 1
-    snap: 0
-    invert: 0
+    snap: 1
+    invert: 1
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 4
