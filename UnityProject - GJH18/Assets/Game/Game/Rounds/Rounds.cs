@@ -85,6 +85,7 @@ public class Rounds : PublicSingleton<Rounds>
     public void SubscribeTimerToStart()
     {
         Game.OnGameStart += StartTimer;
+        Game.OnGameStart += OnGameStart;
     }
 
     public void BeginNextRound(Action _onComplete)
@@ -149,6 +150,14 @@ public class Rounds : PublicSingleton<Rounds>
                 LoadingScreen.TransitionTo(CharacterSelectSceneInfo.SceneName, null);
             });
         });
+    }
+
+    public void OnGameStart()
+    {
+        this.DelayedCall(() =>
+        {
+            canUpdate = true;
+        }, 2);
     }
 
     public void AddSheepRescued(int _nbSheepRescued, PlayerInfo _playerInfo)
