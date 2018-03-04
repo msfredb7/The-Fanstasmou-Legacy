@@ -11,11 +11,13 @@ public class ButtonPopUp : MonoBehaviour {
     public GameObject buttonB;
     public GameObject buttonX;
     public GameObject buttonY;
+    public GameObject buttonTrigger;
 
     bool AWaitForFocusComplete = false;
     bool BWaitForFocusComplete = false;
     bool XWaitForFocusComplete = false;
     bool YWaitForFocusComplete = false;
+    bool TriggerWaitForFocusComplete = true;
 
     public float fadeDuration = 1;
 
@@ -24,7 +26,8 @@ public class ButtonPopUp : MonoBehaviour {
         A = 0,
         B = 1,
         X = 2,
-        Y = 3
+        Y = 3,
+        Trigger =4
     }
 
     void Start ()
@@ -33,6 +36,7 @@ public class ButtonPopUp : MonoBehaviour {
         buttonB.SetActive(false);
         buttonX.SetActive(false);
         buttonY.SetActive(false);
+        buttonTrigger.SetActive(false);
     }
 	
 	public void FocusPopupOnPosition(Vector2 uiPos, ButtonType buttonType, float duration, string text)
@@ -63,6 +67,12 @@ public class ButtonPopUp : MonoBehaviour {
                     break;
                 YWaitForFocusComplete = true;
                 FocusPopup(uiPos, buttonY, duration, text, () => { AWaitForFocusComplete = false; });
+                break;
+            case ButtonType.Trigger:
+                if (TriggerWaitForFocusComplete)
+                    break;
+                TriggerWaitForFocusComplete = true;
+                FocusPopup(uiPos, buttonTrigger, duration, text, () => { TriggerWaitForFocusComplete = false; });
                 break;
         }
     }
