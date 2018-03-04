@@ -52,7 +52,7 @@ public class FoinComponent : MonoBehaviour
 
             m_PlusSheep.Join(m_PlusSprite.GetComponent<SpriteRenderer>().DOFade(0.0f, 1.0f));
 
-            m_PlusSheep.Complete();
+            m_PlusSheep.Play();
 
             gameObject.GetComponentInParent<SpawnerFoin>().FoinRemove(tr);
 
