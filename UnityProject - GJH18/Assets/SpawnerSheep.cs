@@ -35,7 +35,7 @@ public class SpawnerSheep : MonoBehaviour {
             SpawnPrefAtLocation((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
 	}
 
-    private void SpawnPref(int NbToSpawn)
+    public void SpawnPref(int NbToSpawn)
     {
         Vector3 pos;
 
@@ -49,7 +49,7 @@ public class SpawnerSheep : MonoBehaviour {
         }
     }
 
-    private void SpawnPrefAtLocation(Vector2 loc)
+    public void SpawnPrefAtLocation(Vector2 loc)
     {
         if (Random.Range(0.0f, 1.0f) <= chanceOfSpawningBlackSheep)
             Instantiate(blackSheepPrefab, loc, Quaternion.identity, m_UnitContain);

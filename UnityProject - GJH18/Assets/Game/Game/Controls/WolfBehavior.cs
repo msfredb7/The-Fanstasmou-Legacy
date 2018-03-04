@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class WolfBehavior : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject scratchAnimation;
+    [SerializeField]
+    private GameObject dashTrailPrefab;
+    [SerializeField]
+    private Transform leftEye;
+    [SerializeField]
+    private Transform rightEye;
+
+    private GameObject leftTrail;
+    private GameObject rightTrail;
+
     public float dashCooldown = 0.5f;
     [SerializeField]
     private float dashSpeed = 10f;
@@ -65,9 +77,20 @@ public class WolfBehavior : MonoBehaviour {
             {
                 return;
             }
+            Game.Instance.sfx.PlayWolfDashSound();
             dash();
             canDash = false;
             this.DelayedCall(() => { canDash = true; }, dashCooldown);
+        }
+
+        if (IsBumped)
+        {
+            if (GetComponentInParent<Rigidbody2D>().velocity.magnitude < reactivVelocity)
+                ReactivatePlayerMovement();
+
+            reactivationTimer -= Time.deltaTime;
+            if (!IsBumped)
+                ReactivatePlayerMovement();
         }
     }
 
@@ -82,10 +105,12 @@ public class WolfBehavior : MonoBehaviour {
     {
         transform.parent.GetComponent<PlayerMovement>().maximumSpeed = dashSpeed;
         transform.parent.GetComponent<PlayerMovement>().accelerationRate = dashAcceleration;
+        spawnTrail();
         this.DelayedCall(() =>
         {
             transform.parent.GetComponent<PlayerMovement>().maximumSpeed = GetComponent<WolfInfo>().maximumSpeed;
             transform.parent.GetComponent<PlayerMovement>().accelerationRate = GetComponent<WolfInfo>().accelerationRate;
+            deleteTrail();
         }, dashDuration);
     }
 
@@ -97,8 +122,69 @@ public class WolfBehavior : MonoBehaviour {
             {
                 Herd herd = sheepDetector.GetHerd();
                 if (herd.MemberCount() <= maxSheepEaten)
+                {
+                    GameObject instantiatedScratch = Instantiate(scratchAnimation);
+                    instantiatedScratch.transform.position = herd.GetMiddle();
                     herd.Eat();
+                }
             }
         }
+    }
+    void spawnTrail()
+    {
+        leftTrail = Instantiate(dashTrailPrefab, leftEye.transform.position, Quaternion.identity, leftEye);
+        rightTrail = Instantiate(dashTrailPrefab, rightEye.transform.position, Quaternion.identity, rightEye);
+
+        leftTrail.GetComponent<TrailRenderer>().enabled = true;
+        rightTrail.GetComponent<TrailRenderer>().enabled = true;
+    }
+
+    void deleteTrail()
+    {
+        leftTrail.transform.SetParent(null);
+        rightTrail.transform.SetParent(null);
+    }
+
+
+    // BUMP DE OCEAN EMPIRE
+    [Header("Settings"), SerializeField]
+    float bumpedLinearDrag = 5;
+    [SerializeField]
+    float reactivVelocity = 0.5f;
+    [SerializeField]
+    float reactivMaxDelay = 2;
+
+    private const string CAN_ACCELERATE_KEY = "bmp";
+
+    private float reactivationTimer = 0;
+    private float standardDrag = 0;
+
+    void Awake()
+    {
+        standardDrag = GetComponentInParent<Rigidbody2D>().drag;
+    }
+
+    public void Bump(Vector2 force)
+    {
+        GetComponentInParent<Rigidbody2D>().drag = bumpedLinearDrag;
+
+        GetComponentInParent<PlayerMovement>().enabled = false;
+        reactivationTimer = reactivMaxDelay;
+
+        GetComponentInParent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+        Game.Instance.sfx.PlayDogHurtSound();
+    }
+
+    public bool IsBumped
+    {
+        get { return reactivationTimer > 0; }
+    }
+
+    void ReactivatePlayerMovement()
+    {
+        reactivationTimer = -1;
+
+        GetComponentInParent<Rigidbody2D>().drag = standardDrag;
+        GetComponentInParent<PlayerMovement>().enabled = true;
     }
 }
