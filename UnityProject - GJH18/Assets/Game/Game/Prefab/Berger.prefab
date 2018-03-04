@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMode: 0
+  repulsionStrength: 100
   attract:
     active: 0
     range: 5
@@ -159,6 +160,7 @@ MonoBehaviour:
     strength: 1
     owner: {fileID: 0}
   changeModeCooldown: 0.5
+  knockbackCooldown: 0.5
 --- !u!114 &114419342091526222
 MonoBehaviour:
   m_ObjectHideFlags: 1
