@@ -15,6 +15,8 @@ public class SFXManager : MonoBehaviour {
     public AudioAsset dogUltimate;
     public AudioAsset TruckArrive;
     public AudioAsset dogHowl;
+    public AudioAsset Wind;
+    public AudioSource AmbianceLoopSource;
 
     public void PlayDogBark()
     {
@@ -69,5 +71,10 @@ public class SFXManager : MonoBehaviour {
     public void PlayDogHowl()
     {
         DefaultAudioSources.PlaySFX(dogHowl);
+    }
+
+    public void PlayWind()
+    {
+        DefaultAudioSources.PlaySFX(Wind, 0.0f, 1.0f, AmbianceLoopSource);
     }
 }
