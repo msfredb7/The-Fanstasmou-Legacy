@@ -83,15 +83,9 @@ public partial class Game : PublicSingleton<Game>
                     {
                         Rounds.Instance.BeginNextRound(delegate ()
                         {
+                            sfx.PlayDogHowl();
                             gameUI.DogsArrive(delegate () {
                                 intros.IntroTheDoggies(delegate () {
-                                    List<PlayerInfo> doogies = GetDoggies();
-                                    for (int i = 0; i < doogies.Count; i++)
-                                    {
-                                        doogies[i].GetComponentInChildren<BergerBehavior>().ActivateFeedbacks();
-                                        doogies[i].GetComponent<PlayerMovement>().enabled = true;
-                                    }
-
                                     //Indicators
                                     playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                                     playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
@@ -119,6 +113,7 @@ public partial class Game : PublicSingleton<Game>
                                 // DOGS ARRIVE
                                 Rounds.Instance.BeginNextRound(delegate ()
                                 {
+                                    sfx.PlayDogHowl();
                                     gameUI.DogsArrive(delegate () {
                                         intros.IntroTheDoggies(delegate () {
                                             List<PlayerInfo> doogies = GetDoggies();

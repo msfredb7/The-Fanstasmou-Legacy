@@ -25,7 +25,13 @@ public class PlayerIntro : MonoBehaviour {
                             wolves[i].GetComponentInChildren<WolfBehavior>().ActivateFeedbacks();
                             wolves[i].GetComponent<PlayerMovement>().enabled = true;
                         }
-
+                        if(HerdList.Instance)
+                        {
+                            List<HerdMember> sheeps = HerdList.Instance.GetAllSheeps();
+                            for (int i = 0; i < sheeps.Count; i++)
+                                sheeps[i].EnableUI();
+                        }
+                        
                         Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowWolfIndicator();
                         Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowWolfIndicator();
                         Game.Instance.playerThree.GetComponent<PlayerIndicator>().ShowWolfIndicator();
@@ -66,6 +72,7 @@ public class PlayerIntro : MonoBehaviour {
             {
                 wolfies[i].GetComponent<PlayerMovement>().enabled = true;
                 wolfies[i].GetComponentInChildren<CharacterOrientation>().enabled = true;
+                wolfies[i].GetComponentInChildren<WolfBehavior>().enabled = true;
             }
             onComplete();
         });
@@ -96,6 +103,7 @@ public class PlayerIntro : MonoBehaviour {
             {
                 doggies[i].GetComponent<PlayerMovement>().enabled = true;
                 doggies[i].GetComponentInChildren<CharacterOrientation>().enabled = true;
+                doggies[i].GetComponentInChildren<BergerBehavior>().enabled = true;
             }
             onComplete();
         });

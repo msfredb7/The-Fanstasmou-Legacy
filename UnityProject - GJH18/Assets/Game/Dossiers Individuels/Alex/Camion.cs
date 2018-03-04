@@ -14,6 +14,8 @@ public class Camion : MonoBehaviour {
     public GameObject camionCheckpoint;
     public float EvacSpeed = 1.25f;
 
+    public GameObject sheepCaughtPrefab;
+
 
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -34,12 +36,15 @@ public class Camion : MonoBehaviour {
 
     public void EvacSheep(HerdMember sheep, Action OnComplete)
     {
+        sheep.DisableUI();
+        sheep.GetComponent<SheepComponent>().AIenabled = false;
+
         Sequence sqc = DOTween.Sequence();
         MoveToCheckpoint(sheep.transform, (Vector2)plateformCheckpoint.transform.position, sqc);
         MoveToCheckpoint(sheep.transform, (Vector2)camionCheckpoint.transform.position, sqc);
         sqc.OnComplete(()=>
         {
-            sheep.Evac();
+            sheep.Evac(sheepCaughtPrefab);
             OnComplete.Invoke();
         });
         

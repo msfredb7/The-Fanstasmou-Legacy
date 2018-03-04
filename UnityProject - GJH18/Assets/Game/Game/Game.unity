@@ -395,7 +395,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 412979868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: -3.3, z: 0}
+  m_LocalPosition: {x: -0.22, y: -4.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -668,6 +668,8 @@ MonoBehaviour:
   wolfBite: {fileID: 11400000, guid: 30758f35cb1181b438f99e458c68ba89, type: 2}
   GrassExplode: {fileID: 11400000, guid: 6ae00d5a8676c3049b5e04efc9d675bb, type: 2}
   dogUltimate: {fileID: 11400000, guid: d546eb297e6cca14eaab923a77e79cf2, type: 2}
+  TruckArrive: {fileID: 11400000, guid: 44ecbc575622c11498dcfec0be9b3b54, type: 2}
+  dogHowl: {fileID: 11400000, guid: 4481625a57e096545be2e91889c86aaa, type: 2}
 --- !u!1 &831751624
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +746,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 837348392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.95, y: -2.87, z: 0}
+  m_LocalPosition: {x: 11.07, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -800,7 +802,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 904714107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.95, y: -2.89, z: 0}
+  m_LocalPosition: {x: -10.46, y: -3.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -890,7 +892,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1091675319}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -6.03, z: 0}
+  m_LocalPosition: {x: -0.07, y: -6.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -1063,7 +1065,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1207369717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.46, y: -1.99, z: 0}
+  m_LocalPosition: {x: 8.76, y: -0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -1363,10 +1365,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carPrefab: {fileID: 1675720604190378, guid: 4fa86752577ad104ebb489d327cb7474, type: 2}
-  startSpawningCarsAt: 5
+  startSpawningCarsAt: 7.5
   delayBetweenCarSpawns: 7.5
-  carStayDuration: 5
-  enteringAnimDuration: 2
+  carStayDuration: 7.5
+  enteringAnimDuration: 1
+  doorAnimDuration: 1
 --- !u!1 &1584903476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,7 +1978,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1912172001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.99, y: -3.18, z: 0}
+  m_LocalPosition: {x: -8.93, y: -2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}

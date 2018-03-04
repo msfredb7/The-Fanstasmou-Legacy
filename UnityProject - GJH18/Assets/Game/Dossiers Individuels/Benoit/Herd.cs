@@ -93,6 +93,11 @@ public class Herd{
         return herdMembers.Count;
     }
 
+    public List<HerdMember> getMembers()
+    {
+        return herdMembers;
+    }
+
     public void Eat(PlayerInfo eater)
     {
         //Eat sheep Function to be call

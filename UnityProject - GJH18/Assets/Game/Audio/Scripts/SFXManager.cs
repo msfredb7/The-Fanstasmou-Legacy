@@ -13,6 +13,8 @@ public class SFXManager : MonoBehaviour {
     public AudioAsset wolfBite;
     public AudioAssetGroup GrassExplode;
     public AudioAsset dogUltimate;
+    public AudioAsset TruckArrive;
+    public AudioAsset dogHowl;
 
     public void PlayDogBark()
     {
@@ -57,5 +59,15 @@ public class SFXManager : MonoBehaviour {
     public void PlayDogUltimate()
     {
         DefaultAudioSources.PlaySFX(dogUltimate);
+    }
+
+    public void PlayTruckArrive()
+    {
+        DefaultAudioSources.PlaySFX(TruckArrive);
+    }
+
+    public void PlayDogHowl()
+    {
+        DefaultAudioSources.PlaySFX(dogHowl);
     }
 }

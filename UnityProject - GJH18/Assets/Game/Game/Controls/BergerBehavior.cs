@@ -12,6 +12,7 @@ public class BergerBehavior : MonoBehaviour {
 
     public BergerMode currentMode = BergerMode.Repulse;
 
+    public bool canKockBackWolves = false;
     public float repulsionStrength = 2.5f;
     public float triggerSensitivity = 0.2f;
 
@@ -128,13 +129,16 @@ public class BergerBehavior : MonoBehaviour {
     {
         if (canKockback)
         {
-            Game.Instance.sfx.PlayDogWarCry();
-            target.GetComponentInChildren<WolfBehavior>().Bump(target.GetComponentInChildren<WolfInfo>().transform.right * -1 * repulsionStrength);
-            canKockback = false;
-            this.DelayedCall(delegate ()
+            if (canKockBackWolves)
             {
-                canKockback = true;
-            }, knockbackCooldown);
+                Game.Instance.sfx.PlayDogWarCry();
+                target.GetComponentInChildren<WolfBehavior>().Bump(target.GetComponentInChildren<WolfInfo>().transform.right * -1 * repulsionStrength);
+                canKockback = false;
+                this.DelayedCall(delegate ()
+                {
+                    canKockback = true;
+                }, knockbackCooldown);
+            }
         }
     }
 

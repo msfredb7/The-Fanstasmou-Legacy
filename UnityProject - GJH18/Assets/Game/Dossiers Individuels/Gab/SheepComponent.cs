@@ -5,6 +5,9 @@ using UnityEngine;
 public class SheepComponent : MonoBehaviour
 {
 
+    public bool AIenabled = true;
+
+
     Vector2 m_Force, m_FWandering, m_FSepare, m_FAlign, m_FCohesion, m_FEvade, m_FSeek, m_FFlee;
 
     public float m_MaxSpeed;
@@ -82,6 +85,9 @@ public class SheepComponent : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (AIenabled == false)
+            return;
+
         m_Force = new Vector2(0, 0);
 
         List<VoisinInfo> lstVoisin = myself.otherVoisins;
