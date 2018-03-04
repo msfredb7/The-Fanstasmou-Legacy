@@ -6,6 +6,8 @@ using CCC.DesignPattern;
 
 public class Rounds : PublicSingleton<Rounds>
 {
+    public const float GAME_TIME = 180f;
+
     [HideInInspector]
     public int CurrentRound;
 
@@ -22,7 +24,11 @@ public class Rounds : PublicSingleton<Rounds>
     public Team TeamOne;
     public Team TeamTwo;
 
+    public float Timer = GAME_TIME;
+    private bool timerStart = false;
+
     private bool roundEnded;
+    private bool roundEndedByTimer;
 
     void Start () {
         CurrentRound = 1;
@@ -31,6 +37,17 @@ public class Rounds : PublicSingleton<Rounds>
     }
 	
 	void Update () {
+        if (timerStart)
+        {
+            Timer -= Time.deltaTime;
+            Debug.Log(Timer);
+        }
+        if (Timer < 0 && !roundEndedByTimer)
+        {
+            roundEndedByTimer = true;
+            EndRound(OnRoundEnd);
+        }
+
         if (!roundEnded && HerdList.Instance != null && HerdList.Instance.GetSheepCount() == 0)
         {
             roundEnded = true;
@@ -41,8 +58,26 @@ public class Rounds : PublicSingleton<Rounds>
         {
             EndRound(OnRoundEnd);
         }
+        
+    }
 
-	}
+    public void StartTimer()
+    {
+        Timer = GAME_TIME;
+        roundEnded = false;
+        roundEndedByTimer = false;
+        timerStart = true;
+    }
+
+    public void StopTimer()
+    {
+        timerStart = false;
+    }
+
+    public void SubscribeTimerToStart()
+    {
+        Game.OnGameStart += StartTimer;
+    }
 
     public void BeginNextRound(Action _onComplete)
     {
@@ -93,7 +128,7 @@ public class Rounds : PublicSingleton<Rounds>
         LoadingScreen.TransitionTo(GameSceneInfo.SceneName, null);
         SwapTeams();
         CurrentRound++;
-        roundEnded = false;
+        StopTimer();
     }
 
     public void OnGameEnd()
