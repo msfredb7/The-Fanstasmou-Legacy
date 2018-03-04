@@ -99,6 +99,7 @@ public partial class Game : PublicSingleton<Game>
                                         playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
 
                                     }, 2);
+                                    Rounds.Instance.SubscribeTimerToStart();
                                     StartGame();
                                 });
                             });
@@ -136,6 +137,7 @@ public partial class Game : PublicSingleton<Game>
                                                 playerFour.GetComponent<PlayerIndicator>().HidePlayerIndicator();
 
                                             }, 2);
+                                            Rounds.Instance.SubscribeTimerToStart();
                                             StartGame();
                                         });
                                     });
