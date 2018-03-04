@@ -51,10 +51,11 @@ public class WolfBehavior : MonoBehaviour {
     void Start()
     {
         PlayerContainer.Instance.AddWolves(this);
+
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
         RepusleAnimation.transform.SetParent(transform.parent);
         RepusleAnimation.transform.localScale = Vector3.one * repulse.range * 0.7f;
-
+        RepusleAnimation.SetActive(false);
 
         if (inputButtons == null)
             GetInputButtonsRef();
@@ -101,7 +102,8 @@ public class WolfBehavior : MonoBehaviour {
                 canDash = true;
                 normalEyes.GetComponent<SpriteRenderer>().DOFade(1, 0.1f).OnComplete(delegate 
                 {
-                    
+                    Instantiate(eyeBurst, leftEye.transform.position, Quaternion.identity, leftEye);
+                    Instantiate(eyeBurst, rightEye.transform.position, Quaternion.identity, rightEye);
                 });
             }, dashCooldown);
         }
@@ -217,5 +219,11 @@ public class WolfBehavior : MonoBehaviour {
 
         GetComponentInParent<Rigidbody2D>().drag = standardDrag;
         GetComponentInParent<PlayerMovement>().enabled = true;
+    }
+
+    public void ActivateFeedbacks()
+    {
+        RepusleAnimation.SetActive(true);
+       
     }
 }

@@ -55,6 +55,7 @@ public class PlayerInfo : MonoBehaviour
             var child = Instantiate(Game.Instance.wolfPrefab, transform);
             child.GetComponent<WolfInfo>().Init();
             child.transform.localPosition = Vector3.zero;
+
         }
         else
         {
