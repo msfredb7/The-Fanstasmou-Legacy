@@ -672,7 +672,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogBark: {fileID: 11400000, guid: 404e8cc70367c284bba648a75b413175, type: 2}
   dogGrowl: {fileID: 11400000, guid: 524da81db735b3a419655405af4cae80, type: 2}
+  dogWarCry: {fileID: 11400000, guid: 1f3c4d5ce8aa2af45ad65962f8c74ebe, type: 2}
   wolfHowl: {fileID: 11400000, guid: 396a665c5e27d2044a81ea790533fe77, type: 2}
+  dogHurt: {fileID: 11400000, guid: a333cc25b652a6f49bdbba1b35a48402, type: 2}
+  wolfDash: {fileID: 11400000, guid: 50d4835ab1c8de546b130394e6600047, type: 2}
 --- !u!1 &831751624
 GameObject:
   m_ObjectHideFlags: 0

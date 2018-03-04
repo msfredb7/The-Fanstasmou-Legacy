@@ -77,6 +77,7 @@ public class WolfBehavior : MonoBehaviour {
             {
                 return;
             }
+            Game.Instance.sfx.PlayWolfDashSound();
             dash();
             canDash = false;
             this.DelayedCall(() => { canDash = true; }, dashCooldown);
@@ -171,6 +172,7 @@ public class WolfBehavior : MonoBehaviour {
         reactivationTimer = reactivMaxDelay;
 
         GetComponentInParent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+        Game.Instance.sfx.PlayDogHurtSound();
     }
 
     public bool IsBumped

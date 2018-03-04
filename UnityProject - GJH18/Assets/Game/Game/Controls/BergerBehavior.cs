@@ -51,6 +51,8 @@ public class BergerBehavior : MonoBehaviour {
             {
                 currentMode = BergerMode.Attract;
 
+                Game.Instance.sfx.PlayDogBark();
+
                 attract.active = true;
                 repulse.active = false;
 
@@ -59,6 +61,8 @@ public class BergerBehavior : MonoBehaviour {
             } else
             {
                 currentMode = BergerMode.Repulse;
+
+                Game.Instance.sfx.PlayDogGrowl();
 
                 attract.active = false;
                 repulse.active = true;
@@ -89,7 +93,7 @@ public class BergerBehavior : MonoBehaviour {
     {
         if (canKockback)
         {
-            Debug.Log("Kockback");
+            Game.Instance.sfx.PlayDogWarCry();
             target.GetComponentInChildren<WolfBehavior>().Bump(target.GetComponentInChildren<WolfInfo>().transform.right * -1 * repulsionStrength);
             canKockback = false;
             this.DelayedCall(delegate ()
