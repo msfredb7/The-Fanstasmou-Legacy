@@ -16,9 +16,12 @@ public class Rounds : PublicSingleton<Rounds>
     public SceneInfo EndRoundScene;
     public SceneInfo GameSceneInfo;
 
-	void Start () {
+    public List<PlayerInfo> TeamOne;
+    public List<PlayerInfo> TeamTwo;
+
+    void Start () {
         CurrentRound = 1;
-	}
+    }
 	
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.R))
@@ -29,7 +32,19 @@ public class Rounds : PublicSingleton<Rounds>
 
     public void BeginNextRound(Action _onComplete)
     {
+        if (CurrentRound % 2 == 1)
+        {
+            TeamOne = new List<PlayerInfo>();
+            TeamTwo = new List<PlayerInfo>();
 
+            TeamOne = Game.Instance.GetDoggies();
+            TeamTwo = Game.Instance.GetWolves();
+        }
+        else if (CurrentRound % 2 == 0)
+        {
+            TeamOne = Game.Instance.GetWolves();
+            TeamTwo = Game.Instance.GetDoggies();
+        }
         Scenes.Load(BeginRoundScene, (RoundScene) => 
         {
             RoundScene.FindRootObject<ShowRound>().Show(_onComplete);
@@ -47,6 +62,19 @@ public class Rounds : PublicSingleton<Rounds>
     public void OnRoundEnd()
     {
         LoadingScreen.TransitionTo(GameSceneInfo.SceneName, null);
+        SwapTeams();
         CurrentRound++;
+    }
+
+    private void SwapTeams()
+    {
+        foreach (PlayerInfo dog in Game.Instance.GetDoggies())
+        {
+            dog.SwapTeamsAtEndRound();
+        }
+        foreach (PlayerInfo wolf in Game.Instance.GetWolves())
+        {
+            wolf.SwapTeamsAtEndRound();
+        }
     }
 }

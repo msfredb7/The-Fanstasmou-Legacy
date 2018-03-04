@@ -28,6 +28,18 @@ public class PlayerInfo : MonoBehaviour
         LoadPlayerCharacterParams();
     }
 
+    public void SwapTeamsAtEndRound()
+    {
+        if (isWolf)
+        {
+            PlayerPrefs.SetInt(player + " team", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(player + " team", 1);
+        }
+    }
+
     private void LoadPlayerInfo()
     {
         switch (player)
