@@ -22,7 +22,7 @@ public class SpawnerFoin : MonoBehaviour
         m_lstNode.AddRange(FindComponentsInChildrenWithTag<Transform>(gameObject, "Node"));
 
         //SpawnFoinAtRandom();
-        Invoke("SpawnFoinAtRandom", m_StartDelay);
+        Game.OnGameStart += () => Invoke("SpawnFoinAtRandom", m_StartDelay);
 
         //InvokeRepeating(, 10.0f, Random.Range(0, 20));
     }
