@@ -20,6 +20,7 @@ public partial class Game
 
     public MusicManager music;
     public SFXManager sfx;
+    public SpawnerSheep SheepSpawn;
 
     [Header("PREFABS")]
     public PlayerInfo playerPrefab;

@@ -111,9 +111,9 @@ public class WolfBehavior : MonoBehaviour {
                 Herd herd = sheepDetector.GetHerd();
                 if (herd.MemberCount() <= maxSheepEaten)
                 {
-                    herd.Eat();
                     GameObject instantiatedScratch = Instantiate(scratchAnimation);
-                    instantiatedScratch.transform.position = transform.position + (transform.right);
+                    instantiatedScratch.transform.position = herd.GetMiddle();
+                    herd.Eat();
                 }
             }
         }
