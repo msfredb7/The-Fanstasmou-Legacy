@@ -83,6 +83,7 @@ public partial class Game : PublicSingleton<Game>
                     {
                         Rounds.Instance.BeginNextRound(delegate ()
                         {
+                            sfx.PlayDogHowl();
                             gameUI.DogsArrive(delegate () {
                                 intros.IntroTheDoggies(delegate () {
                                     //Indicators
@@ -112,6 +113,7 @@ public partial class Game : PublicSingleton<Game>
                                 // DOGS ARRIVE
                                 Rounds.Instance.BeginNextRound(delegate ()
                                 {
+                                    sfx.PlayDogHowl();
                                     gameUI.DogsArrive(delegate () {
                                         intros.IntroTheDoggies(delegate () {
                                             List<PlayerInfo> doogies = GetDoggies();
