@@ -6,6 +6,13 @@ public class HerdList : CCC.DesignPattern.PublicSingleton<HerdList>
 {
     public List<Herd> herds = new List<Herd>();
 
+    public int GetSheepCount()
+    {
+        int count = 0;
+        for (int i = 0; i < herds.Count; i++)
+            count += herds[i].MemberCount();
+        return count;
+    }
 
     public Herd NewHerd(HerdMember member)
     {

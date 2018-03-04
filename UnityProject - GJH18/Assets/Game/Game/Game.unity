@@ -666,6 +666,8 @@ MonoBehaviour:
   dogHurt: {fileID: 11400000, guid: a333cc25b652a6f49bdbba1b35a48402, type: 2}
   wolfDash: {fileID: 11400000, guid: 50d4835ab1c8de546b130394e6600047, type: 2}
   wolfBite: {fileID: 11400000, guid: 30758f35cb1181b438f99e458c68ba89, type: 2}
+  GrassExplode: {fileID: 11400000, guid: 6ae00d5a8676c3049b5e04efc9d675bb, type: 2}
+  dogUltimate: {fileID: 11400000, guid: d546eb297e6cca14eaab923a77e79cf2, type: 2}
 --- !u!1 &831751624
 GameObject:
   m_ObjectHideFlags: 0
