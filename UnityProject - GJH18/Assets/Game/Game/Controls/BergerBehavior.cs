@@ -50,7 +50,7 @@ public class BergerBehavior : MonoBehaviour {
         AttractAnimation.transform.SetParent(transform.parent);
 
         AttractAnimation.SetActive(false);
-        RepulseAnimation.SetActive(false);
+        RepulseAnimation.SetActive(true);
 
         barkAttract.active = false;
 
