@@ -10,6 +10,8 @@ public class WolfBehavior : MonoBehaviour {
     [SerializeField]
     private GameObject dashTrailPrefab;
     [SerializeField]
+    private GameObject eyeBurst;
+    [SerializeField]
     private Transform leftEye;
     [SerializeField]
     private Transform rightEye;
