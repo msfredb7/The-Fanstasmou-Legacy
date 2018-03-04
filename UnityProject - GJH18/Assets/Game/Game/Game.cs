@@ -85,13 +85,6 @@ public partial class Game : PublicSingleton<Game>
                         {
                             gameUI.DogsArrive(delegate () {
                                 intros.IntroTheDoggies(delegate () {
-                                    List<PlayerInfo> doogies = GetDoggies();
-                                    for (int i = 0; i < doogies.Count; i++)
-                                    {
-                                        doogies[i].GetComponentInChildren<BergerBehavior>().ActivateFeedbacks();
-                                        doogies[i].GetComponent<PlayerMovement>().enabled = true;
-                                    }
-
                                     //Indicators
                                     playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                                     playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();

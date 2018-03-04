@@ -53,6 +53,8 @@ public class CarManager : MonoBehaviour {
         for (int i = 0; i < Game.Instance.map.carSpawnPoint.Count; i++)
         {
             GameObject newCar = Instantiate(carPrefab, Game.Instance.map.carSpawnPoint[i].position, Quaternion.identity);
+            if(i == 2)
+                newCar.GetComponentInChildren<SpriteRenderer>().transform.localScale = new Vector3(-1,1,1);
             cars.Add(newCar);
             carsExiting.Add(false);
 
@@ -67,7 +69,7 @@ public class CarManager : MonoBehaviour {
                 },doorAnimDuration);
             }));
         }
-        Debug.Log("Son de camion ici");
+        Game.Instance.sfx.PlayTruckArrive();
         sqc.OnComplete(delegate ()
         {
             onComplete();
@@ -90,8 +92,10 @@ public class CarManager : MonoBehaviour {
                 }, cars[i].GetComponent<Camion>().EvacSpeed);
             }
             else
+            {
                 cars[i].GetComponent<BoxCollider2D>().isTrigger = false;
-
+                cars[i].GetComponentInChildren<Animator>().SetBool("closed", true);
+            }
         }
         this.DelayedCall(delegate () {
             Sequence sqc = DOTween.Sequence();
@@ -124,7 +128,7 @@ public class CarManager : MonoBehaviour {
         if (car.GetComponent<BoxCollider2D>().isTrigger == false)
         {
             this.DelayedCall(delegate () {
-                car.GetComponentInChildren<Animator>().SetBool("close", true);
+                car.GetComponentInChildren<Animator>().SetBool("closed", true);
                 this.DelayedCall(delegate ()
                 {
                     int destinationIndex = 0;
@@ -147,6 +151,7 @@ public class CarManager : MonoBehaviour {
         } else
         {
             car.GetComponent<BoxCollider2D>().isTrigger = false;
+            car.GetComponentInChildren<Animator>().SetBool("closed", true);
         }
             
     }

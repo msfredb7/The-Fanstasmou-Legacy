@@ -395,7 +395,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 412979868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: -4.23, z: 0}
+  m_LocalPosition: {x: -0.22, y: -4.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -668,6 +668,7 @@ MonoBehaviour:
   wolfBite: {fileID: 11400000, guid: 30758f35cb1181b438f99e458c68ba89, type: 2}
   GrassExplode: {fileID: 11400000, guid: 6ae00d5a8676c3049b5e04efc9d675bb, type: 2}
   dogUltimate: {fileID: 11400000, guid: d546eb297e6cca14eaab923a77e79cf2, type: 2}
+  TruckArrive: {fileID: 11400000, guid: 44ecbc575622c11498dcfec0be9b3b54, type: 2}
 --- !u!1 &831751624
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +745,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 837348392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.95, y: 0.21, z: 0}
+  m_LocalPosition: {x: 11.07, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -1063,7 +1064,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1207369717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.97, y: -0.44, z: 0}
+  m_LocalPosition: {x: 8.76, y: -0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
@@ -1363,10 +1364,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carPrefab: {fileID: 1675720604190378, guid: 4fa86752577ad104ebb489d327cb7474, type: 2}
-  startSpawningCarsAt: 1
+  startSpawningCarsAt: 7.5
   delayBetweenCarSpawns: 7.5
-  carStayDuration: 5
-  enteringAnimDuration: 2
+  carStayDuration: 7.5
+  enteringAnimDuration: 1
   doorAnimDuration: 1
 --- !u!1 &1584903476
 GameObject:
@@ -1976,7 +1977,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1912172001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.37, y: -2.46, z: 0}
+  m_LocalPosition: {x: -8.93, y: -2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1075842617}
