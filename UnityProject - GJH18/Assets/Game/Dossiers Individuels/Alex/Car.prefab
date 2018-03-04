@@ -195,10 +195,10 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675720604190378}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.96642286, y: -0.15935683}
@@ -247,6 +247,8 @@ MonoBehaviour:
   plateformCheckpoint: {fileID: 1571268773828064}
   camionCheckpoint: {fileID: 1477265657642476}
   EvacSpeed: 1.25
+  sheepCaughtPrefab: {fileID: 1301878090599536, guid: c502437ee01f4534fb49a7510201c88c,
+    type: 2}
 --- !u!212 &212202232210292220
 SpriteRenderer:
   m_ObjectHideFlags: 1

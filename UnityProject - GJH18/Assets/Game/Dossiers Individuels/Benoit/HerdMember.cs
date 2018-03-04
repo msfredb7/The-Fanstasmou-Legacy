@@ -73,7 +73,7 @@ public class HerdMember : MonoBehaviour
 
 
 
-    public void Evac()
+    public void Evac(GameObject evacSheepFeedbackPrefab)
     {
         List<PlayerInfo> bergers = Game.Instance.GetDoggies();
 
@@ -88,6 +88,7 @@ public class HerdMember : MonoBehaviour
         if(closestPlayer != null && Rounds.Instance != null)
         {
             Rounds.Instance.AddSheepRescued(1, closestPlayer);
+            Instantiate(evacSheepFeedbackPrefab, transform.position, Quaternion.identity);
             herd.RemoveMember(this);
             Destroy(gameObject);
         }
