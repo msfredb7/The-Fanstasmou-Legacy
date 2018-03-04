@@ -234,18 +234,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3872c4928cc82d2429e37ac9bb1a4914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 4
+  m_MaxSpeed: 2
   log: 0
   m_CohesionCentering: 1
   m_PoidWandering: 0
   m_PoidSeparation: 0
   m_PoidAlign: 0
-  m_PoidCohesion: 2.5
-  m_PoidFlee: 120
+  m_PoidCohesion: 15
+  m_PoidFlee: 300
   m_PoidEvade: 0
-  m_PoidSeek: 0
-  m_FleePower: 1
-  m_SeekPower: 1
+  m_PoidSeek: 60
+  m_FleePower: 0.1
+  m_SeekPower: 0.1
   m_EvadePower: 1
   m_WanderRadius: 5
   m_WanderRefresh: 3
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_AlignRange: 2
   m_SeekRange: 0
   m_FleeRange: 2.5
-  FuirSourie: 1
+  FuirSourie: 0
 --- !u!114 &114282376008088182
 MonoBehaviour:
   m_ObjectHideFlags: 1
