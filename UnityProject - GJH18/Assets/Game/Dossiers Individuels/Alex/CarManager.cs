@@ -67,7 +67,7 @@ public class CarManager : MonoBehaviour {
                 },doorAnimDuration);
             }));
         }
-        Debug.Log("Son de camion ici");
+        Game.Instance.sfx.PlayTruckArrive();
         sqc.OnComplete(delegate ()
         {
             onComplete();
