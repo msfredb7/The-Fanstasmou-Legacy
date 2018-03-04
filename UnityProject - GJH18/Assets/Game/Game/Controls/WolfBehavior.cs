@@ -37,7 +37,7 @@ public class WolfBehavior : MonoBehaviour {
     public float eatCooldown = 0.5f;
     private bool canEat = true;
 
-    public int maxSheepEaten = 1;
+    public const int maxSheepEaten = 1;
 
     public float triggerSensitivity = 0.2f;
 

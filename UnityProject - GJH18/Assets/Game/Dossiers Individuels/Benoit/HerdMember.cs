@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HerdMember : MonoBehaviour {
+public class HerdMember : MonoBehaviour
+{
     public static float maxDistance = 1.0f;
+    public SpriteRenderer endangeredVisuals;
 
     private Voisin voisin;
 
@@ -22,7 +24,7 @@ public class HerdMember : MonoBehaviour {
         List<HerdMember> members = new List<HerdMember>();
         List<Voisin> lVoisins = voisin.GetVoisinsInRange(maxDistance);
 
-        for(int i = 0; i < lVoisins.Count; i++)
+        for (int i = 0; i < lVoisins.Count; i++)
         {
             HerdMember hMember = lVoisins[i].gameObject.GetComponent<HerdMember>() as HerdMember;
             if (hMember)
@@ -36,6 +38,7 @@ public class HerdMember : MonoBehaviour {
     public void Update()
     {
         Debug.DrawLine(transform.position, (Vector3)herd.GetMiddle(), Color.red);
+        endangeredVisuals.enabled = herd.MemberCount() <= WolfBehavior.maxSheepEaten;
     }
 
     public void SetHerd(Herd newHerd)
