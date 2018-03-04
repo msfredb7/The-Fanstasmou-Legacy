@@ -6,8 +6,10 @@ public class HerdMember : MonoBehaviour
 {
     public static float maxDistance = 1.0f;
     public SpriteRenderer endangeredVisuals;
+    public Transform headLocation;
 
     private Voisin voisin;
+    private Transform endangeredVisuals_TR;
 
     [HideInInspector]
     private Herd herd = null;
@@ -16,6 +18,8 @@ public class HerdMember : MonoBehaviour
     {
         voisin = GetComponent<Voisin>() as Voisin;
         herd = HerdList.Instance.NewHerd(this);
+        endangeredVisuals_TR = endangeredVisuals.transform;
+        endangeredVisuals_TR.SetParent(transform.parent);
     }
 
 
@@ -38,7 +42,13 @@ public class HerdMember : MonoBehaviour
     public void Update()
     {
         Debug.DrawLine(transform.position, (Vector3)herd.GetMiddle(), Color.red);
-        endangeredVisuals.enabled = herd.MemberCount() <= WolfBehavior.maxSheepEaten;
+
+        var endangered = herd.MemberCount() <= WolfBehavior.maxSheepEaten;
+        endangeredVisuals.enabled = endangered;
+        if (endangered)
+        {
+            endangeredVisuals_TR.position = headLocation.position;
+        }
     }
 
     public void SetHerd(Herd newHerd)
