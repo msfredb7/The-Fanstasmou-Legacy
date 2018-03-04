@@ -189,6 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tr: {fileID: 4093663747448870}
+  m_PlusPrefab: {fileID: 1114525822263810, guid: 3a796f33c74bdfb42beea4a7991f2b96,
+    type: 2}
 --- !u!212 &212016716932233446
 SpriteRenderer:
   m_ObjectHideFlags: 1
