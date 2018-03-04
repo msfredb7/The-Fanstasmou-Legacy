@@ -669,6 +669,7 @@ MonoBehaviour:
   GrassExplode: {fileID: 11400000, guid: 6ae00d5a8676c3049b5e04efc9d675bb, type: 2}
   dogUltimate: {fileID: 11400000, guid: d546eb297e6cca14eaab923a77e79cf2, type: 2}
   TruckArrive: {fileID: 11400000, guid: 44ecbc575622c11498dcfec0be9b3b54, type: 2}
+  dogHowl: {fileID: 11400000, guid: 4481625a57e096545be2e91889c86aaa, type: 2}
 --- !u!1 &831751624
 GameObject:
   m_ObjectHideFlags: 0

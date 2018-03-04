@@ -17,7 +17,9 @@ public class Camion : MonoBehaviour {
     public GameObject sheepCaughtPrefab;
 
 
-    void OnTriggerEnter2D(Collider2D collider)
+
+
+    void OnTriggerStay2D(Collider2D collider)
     {
         HerdMember sheep = collider.GetComponent<HerdMember>();
         if (sheep != null && SheepEvacuated < MaxSheepEvac)
@@ -52,9 +54,12 @@ public class Camion : MonoBehaviour {
 
     public void MoveToCheckpoint(Transform sheep, Vector2 checkpoint, Sequence sqc)
     {
-        float rotationAngle = ((Vector2)sheep.transform.position - checkpoint).ToAngle();
-        Vector3 rotation = transform.forward * rotationAngle;
+        float rotationAngle = (checkpoint - (Vector2)sheep.transform.position).ToAngle();
+        Vector3 rotation = Vector3.forward * rotationAngle;
+        Debug.Log(rotation);
+        sheep.GetComponent<CharacterOrientation>().enabled = false;
         sheep.rotation = Quaternion.Euler(rotation);
+
 
         float distance = (checkpoint - (Vector2)sheep.position).magnitude;
         float animationLength = distance / EvacSpeed;

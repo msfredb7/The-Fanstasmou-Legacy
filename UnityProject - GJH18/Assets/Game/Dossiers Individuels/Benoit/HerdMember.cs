@@ -77,12 +77,13 @@ public class HerdMember : MonoBehaviour
 
     public void EnableUI()
     {
-        endangeredVisuals.SetAlpha(0.0f);
+        endangeredVisuals.SetAlpha(1.0f);
+       
     }
 
     public void DisableUI()
     {
-        endangeredVisuals.SetAlpha(1.0f);
+        endangeredVisuals.SetAlpha(0.0f);
     }
 
     public void Evac(GameObject evacSheepFeedbackPrefab)
@@ -93,7 +94,7 @@ public class HerdMember : MonoBehaviour
         PlayerInfo closestPlayer = null;
         for (int i = 0; i < bergers.Count; i++)
         {
-            float dist = ((Vector2)transform.position - (Vector2)bergers[i].transform.position).magnitude;
+            float dist = ((Vector2)bergers[i].transform.position - (Vector2)transform.position).magnitude;
             if (dist < minDistance)
                 closestPlayer = bergers[i];
         }
