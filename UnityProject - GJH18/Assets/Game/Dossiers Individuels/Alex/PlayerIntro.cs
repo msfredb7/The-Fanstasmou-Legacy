@@ -19,6 +19,19 @@ public class PlayerIntro : MonoBehaviour {
                 Game.Instance.sfx.PlayWolfHowl();
                 Game.Instance.gameUI.WolfsArrive(delegate() {
                     IntroTheWolves(delegate () {
+                        List<PlayerInfo> wolves = Game.Instance.GetWolves();
+                        for (int i = 0; i < wolves.Count; i++)
+                        {
+                            wolves[i].GetComponentInChildren<WolfBehavior>().ActivateFeedbacks();
+                            wolves[i].GetComponent<PlayerMovement>().enabled = true;
+                        }
+                        if(HerdList.Instance)
+                        {
+                            List<HerdMember> sheeps = HerdList.Instance.GetAllSheeps();
+                            for (int i = 0; i < sheeps.Count; i++)
+                                sheeps[i].EnableUI();
+                        }
+                        
                         Game.Instance.playerOne.GetComponent<PlayerIndicator>().ShowWolfIndicator();
                         Game.Instance.playerTwo.GetComponent<PlayerIndicator>().ShowWolfIndicator();
                         Game.Instance.playerThree.GetComponent<PlayerIndicator>().ShowWolfIndicator();

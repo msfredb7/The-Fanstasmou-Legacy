@@ -36,6 +36,9 @@ public class Camion : MonoBehaviour {
 
     public void EvacSheep(HerdMember sheep, Action OnComplete)
     {
+        sheep.DisableUI();
+        sheep.GetComponent<SheepComponent>().AIenabled = false;
+
         Sequence sqc = DOTween.Sequence();
         MoveToCheckpoint(sheep.transform, (Vector2)plateformCheckpoint.transform.position, sqc);
         MoveToCheckpoint(sheep.transform, (Vector2)camionCheckpoint.transform.position, sqc);
