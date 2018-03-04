@@ -22,6 +22,8 @@ public partial class Game
     public SFXManager sfx;
     public SpawnerSheep SheepSpawn;
 
+    public CarManager carManager;
+
     [Header("PREFABS")]
     public PlayerInfo playerPrefab;
     public GameObject wolfPrefab;
