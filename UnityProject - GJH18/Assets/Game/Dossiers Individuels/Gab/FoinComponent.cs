@@ -46,11 +46,12 @@ public class FoinComponent : MonoBehaviour
 
             Sequence m_PlusSheep = DOTween.Sequence();
 
-            m_PlusSheep.Append(m_PlusSprite.transform.DOMoveY(m_PlusSprite.transform.position.y + 2.0f, 2.0f));
+            m_PlusSheep.Append(m_PlusSprite.transform.DOMoveY(m_PlusSprite.transform.position.y + 1, 2.0f).SetEase(Ease.OutQuint));
 
-            m_PlusSheep.Append(m_PlusSprite.transform.DOMoveY(m_PlusSprite.transform.position.y + 10.0f, 1.0f));
+            //m_PlusSheep.AppendInterval(0.5f);
+            //m_PlusSheep.Append(m_PlusSprite.transform.DOMoveY(m_PlusSprite.transform.position.y + 10.0f, 1.0f));
 
-            m_PlusSheep.Join(m_PlusSprite.GetComponent<SpriteRenderer>().DOFade(0.0f, 1.0f));
+            m_PlusSheep.Insert(1.1f, m_PlusSprite.GetComponent<SpriteRenderer>().DOFade(0.0f, 1.0f));
 
             m_PlusSheep.Play();
 

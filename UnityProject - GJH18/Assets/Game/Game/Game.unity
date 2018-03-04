@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wolfIntroDelay: 5
-  animSpeed: 1
+  animSpeed: 2
   indicatorDelay: 3
 --- !u!114 &718092932
 MonoBehaviour:

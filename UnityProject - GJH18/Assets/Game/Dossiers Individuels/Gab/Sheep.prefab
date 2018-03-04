@@ -234,18 +234,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3872c4928cc82d2429e37ac9bb1a4914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxSpeed: 1
+  m_MaxSpeed: 1.25
   log: 0
   m_CohesionCentering: 1
   m_PoidWandering: 0
   m_PoidSeparation: 0
   m_PoidAlign: 0
   m_PoidCohesion: 15
-  m_PoidFlee: 300
+  m_PoidFlee: 140
   m_PoidEvade: 0
-  m_PoidSeek: 60
-  m_FleePower: 0.1
-  m_SeekPower: 0.1
+  m_PoidSeek: 45
+  m_FleePower: 2
+  m_SeekPower: 0.5
   m_EvadePower: 1
   m_WanderRadius: 5
   m_WanderRefresh: 3
