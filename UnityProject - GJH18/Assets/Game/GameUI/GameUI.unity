@@ -250,6 +250,7 @@ RectTransform:
   - {fileID: 498642529}
   - {fileID: 1594355095}
   - {fileID: 1009779017}
+  - {fileID: 259533649}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -292,6 +293,10 @@ MonoBehaviour:
   buttonPopUp: {fileID: 393272018}
   audioMixerSaver: {fileID: 11400000, guid: e28b0bc15f60e8e438842ae1e4d69b0e, type: 2}
   pauseMenuVolume: -40
+<<<<<<< HEAD
+=======
+  timer: {fileID: 259533653}
+>>>>>>> origin/master
   dogsArrive: {fileID: 1594355096}
   wolfsArrive: {fileID: 1009779018}
   animalArriveAnimDuration: 3

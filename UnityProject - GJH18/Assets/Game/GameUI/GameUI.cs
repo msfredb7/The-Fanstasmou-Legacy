@@ -12,6 +12,8 @@ public class GameUI : MonoBehaviour {
     public AudioMixerSaver audioMixerSaver;
     public float pauseMenuVolume = -40;
 
+    public Timer timer;
+
     public Image dogsArrive;
     public Image wolfsArrive;
     public float animalArriveAnimDuration = 1;

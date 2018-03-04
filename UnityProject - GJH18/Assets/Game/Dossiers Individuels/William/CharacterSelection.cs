@@ -18,6 +18,13 @@ public class CharacterSelection : MonoBehaviour {
 
 	void Start () {
         buttons = GetComponent<InputPlayerButton>();	
+        if(PlayerPrefs.GetInt("FirstGame",0) == 0)
+        {
+            music.GetComponent<AudioSource>().enabled = true;
+        } else
+        {
+            music.GetComponent<AudioSource>().enabled = false;
+        }
 	}
 
     void Update()
