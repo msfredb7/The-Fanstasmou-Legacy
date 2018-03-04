@@ -87,6 +87,7 @@ public partial class Game : PublicSingleton<Game>
                             sfx.PlayDogHowl();
                             gameUI.DogsArrive(delegate () {
                                 intros.IntroTheDoggies(delegate () {
+                                    
                                     //Indicators
                                     playerOne.GetComponent<PlayerIndicator>().ShowPlayerIndicator();
                                     playerTwo.GetComponent<PlayerIndicator>().ShowPlayerIndicator();

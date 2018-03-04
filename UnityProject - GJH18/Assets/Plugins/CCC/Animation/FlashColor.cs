@@ -20,7 +20,7 @@ public class FlashColor : MonoBehaviour {
             Flash();
     }
 
-    void Flash()
+    public void Flash()
     {
         switch (currentType)
         {
