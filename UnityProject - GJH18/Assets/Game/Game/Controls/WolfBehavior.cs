@@ -10,6 +10,8 @@ public class WolfBehavior : MonoBehaviour {
     [SerializeField]
     private GameObject dashTrailPrefab;
     [SerializeField]
+    private GameObject eyeBurst;
+    [SerializeField]
     private Transform leftEye;
     [SerializeField]
     private Transform rightEye;
@@ -60,7 +62,7 @@ public class WolfBehavior : MonoBehaviour {
                 sheepDetector.onSheepInRange.AddListener(delegate() {
                     Herd herd = sheepDetector.GetHerd();
                     if (herd != null && herd.MemberCount() <= maxSheepEaten)
-                        Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition(Game.Instance.mainCamera.WorldToScreenPoint(transform.position), ButtonPopUp.ButtonType.A, 0.5f, "EAT");
+                        Game.Instance.gameUI.buttonPopUp.FocusPopupOnPosition(Game.Instance.mainCamera.WorldToScreenPoint(transform.position), ButtonPopUp.ButtonType.Trigger, 0.5f, "EAT");
                 });
             }
         }
