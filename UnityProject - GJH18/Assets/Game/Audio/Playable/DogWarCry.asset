@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1837e9efa92b042bae3f51ed3561fa, type: 3}
+  m_Name: DogWarCry
+  m_EditorClassIdentifier: 
+  cooldown: -1
+  clips:
+  - {fileID: 11400000, guid: 3ff71f631e02aa14b9d72b642c466d74, type: 2}
+  - {fileID: 11400000, guid: c85662b1479ad304b81e2a02da3b6f5b, type: 2}
+  - {fileID: 11400000, guid: 624399e8e1b71254bbfa032bb88c914a, type: 2}
+  - {fileID: 11400000, guid: 2ed275a33d1342f4197a6e97c0490835, type: 2}
+  - {fileID: 11400000, guid: 51458ea1f9d294241906a3f0777500b7, type: 2}
+  - {fileID: 11400000, guid: f27e455bf14d3cd4a95d772132620eae, type: 2}
