@@ -14,6 +14,18 @@ public class HerdList : CCC.DesignPattern.PublicSingleton<HerdList>
         return count;
     }
 
+    public List<HerdMember> GetAllSheeps()
+    {
+        List<HerdMember> sheeps = new List<HerdMember>();
+
+        for (int i = 0; i < herds.Count; i++)
+            sheeps.AddRange(herds[i].getMembers());
+
+        return sheeps;    
+    }
+        
+        
+
     public Herd NewHerd(HerdMember member)
     {
         Herd newHerd = new Herd(member);
