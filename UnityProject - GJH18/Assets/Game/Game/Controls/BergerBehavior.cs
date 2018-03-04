@@ -17,6 +17,9 @@ public class BergerBehavior : MonoBehaviour {
     public Attract attract;
     public Repulse repulse;
 
+    public GameObject RepulseAnimation;
+    public GameObject AttractAnimation;
+
     public float changeModeCooldown = 0.5f;
     private bool canChange = true;
 
@@ -28,12 +31,15 @@ public class BergerBehavior : MonoBehaviour {
     void Start()
     {
         PlayerContainer.Instance.AddBerger(this);
-
         attract.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
+        SetAttract();
+
+
 
         if (inputButtons == null)
             GetInputButtonsRef();
+
     }
 
 	void Update ()
@@ -53,8 +59,7 @@ public class BergerBehavior : MonoBehaviour {
 
                 Game.Instance.sfx.PlayDogBark();
 
-                attract.active = true;
-                repulse.active = false;
+                SetAttract();
 
                 canChange = false;
                 this.DelayedCall(() => { canChange = true; },changeModeCooldown);
@@ -64,8 +69,7 @@ public class BergerBehavior : MonoBehaviour {
 
                 Game.Instance.sfx.PlayDogGrowl();
 
-                attract.active = false;
-                repulse.active = true;
+                SetRepulse();
 
                 canChange = false;
                 this.DelayedCall(() => { canChange = true; }, changeModeCooldown);
@@ -101,5 +105,36 @@ public class BergerBehavior : MonoBehaviour {
                 canKockback = true;
             }, knockbackCooldown);
         }
+    }
+
+    private void ToggleBurgerMode()
+    {
+        if (currentMode == BergerMode.Attract)
+            SetRepulse();
+        else
+            SetAttract();
+
+    }
+
+    private void SetAttract()
+    {
+        attract.active = true;
+        repulse.active = false;
+
+        AttractAnimation.transform.localScale =  Vector3.one * attract.range * 0.7f;
+
+        AttractAnimation.SetActive(true);
+        RepulseAnimation.SetActive(false);
+    }
+
+    private void SetRepulse()
+    {
+        attract.active = false;
+        repulse.active = true;
+
+        RepulseAnimation.transform.localScale = Vector3.one * repulse.range * 0.7f;
+
+        AttractAnimation.SetActive(false);
+        RepulseAnimation.SetActive(true);
     }
 }

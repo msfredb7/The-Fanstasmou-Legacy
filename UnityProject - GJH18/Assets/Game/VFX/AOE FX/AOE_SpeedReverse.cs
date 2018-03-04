@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AOE_SpeedReverse : MonoBehaviour
 {
-    void Awake()
+    void OnEnable()
     {
         var anim = GetComponent<Animator>();
         if (anim != null)
