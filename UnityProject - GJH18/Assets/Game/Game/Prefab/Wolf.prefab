@@ -309,11 +309,11 @@ MonoBehaviour:
   leftEye: {fileID: 4155072660373410}
   rightEye: {fileID: 4748705566457304}
   normalEyes: {fileID: 4932096427116868}
-  RepusleAnimation: {fileID: 1238063254417816}
-  dashCooldown: 1
-  dashSpeed: 10
+  RepulseAnimation: {fileID: 1238063254417816}
+  dashCooldown: 4
+  dashSpeed: 5
   dashAcceleration: 10
-  dashDuration: 0.2
+  dashDuration: 0.4
   eatCooldown: 0.5
   triggerSensitivity: 0
   repulse:

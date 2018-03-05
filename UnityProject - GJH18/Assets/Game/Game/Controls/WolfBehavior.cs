@@ -62,6 +62,7 @@ public class WolfBehavior : MonoBehaviour {
 
         repulse.owner = GetComponentInParent<Rigidbody2D>() as Rigidbody2D;
         RepulseAnimation.transform.SetParent(transform.parent);
+        RepulseAnimation.transform.localScale = Vector3.zero;
         RepulseAnimation.transform.localScale = Vector3.one * repulse.range * 0.7f;
 
 

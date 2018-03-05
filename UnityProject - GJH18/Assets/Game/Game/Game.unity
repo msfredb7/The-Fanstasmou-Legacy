@@ -1611,9 +1611,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carPrefab: {fileID: 1675720604190378, guid: 4fa86752577ad104ebb489d327cb7474, type: 2}
-  startSpawningCarsAt: 7.5
-  delayBetweenCarSpawns: 7.5
-  carStayDuration: 7.5
+  startSpawningCarsAt: 12
+  delayBetweenCarSpawns: 10
+  carStayDuration: 12
   enteringAnimDuration: 1
   doorAnimDuration: 1
 --- !u!1 &1584903476
@@ -2035,7 +2035,6 @@ GameObject:
   - component: {fileID: 1813271738}
   - component: {fileID: 1813271737}
   - component: {fileID: 1813271736}
-  - component: {fileID: 1813271740}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2106,18 +2105,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1813271740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1813271735}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 03444edbe87bde44f8f29365adfac945, type: 2}
 --- !u!1 &1857576326
 GameObject:
   m_ObjectHideFlags: 0
